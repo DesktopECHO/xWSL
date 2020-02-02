@@ -20,21 +20,18 @@ POWERSHELL.EXE -command "Expand-Archive %TEMP%\Ubuntu1804.zip -DestinationPath .
 POWERSHELL.EXE -command "Expand-Archive %TEMP%\xWSLres.zip       -DestinationPath .\%DISTRO%\xWSLres"
 NETSH AdvFirewall Firewall add rule name="XRDP Port %RDPPRT% for WSL" dir=in action=allow protocol=TCP localport=%RDPPRT%
 NETSH AdvFirewall Firewall add rule name="SSHd Port %SSHPRT% for WSL" dir=in action=allow protocol=TCP localport=%SSHPRT%
-CD \%DISTRO%
-REM move LxRunOffline.exe to our PWD -- https://github.com/DDoSolitary/LxRunOffline
-COPY /Y .\xWSLres\LxR.exe .\
-REM Install Distro with LxRunOffline 
-LXR install -n %DISTRO% -d . -f install.tar.gz
+CD \%DISTRO%\xWSL
+REM Install Distro with LxRunOfflineunOffline -- https://github.com/DDoSolitary/LxRunOfflineunOffline
+LxRunOffline install -n %DISTRO% -d . -f install.tar.gz
 REM Register Distro
-LXR sd -n %DISTRO%
+LxRunOffline sd -n %DISTRO%
 REM Workaround WSL DNS Isssue
-WSL rm -f /etc/resolv.conf ; cp ./xWSLres/resolv.conf /etc/resolv.conf ; chmod 444 /etc/resolv.conf
+WSL rm -f /etc/resolv.conf ; cp resolv.conf /etc/resolv.conf ; chmod 444 /etc/resolv.conf
 REM Pull in Seamonkey as default browser
-WSL cp ./xWSLres/mozilla.list /etc/apt/sources.list.d/mozilla.list ; apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2667CA5C 
+WSL cp .mozilla.list /etc/apt/sources.list.d/mozilla.list ; apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2667CA5C 
 REM Pull in PPA's
 WSL add-apt-repository -y ppa:xubuntu-dev/staging ; add-apt-repository -y ppa:mark-pcnetspec/gksu ; apt-add-repository -y ppa:remmina-ppa-team/remmina-next ; add-apt-repository -y ppa:system76/pop ; add-apt-repository -y ppa:xubuntu-dev/ppa ; apt update
-WSL < ./xWSLres/packagelist xargs sudo DEBIAN_FRONTEND=noninteractive apt-get -y install -o APT::Install-Suggests=0 -o APT::Install-Recommends=0
-WSL < ./xWSLres/packagelist xargs sudo DEBIAN_FRONTEND=noninteractive apt-get -y remove 
+WSL dpkg --clear-selections ; dpkg --set-selections < packagelist ; DEBIAN_FRONTEND=noninteractive apt -y upgrade -o APT::Install-Suggests=0 -o APT::Install-Recommends=0
 REM This older version of Synaptic works fine and prevents a crap-ton of dependancies from getting pulled in:
 WSL apt -y install ./xWSLres/libxapian22v5_1.2.22-2-xWSL_amd64.deb ./xWSLres/synaptic_0.83-xWSL_amd64.deb xrdp xorgxrdp -o APT::Install-Suggests=0 -o APT::Install-Recommends=0 
 WSL apt-mark hold synaptic

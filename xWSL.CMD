@@ -36,15 +36,14 @@ WSL add-apt-repository -y ppa:xubuntu-dev/staging ; add-apt-repository -y ppa:ma
 
 WSL DEBIAN_FRONTEND=noninteractive apt-get -y remove --allow-remove-essential apparmor cloud-init cloud-initramfs-copymods cloud-initramfs-dyn-netconf friendly-recovery initramfs-tools initramfs-tools-core libnss-systemd libpam-systemd mdadm netplan.io nplan open-iscsi overlayroot policykit-1 snapd ubuntu-minimal ubuntu-server ubuntu-standard libfreetype6
 
-WSL apt -y install gksu xorg xrdp xorgxrdp pulseaudio imagemagick cgroup-lite zip libnotify-bin at-spi2-core wslu xfce4 xfce4-panel xfce4-terminal thunar dbus-x11 libgtk-3-bin mousepad thunar-volman xfce4-notifyd thunar-archive-plugin remmina-common remmina-plugin-exec remmina-plugin-rdp remmina-plugin-secret remmina-plugin-vnc remmina-plugin-www filezilla seamonkey pop-theme -o APT::Install-Suggests=0 -o APT::Install-Recommends=0
+WSL apt -y install gksu xorg xrdp xorgxrdp pulseaudio imagemagick cgroup-lite zip libnotify-bin at-spi2-core wslu xfce4 xfce4-panel xfce4-terminal thunar dbus-x11 libgtk-3-bin mousepad thunar-volman xfce4-notifyd thunar-archive-plugin remmina-common remmina-plugin-exec remmina-plugin-rdp remmina-plugin-secret remmina-plugin-vnc remmina-plugin-www filezilla seamonkey pop-theme p7zip-full unzip xarchiver xdg-utils -o APT::Install-Suggests=0 -o APT::Install-Recommends=0
 
 REM This version of Synaptic works fine and prevents a crap-ton of dependancies from getting pulled in:
 WSL apt -y install libxapian22v5_1.2.22-2-xWSL_amd64.deb synaptic_0.83-xWSL_amd64.deb -o APT::Install-Suggests=0 -o APT::Install-Recommends=0 
 WSL apt-mark hold synaptic
-WSL rm -rf /etc/skel ; cp -rp /skel/ /etc/ ; chown -R root:root /etc/skel ; chmod -R 755 /etc/skel
+WSL rm -rf /etc/skel ; cp skel.tar /etc ; cd /etc ; tar xvf skel.tar ; chown -R root:root /etc/skel ; chmod -R 755 /etc/skel
 REM Ugly but effective replacement of pkexec with gksu, hey at least Synaptic elevates properly now  
 WSL mv /usr/bin/pkexec /usr/bin/pkexec.xWSL ; ln -s /usr/bin/gksu /usr/bin/pkexec 
-REM It's a Microsoft OS we might as well pull in the nice fonts...
 WSL ln -s /mnt/c/Windows/Fonts /usr/share/fonts/truetype/microsoft
 REM Custom xrdp config
 WSL rm /etc/xrdp/xrdp.ini ; rm /etc/xrdp/sesman.ini ; cp *.ini /etc/xrdp ; cp xWSL.png /usr/share/pixmaps
@@ -53,12 +52,11 @@ WSL rm -rf /usr/share/themes/Xfce* ; rm -rf /usr/share/themes/ZOMG* ; rm -rf /us
 WSL sed -i 's/3388/%RDPPRT%/g' /etc/xrdp/xrdp.ini
 WSL sed -i 's/#Port 22/Port %SSHPRT%/g' /etc/ssh/sshd_config
 WSL sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-WSL cp ./xWSLres/wslinit /usr/local/bin/wslinit ; chown root:root /usr/local/bin/wslinit ; chmod 755 /usr/local/bin/wslinit
-WSL md /var/lib/xrdp-pulseaudio-installer ; /cp ./xWSLres/module-xrdp-* /var/lib/xrdp-pulseaudio-installer
+WSL cp ./wslinit /usr/local/bin/wslinit ; chown root:root /usr/local/bin/wslinit ; chmod 755 /usr/local/bin/wslinit
+WSL mkdir /var/lib/xrdp-pulseaudio-installer ; cp ./module-xrdp-* /var/lib/xrdp-pulseaudio-installer/
 set /p xu=Enter name of xWSL user: 
 bash -c "useradd -m -p nulltemp -s /bin/bash %xu%"
 powershell -Command $pword = read-host "Enter password" -AsSecureString ; $BSTR=[System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($pword) ; [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR) > .tmp.txt & set /p password=<.tmp.txt & del .tmp.txt
 bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
-./xWSLres
 ./xWSLres/FreeRDP/WfreeRDP /f /v:localhost:%RDPPRT% /u:%xu% /p:%password%

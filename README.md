@@ -1,16 +1,16 @@
 # xWSL
 
-The fastest way to a Linux desktop on WSL.
-- Ubuntu 18.04
-- XFCE 4.14
-- PulseAudio support 
-- Simple init system started in Task Scheduler
-- Youtube video is a bit choppy but sound works well. 
-- FreeRDP Client included (wfreerdp.exe) for desktop sessions on Server Core. This is a little janky but works if you need it.  No audio support in Core.
+The fastest way to a Linux desktop in WSL.
+
+- Ubuntu 18.04/XFCE 4.14 desktop builds itself from the official Windows App Store image.
+- XRDP Display Server, use with Remote Desktop Client (mstsc.exe)
+- PulseAudio Windows binaries included for audio support.
+- Simple init system started in Task Scheduler.
+- Youtube video in browser is a bit choppy, but sound works well. 
+- FreeRDP Client included (wfreerdp.exe) for desktop sessions on Server Core. This part is a little janky and there's no audio support, but it works.
 
 Run xWSL.CMD, sit back and watch the show.
-Anybody can play, send me a pull request!
+There are some pretty ugly solutions in place to address WSL quirks, send me a pull request!
 
 Enjoy,
 D.
-

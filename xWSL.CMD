@@ -1,7 +1,6 @@
 @ECHO OFF
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 CLS
-Install-Module posh-git -Scope CurrentUser -Force
 ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
 set "DISTRO=xWSL" 
 set "RDPPRT=3388"

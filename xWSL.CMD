@@ -3,7 +3,8 @@ POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Micr
 CLS
 ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
 ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...
-IF NOT EXIST Ubuntu1804.exe POWERSHELL.EXE -command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile Ubuntu1804.exe"POWERSHELL.EXE -command "Expand-Archive xWSL.ZIP %DISTRO%"
+IF NOT EXIST Ubuntu1804.exe POWERSHELL.EXE -command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile Ubuntu1804.exe"
+POWERSHELL.EXE -command "Expand-Archive xWSL.ZIP %DISTRO% -force"
 set "DISTRO=xWSL" 
 set "RDPPRT=3388"
 set "SSHPRT=3322"
@@ -15,7 +16,7 @@ NETSH AdvFirewall Firewall add rule name="SSHd Port %SSHPRT% for WSL" dir=in act
 POWERSHELL.EXE -command "Expand-Archive xWSL.ZIP %DISTRO%"
 CD %DISTRO%
 POWERSHELL.EXE -command Start-BitsTransfer -Source "https://github.com/DesktopECHO/xWSL/raw/master/xWSLres.zip" -Destination xWSLres.zip
-POWERSHELL.EXE -command "Expand-Archive xWSLres.ZIP"
+POWERSHELL.EXE -command "Expand-Archive xWSLres.ZIP -force"
 DEL xWSLres.zip
 REM move LxRunOffline to our PWD -- https://github.com/DDoSolitary/LxRunOffline
 MOVE .\xWSLres\lxr.exe .\

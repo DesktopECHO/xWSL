@@ -21,9 +21,9 @@ POWERSHELL.EXE -command "Expand-Archive %TEMP%\Ubuntu1804.zip -DestinationPath .
 POWERSHELL.EXE -command "Expand-Archive %TEMP%\xWSLres.zip       -DestinationPath .\%DISTRO%\xWSLres"
 NETSH AdvFirewall Firewall add rule name="XRDP Port %RDPPRT% for WSL" dir=in action=allow protocol=TCP localport=%RDPPRT%
 NETSH AdvFirewall Firewall add rule name="SSHd Port %SSHPRT% for WSL" dir=in action=allow protocol=TCP localport=%SSHPRT%
-CD \%DISTRO%\xWSL
+CD \%DISTRO%\xWSLres
 REM Install Distro with LxRunOfflineunOffline -- https://github.com/DDoSolitary/LxRunOfflineunOffline
-LxRunOffline install -n %DISTRO% -d . -f install.tar.gz
+LxRunOffline.EXE install -n %DISTRO% -d . -f install.tar.gz
 REM Register Distro
 LxRunOffline sd -n %DISTRO%
 REM Workaround WSL DNS Isssue

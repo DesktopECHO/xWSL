@@ -1,5 +1,5 @@
 @ECHO OFF
-REM 
+REM INIT --> powershell -command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL/master/xWSL.CMD -UseBasicParsing -OutFile xwsl.cmd ; .\xwsl.cmd"
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 CLS
 ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com

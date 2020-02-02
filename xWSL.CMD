@@ -1,4 +1,5 @@
 @ECHO OFF
+REM 
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 CLS
 ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com

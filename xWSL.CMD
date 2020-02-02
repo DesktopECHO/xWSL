@@ -3,7 +3,7 @@ POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Micr
 CLS
 ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
 ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...
-IF NOT EXIST Ubuntu1804.exe POWERSHELL.EXE -command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile Ubuntu1804.exe"
+IF NOT EXIST Ubuntu1804.exe POWERSHELL.EXE -command "wget https://aka.ms/wsl-ubuntu-1804" -UseBasicParsing -OutFile Ubuntu1804.exe
 POWERSHELL.EXE -command "Expand-Archive xWSL.ZIP %DISTRO% -force"
 set "DISTRO=xWSL" 
 set "RDPPRT=3388"

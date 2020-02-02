@@ -3,7 +3,7 @@ REM CURRENTLY BROKEN WORKING ON COMPLETION
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
 ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...
-IF NOT EXIST Ubuntu1804.exe POWERSHELL.EXE -command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile xWSL.ZIP"
+IF NOT EXIST Ubuntu1804.exe POWERSHELL.EXE -command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile Ubuntu1804.exe"
 set "DISTRO=xWSL" 
 set "RDPPRT=3388"
 set "SSHPRT=3322"
@@ -16,17 +16,24 @@ REM -UseBasicParsing is to prevent IE from doing the download, needed for Server
 POWERSHELL.EXE -command "https://github.com/DesktopECHO/xWSL/raw/master/xWSLres.zip" -UseBasicParsing -OutFile xWSLres.zip"
 POWERSHELL.EXE -command "Expand-Archive xWSLres.ZIP"
 DEL xWSLres.zip
+REM move LxRunOffline to our PWD -- https://github.com/DDoSolitary/LxRunOffline
 MOVE .\xWSLres\lxr.exe .\
+REM Install Distro with LxRunOffline 
 LXR install -n %DISTRO% -d . -f install.tar.gz
+REM Register Distro
 LXR sd -n %DISTRO%
-
+REM Workaround WSL DNS Isssue
 WSL rm -f /etc/resolv.conf ; cp ./xWSLres/resolv.conf /etc/resolv.conf ; chmod 444 /etc/resolv.conf
+REM Pull in Seamonkey as default browser
 WSL cp ./xWSLres/mozilla.list /etc/apt/sources.list.d/mozilla.list ; apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2667CA5C 
+REM Pull in PPA's
 WSL add-apt-repository -y ppa:xubuntu-dev/staging ; add-apt-repository -y ppa:mark-pcnetspec/gksu ; apt-add-repository -y ppa:remmina-ppa-team/remmina-next ; add-apt-repository -y ppa:system76/pop ; add-apt-repository -y ppa:xubuntu-dev/ppa ; apt update
-
 WSL < ./xWSLres/packagelist xargs sudo DEBIAN_FRONTEND=noninteractive apt-get -y install -o APT::Install-Suggests=0 -o APT::Install-Recommends=0
-WSL apt -y install ./xWSLres/libxapian22v5_1.2.22-2-xWSL_amd64.deb ./xWSLres/synaptic_0.83-xWSL_amd64.deb xrdp xorgxrdp -o APT::Install-Suggests=0 -o APT::Install-Recommends=0 ; apt-mark hold synaptic
-WSL apt -y --allow-remove-essential remove bind9-host dnsutils initramfs-tools initramfs-tools-core libbind9-160 libdns1100 libirs160 libisc169 libisccc160 libisccfg160 parted cloud-guest-utils cloud-init cloud-initramfs-copymods cloud-initramfs-dyn-netconf friendly-recovery init liblxc-common liblxc1 libnss-systemd libpam-systemd lxd netplan.io networkd-dispatcher nplan plymouth plymouth-theme-ubuntu-text policykit-1 snapd systemd systemd-sysv ubuntu-minimal ubuntu-server ubuntu-standard apparmor apport busybox-initramfs busybox-static dirmngr gnupg gnupg-l10n gnupg-utils gpg gpg-agent gpg-wks-client gpg-wks-server gpgconf gpgsm gpgv irqbalance isc-dhcp-client isc-dhcp-common libntfs-3g88 libnuma1 lxcfs lxd-client mdadm ntfs-3g open-iscsi open-vm-tools python3-distupgrade python3-software-properties python3-update-manager software-properties-common ubuntu-release-upgrader-core ufw unattended-upgrades update-manager-core update-notifier-common vim vim-common vim-runtime vim-tiny 
+WSL < ./xWSLres/packagelist xargs sudo DEBIAN_FRONTEND=noninteractive apt-get -y remove 
+REM This older version of Synaptic works fine and prevents a crap-ton of dependancies from getting pulled in:
+WSL apt -y install ./xWSLres/libxapian22v5_1.2.22-2-xWSL_amd64.deb ./xWSLres/synaptic_0.83-xWSL_amd64.deb xrdp xorgxrdp -o APT::Install-Suggests=0 -o APT::Install-Recommends=0 
+WSL apt-mark hold synaptic
+
 WSL rm -rf /etc/skel ; cp ./xWSLres/skel.tar /etc ; mv /usr/bin/pkexec /usr/bin/pkexec.xWSL ; ln -s /usr/bin/gksu /usr/bin/pkexec ; ln -s /mnt/c/Windows/Fonts /usr/share/fonts/truetype/microsoft ; rm /etc/xrdp/xrdp.ini ; rm /etc/xrdp/sesman.ini ; cp ./xWSLres/*.ini /etc/xrdp ; cp ./xWSLres/xWSL*.png /usr/share/pixmaps ; cd /etc ; tar xvf skel.tar ; rm -rf /usr/share/themes/Xfce* ; rm -rf /usr/share/themes/ZOMG* ; rm -rf /usr/share/themes/R* ; rm -rf /usr/share/icons/Humanity*
 WSL sed -i 's/3388/%RDPPRT%/g' /etc/xrdp/xrdp.ini
 WSL sed -i 's/#Port 22/Port %SSHPRT%/g' /etc/ssh/sshd_config

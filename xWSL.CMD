@@ -13,7 +13,7 @@ set /p SSHPRT=Enter port number for SSHd traffic or hit Enter to use default [33
 POWERSHELL.EXE -command "Expand-Archive xWSL.ZIP %DISTRO%"
 CD %DISTRO%
 REM -UseBasicParsing is to prevent IE from doing the download, needed for Server Core or Hyper-V Server 2019
-POWERSHELL.EXE -command "wget https://441.surf/xWSLres.zip -UseBasicParsing -OutFile xWSLres.zip"
+POWERSHELL.EXE -command "https://github.com/DesktopECHO/xWSL/raw/master/xWSLres.zip" -UseBasicParsing -OutFile xWSLres.zip"
 POWERSHELL.EXE -command "Expand-Archive xWSLres.ZIP"
 DEL xWSLres.zip
 MOVE .\xWSLres\lxr.exe .\

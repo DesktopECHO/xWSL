@@ -691,3 +691,18 @@ xxd
 xz-utils
 zip
 zlib1g:amd64
+gnome-icon-theme
+libatkmm-1.6-1v5
+libcairomm-1.0-1v5
+libcanberra-gtk3-0
+libcanberra0 libg
+libmm-2.4-1v5
+libgtkmm-2.4-1v5
+libgtkmm-3.0-1v5
+libpangomm-1.4-1v5
+libsigc++-2.0-0v5
+libtdb1
+libvorbisfile3
+pavucontrol 
+pavumeter
+sound-theme-freedesktop

@@ -12,7 +12,7 @@ The fastest way to a Linux desktop in WSL.  From an elevated command prompt:
 - FreeRDP Client included (wfreerdp.exe) for desktop sessions on Server Core. This part is a little janky and there's no audio support, but it works.
 
 Run xWSL.CMD, sit back and watch the show.
-There are some pretty ugly solutions in place to address WSL quirks, send me a pull request!
+There are some pretty ugly solutions in place to address WSL quirks, contributors welcome!
 
 Enjoy,
 D.

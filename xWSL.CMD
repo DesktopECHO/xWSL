@@ -1,18 +1,9 @@
 @ECHO OFF
-REM INIT --> powershell -command "wget https://441.surf/xwsl.txt -UseBasicParsing -OutFile xwsl.cmd ; .\xwsl.cmd"
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux"
 CLS
-ECHO xWSL Installer 2020-01-30 / Daniel Milisic / dmilisic@desktopecho.com
-ECHO.
-ECHO Install Ubuntu 18.04 WSL Distro with XFCE 4.14 and XDRP
-ECHO.
-ECHO.
-ECHO.
-ECHO.
-ECHO.
+ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
 ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...
-IF NOT EXIST xWSL.ZIP POWERSHELL.EXE -command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile xWSL.ZIP"
-ECHO.
+IF NOT EXIST Ubuntu1804.exe POWERSHELL.EXE -command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile xWSL.ZIP"
 set "DISTRO=xWSL" 
 set "RDPPRT=3388"
 set "SSHPRT=3322"
@@ -21,6 +12,7 @@ set /p RDPPRT=Enter port number for xRDP traffic or hit Enter to use default [33
 set /p SSHPRT=Enter port number for SSHd traffic or hit Enter to use default [3322]:
 POWERSHELL.EXE -command "Expand-Archive xWSL.ZIP %DISTRO%"
 CD %DISTRO%
+REM -UseBasicParsing is to prevent IE from doing the download, needed for Server Core or Hyper-V Server 2019
 POWERSHELL.EXE -command "wget https://441.surf/xWSLres.zip -UseBasicParsing -OutFile xWSLres.zip"
 POWERSHELL.EXE -command "Expand-Archive xWSLres.ZIP"
 DEL xWSLres.zip

@@ -15,6 +15,7 @@ ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...
 REM If We already have the distro don't waste time grabbing it again
 IF NOT EXIST %TEMP%\Ubuntu1804.zip POWERSHELL.EXE -Command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile %TEMP%\Ubuntu1804.zip"
 REM But always refresh xWSLres from GitHub
+IF EXIST %TEMP%\xWSLres.zip DEL %TEMP%\xWSLres.zip
 POWERSHELL.EXE -Command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL/master/xWSLres.zip -UseBasicParsing -OutFile %TEMP%\xWSLres.zip"
 POWERSHELL.EXE -command "Expand-Archive %TEMP%\Ubuntu1804.zip -DestinationPath .\%DISTRO%"
 POWERSHELL.EXE -command "Expand-Archive %TEMP%\xWSL.zip       -DestinationPath .\%DISTRO%\xWSLres"

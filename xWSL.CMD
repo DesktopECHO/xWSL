@@ -1,25 +1,28 @@
 @ECHO OFF
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 CLS
+Install-Module posh-git -Scope CurrentUser -Force
 ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
-ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...
-IF NOT EXIST Ubuntu1804.exe POWERSHELL.EXE -command "wget https://aka.ms/wsl-ubuntu-1804" -UseBasicParsing -OutFile Ubuntu1804.zip
-POWERSHELL.EXE -command "Expand-Archive Ubuntu1804.zip %DISTRO% -force"
 set "DISTRO=xWSL" 
 set "RDPPRT=3388"
 set "SSHPRT=3322"
-set /p DISTRO=Enter a unique name for the distro or hit Enter to use default [xWSL]:
-set /p RDPPRT=Enter port number for xRDP traffic or hit Enter to use default [3388]:
-set /p SSHPRT=Enter port number for SSHd traffic or hit Enter to use default [3322]:
+REM set /p DISTRO=Entfer a unique name for the distro or hit Enter to use default [xWSL]:
+REM set /p RDPPRT=Enter port number for xRDP traffic or hit Enter to use default [3388]:
+REM set /p SSHPRT=Enter port number for SSHd traffic or hit Enter to use default [3322]:
+REM Quit on Name Collision
+IF EXIST %DISTRO% ECHO FOLDER EXISTS! & EXIT
+ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...
+REM If We already have the distro don't waste time grabbing it again
+IF NOT EXIST %TEMP%\Ubuntu1804.zip POWERSHELL.EXE -Command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile %TEMP%\Ubuntu1804.zip"
+REM But always refresh xWSLres from GitHub
+POWERSHELL.EXE -Command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL/master/xWSLres.zip -UseBasicParsing -OutFile %TEMP%\xWSLres.zip"
+POWERSHELL.EXE -command "Expand-Archive %TEMP%\Ubuntu1804.zip -DestinationPath .\%DISTRO%"
+POWERSHELL.EXE -command "Expand-Archive %TEMP%\xWSL.zip       -DestinationPath .\%DISTRO%\xWSLres"
 NETSH AdvFirewall Firewall add rule name="XRDP Port %RDPPRT% for WSL" dir=in action=allow protocol=TCP localport=%RDPPRT%
 NETSH AdvFirewall Firewall add rule name="SSHd Port %SSHPRT% for WSL" dir=in action=allow protocol=TCP localport=%SSHPRT%
-POWERSHELL.EXE -command "Expand-Archive xWSL.ZIP %DISTRO%"
 CD %DISTRO%
-POWERSHELL.EXE -command Start-BitsTransfer -Source "https://github.com/DesktopECHO/xWSL/raw/master/xWSLres.zip" -Destination xWSLres.zip
-POWERSHELL.EXE -command "Expand-Archive xWSLres.ZIP -force"
-DEL xWSLres.zip
-REM move LxRunOffline to our PWD -- https://github.com/DDoSolitary/LxRunOffline
-MOVE .\xWSLres\lxr.exe .\
+REM move LxRunOffline.exe to our PWD -- https://github.com/DDoSolitary/LxRunOffline
+COPY /Y .\xWSLres\LxR.exe .\
 REM Install Distro with LxRunOffline 
 LXR install -n %DISTRO% -d . -f install.tar.gz
 REM Register Distro

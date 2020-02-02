@@ -1,6 +1,6 @@
 @ECHO OFF
-REM CURRENTLY BROKEN WORKING ON COMPLETION
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+CLS
 ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
 ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...
 IF NOT EXIST Ubuntu1804.exe POWERSHELL.EXE -command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile Ubuntu1804.exe"

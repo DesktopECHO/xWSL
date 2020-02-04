@@ -34,7 +34,7 @@ WSL cp mozilla.list /etc/apt/sources.list.d/mozilla.list ; apt-key adv --recv-ke
 REM Pull in PPA's
 WSL add-apt-repository -y ppa:xubuntu-dev/staging ; add-apt-repository -y ppa:mark-pcnetspec/gksu ; apt-add-repository -y ppa:remmina-ppa-team/remmina-next ; add-apt-repository -y ppa:system76/pop ; add-apt-repository -y ppa:xubuntu-dev/ppa ; apt update
 
-WSL DEBIAN_FRONTEND=noninteractive apt-get -y remove --allow-remove-essential apparmor cloud-init cloud-initramfs-copymods cloud-initramfs-dyn-netconf friendly-recovery initramfs-tools initramfs-tools-core libnss-systemd libpam-systemd mdadm netplan.io nplan open-iscsi overlayroot policykit-1 snapd ubuntu-minimal ubuntu-server ubuntu-standard libfreetype6
+WSL DEBIAN_FRONTEND=noninteractive apt-get -y remove --allow-remove-essential apparmor plymouth plymouth-theme-ubuntu-text cloud-init cloud-initramfs-copymods cloud-initramfs-dyn-netconf friendly-recovery initramfs-tools initramfs-tools-core libnss-systemd libpam-systemd mdadm netplan.io nplan open-iscsi overlayroot policykit-1 snapd ubuntu-minimal ubuntu-server ubuntu-standard libfreetype6
 
 WSL apt -y install gksu xorg xrdp xorgxrdp pulseaudio imagemagick cgroup-lite zip libnotify-bin at-spi2-core wslu xfce4 xfce4-panel xfce4-terminal thunar dbus-x11 libgtk-3-bin mousepad thunar-volman xfce4-notifyd thunar-archive-plugin remmina-common remmina-plugin-exec remmina-plugin-rdp remmina-plugin-secret remmina-plugin-vnc remmina-plugin-www filezilla seamonkey pop-theme p7zip-full unzip pavucontrol pavumeter xarchiver xdg-utils -o APT::Install-Suggests=0 -o APT::Install-Recommends=0
 
@@ -59,4 +59,4 @@ bash -c "useradd -m -p nulltemp -s /bin/bash %xu%"
 powershell -Command $pword = read-host "Enter password" -AsSecureString ; $BSTR=[System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($pword) ; [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR) > .tmp.txt & set /p password=<.tmp.txt & del .tmp.txt
 bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
-./xWSLres/FreeRDP/WfreeRDP /f /v:localhost:%RDPPRT% /u:%xu% /p:%password%
+.xWSLres/FreeRDP/WfreeRDP /f /v:localhost:%RDPPRT% /u:%xu% /p:%password%

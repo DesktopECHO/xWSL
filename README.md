@@ -1,7 +1,7 @@
 # xWSL.CMD 
 
 The fastest way to a Linux desktop in WSL.  
-** From an elevated CMD.EXE prompt**, change to your desired install directory and type or paste the following command:
+**From an elevated CMD.EXE prompt**, change to your desired install directory and type or paste the following command:
 
 > powershell -command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL/master/xWSL.CMD -UseBasicParsing -OutFile xwsl.cmd ; .\xwsl.cmd"
 

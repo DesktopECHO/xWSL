@@ -1,7 +1,5 @@
 @ECHO OFF
-REM INIT --> powershell -command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL/master/xWSL.CMD -UseBasicParsing -OutFile xwsl.cmd ; .\xwsl.cmd"
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-CLS
 ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
 SET "DISTRO=xWSL" 
 SET "RDPPRT=3388"
@@ -13,7 +11,7 @@ REM Quit on Name Collision
 REM IF EXIST %DISTRO% ECHO FOLDER EXISTS! & EXIT
 ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...
 REM If We already have the distro don't waste time grabbing it again
-REM IF NOT EXIST %TEMP%\Ubuntu1804.zip POWERSHELL.EXE -Command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile %TEMP%\Ubuntu1804.zip"
+IF NOT EXIST %TEMP%\Ubuntu1804.zip POWERSHELL.EXE -Command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile %TEMP%\Ubuntu1804.zip"
 REM But always refresh xWSLres from GitHub
 IF EXIST %TEMP%\xWSLres.zip DEL %TEMP%\xWSLres.zip
 POWERSHELL.EXE -Command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL/master/xWSLres.zip -UseBasicParsing -OutFile %TEMP%\xWSLres.zip"

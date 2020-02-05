@@ -1,7 +1,9 @@
-# xWSL.CMD
+# xWSL.CMD 
 
 The fastest way to a Linux desktop in WSL.  
-From an elevated CMD.EXE prompt, change to your desired install directory and run xWSL.CMD
+** From an elevated CMD.EXE prompt**, change to your desired install directory and type or paste the following command:
+
+> powershell -command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL/master/xWSL.CMD -UseBasicParsing -OutFile xwsl.cmd ; .\xwsl.cmd"
 
 - Ubuntu 18.04 + XFCE 4.14 builds itself from the official Windows App Store, a set of predefined PPA's and required packages. 
 - XRDP Display Server, use with Remote Desktop Client (mstsc.exe)

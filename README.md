@@ -11,10 +11,9 @@ The fastest way to a Linux desktop in WSL.
 - PulseAudio Windows binaries included for audio support, works for me? Needs testing.
 - Simple init system started in Task Scheduler.
 - Youtube video in browser is a bit choppy, but sound works well. 
-- FreeRDP Client included (wfreerdp.exe) for desktop sessions on Server Core. This part is a little janky and there's no audio support, but it works.
-
-Sit back and watch the show. 
-There are some pretty ugly solutions in place to address WSL quirks, contributors welcome!
+- FreeRDP Client included (wfreerdp.exe) for desktop sessions on Server Core. This part is a little janky and there's no audio support, but it's there if you need it.
+ 
+There are some inelegant solutions used to address WSL quirks, contributions welcome to improve this!
 
 Enjoy,
 D.

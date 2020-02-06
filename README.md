@@ -1,6 +1,6 @@
 # xWSL.CMD 
 
-The fastest way to a Linux desktop in WSL.  
+The fast and simple way to a Linux desktop in WSL.  
 
 **From an elevated CMD.EXE prompt**, change to your desired install directory and type or paste the following command:
 
@@ -13,7 +13,7 @@ The fastest way to a Linux desktop in WSL.
 - Youtube video in browser is a bit choppy, but sound works well. 
 - FreeRDP Client included (wfreerdp.exe) for desktop sessions on Server Core. This part is a little janky and there's no audio support, but it's there if you need it.
  
-There are some inelegant solutions used to address WSL quirks, contributions welcome to improve this!
+There are some inelegant solutions used to address WSL quirks, contributions welcome to improve this and other things!
 
 Enjoy,
 D.

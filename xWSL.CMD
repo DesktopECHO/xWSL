@@ -1,7 +1,7 @@
 @ECHO OFF
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 CLS
-ECHO
+ECHO.
 ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
 SET "DISTRO=xWSL" 
 SET "RDPPRT=3388"

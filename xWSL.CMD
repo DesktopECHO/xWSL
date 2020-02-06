@@ -49,7 +49,7 @@ WSL rm -rf /usr/share/themes/Xfce* ; rm -rf /usr/share/themes/ZOMG* ; rm -rf /us
 WSL sed -i 's/3388/%RDPPRT%/g' /etc/xrdp/xrdp.ini
 WSL sed -i 's/#Port 22/Port %SSHPRT%/g' /etc/ssh/sshd_config
 WSL sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-WSL cp ./wslinit /usr/local/bin/wslinit ; chown root:root /usr/local/bin/wslinit ; chmod 755 /usr/local/bin/wslinit
+WSL cp .\initWSL /usr/local/bin/initWSL ; chown root:root /usr/local/bin/initWSL ; chmod 755 /usr/local/bin/initWSL
 WSL mkdir /var/lib/xrdp-pulseaudio-installer ; cp ./module-xrdp-* /var/lib/xrdp-pulseaudio-installer/
 set /p xu=Enter name of xWSL user: 
 bash -c "useradd -m -p nulltemp -s /bin/bash %xu%"

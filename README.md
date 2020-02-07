@@ -8,13 +8,13 @@ The fast and simple way to a Linux desktop in WSL.
 
 When the script completes you'll have a lightweight and useable desktop with the following attributes:
 
-- Ubuntu 18.04 App Store Image will download directly from Microsoft.  
+- Ubuntu Linux 18.04 App Store Image downloaded directly from Microsoft.  
 - XFCE 4.14 backport for Ubuntu 18.04, with PPA's from other sources included for customization. 
 - XRDP Display Server - Access your WSL Linux desktop from the standard Windows Remote Desktop Client (mstsc.exe)
-- PulseAudio for Windows included for audio support.
+- PulseAudio for Windows bundled for audio support.
 - Simple init system started through Task Scheduler.
-- Mozilla SeaMonkey is the default Web renderer; YouTube works if at times a little jumpy.  Firefox/Chrome are off the table as they have issues in WSL.   
-- FreeRDP client (wfreerdp.exe) included for console sessions on Server Core. This part is a little janky at present and there's no audio support.  This could effectively turn a Hyper-V Server 2019 installation into a general-purpose Linux desktop.  Why you'd want to do something silly like this is beyond the scope of this README.
+- Mozilla SeaMonkey is the default Web renderer; YouTube works if at times a little jumpy.  Firefox/Chrome is not currently stable enough to use with this build.   
+- FreeRDP client (wfreerdp.exe) included for console sessions on Server Core. This part is a little janky and there's no audio support.  This can effectively turn a Hyper-V Server 2019 installation into a general-purpose Linux desktop.  Why you'd want to do something silly like this is beyond the scope of this README.
 
 There are some inelegant solutions used to address various WSL quirks; contributions are welcome to improve these and any other areas in need of attention.
 

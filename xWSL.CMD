@@ -60,6 +60,4 @@ bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 
 WHOUSR="$(whoami)"
 schtasks /create /xml "xWSL Start Init System at boot.xml" /tn "Start Init System at boot" /ru %WHOUSR%
-
-REM CD 
-REM WSL initWSL 5 &&  xWSLres\FreeRDP\WfreeRDP.EXE /f /v:localhost:%RDPPRT% /u:%xu% /p:%password%
+schtasks /create /xml "xWSL Start PulseAudio at login.xml" /tn "Start PulseAudio at login" /ru %WHOUSR%

@@ -57,7 +57,11 @@ bash -c "useradd -m -p nulltemp -s /bin/bash %xu%"
 powershell -Command $pword = read-host "Enter password" -AsSecureString ; $BSTR=[System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($pword) ; [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR) > .tmp.txt & set /p password=<.tmp.txt & del .tmp.txt
 bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
+for /f "delims=" %%n in ('whoami') do set NAME=%%n
+ECHO Creating Scheduled Task for Init System
+SchTasks /create /xml "xWSL Start Init System at boot.xml" /tn "xWSL Init System at boot" /ru %NAME%
+ECHO Creating Scheduled Task for Init System
+SchTasks /create /xml "xWSL Start PulseAudio at login.xml" /tn "xWSL PulseAudio at login.xml" /ru %NAME%
 
-WHOUSR="$(whoami)"
-schtasks /create /xml "xWSL Start Init System at boot.xml" /tn "Start Init System at boot" /ru %WHOUSR%
-schtasks /create /xml "xWSL Start PulseAudio at login.xml" /tn "Start PulseAudio at login" /ru %WHOUSR%
+REM CD 
+REM WSL initWSL 5 &&  xWSLres\FreeRDP\WfreeRDP.EXE /f /v:localhost:%RDPPRT% /u:%xu% /p:%password%

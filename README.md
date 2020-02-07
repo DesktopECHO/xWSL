@@ -13,10 +13,10 @@ When the script completes you'll have a lightweight and useable desktop with the
 - XRDP Display Server - Access your WSL Linux desktop from the standard Windows Remote Desktop Client (mstsc.exe)
 - PulseAudio for Windows included for audio support.
 - Simple init system started through Task Scheduler.
-- Mozilla SeaMonkey is the default Web renderer.  Firefox/Chrome have issues in WSL.   
-- FreeRDP client (wfreerdp.exe) included for console sessions on Server Core. This part is a little janky at present and there's no audio support.  This could effectively turn a Hyper-V Server 2019 installation into a general-purpose Linux desktop. 
+- Mozilla SeaMonkey is the default Web renderer; YouTube works if a little jumpy at times.  Firefox/Chrome have issues in WSL.   
+- FreeRDP client (wfreerdp.exe) included for console sessions on Server Core. This part is a little janky at present and there's no audio support.  This could effectively turn a Hyper-V Server 2019 installation into a general-purpose Linux desktop.  Why you'd want to do this is an overated question.
 
-There are some inelegant solutions used to address various WSL quirks; contributions are welcome to improve these and any other areas needing improvement.
+There are some inelegant solutions used to address various WSL quirks; contributions are welcome to improve these and any other areas in need of attention.
 
 Enjoy!
 Dan M.

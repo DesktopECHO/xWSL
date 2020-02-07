@@ -6,7 +6,7 @@ ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
 SET "DISTRO=xWSL" 
 SET "RDPPRT=3388"
 SET "SSHPRT=3322"
-SET /p DISTRO=Entfer a unique name for the distro or hit Enter to use default [xWSL]:
+SET /p DISTRO=Enter a unique name for the distro or hit Enter to use default [xWSL]:
 SET /p RDPPRT=Enter port number for xRDP traffic or hit Enter to use default [3388]:
 SET /p SSHPRT=Enter port number for SSHd traffic or hit Enter to use default [3322]:
 REM Quit on Name Collision

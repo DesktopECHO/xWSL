@@ -19,4 +19,5 @@ When the script completes you'll have a lightweight and useable desktop with the
 There are some inelegant solutions used to address various WSL quirks; contributions are welcome to improve these and any other areas in need of attention.
 
 Enjoy!
+
 Dan M.

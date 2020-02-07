@@ -60,8 +60,5 @@ bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 for /f "delims=" %%n in ('whoami') do set NAME=%%n
 ECHO Creating Scheduled Task for Init System
 SchTasks /create /xml "xWSL Start Init System at boot.xml" /tn "xWSL Init System at boot" /ru %NAME%
-ECHO Creating Scheduled Task for Init System
+ECHO Creating Scheduled Task for PulseAudio
 SchTasks /create /xml "xWSL Start PulseAudio at login.xml" /tn "xWSL PulseAudio at login.xml" /ru %NAME%
-
-REM CD 
-REM WSL initWSL 5 &&  xWSLres\FreeRDP\WfreeRDP.EXE /f /v:localhost:%RDPPRT% /u:%xu% /p:%password%

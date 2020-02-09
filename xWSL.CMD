@@ -11,6 +11,8 @@ SET /p RDPPRT=Enter port number for xRDP traffic or hit Enter to use default [33
 SET /p SSHPRT=Enter port number for SSHd traffic or hit Enter to use default [3322]:
 REM Quit on Name Collision
 REM IF EXIST %DISTRO% ECHO FOLDER EXISTS! & EXIT
+SET DISTROFULL=%CD%\%DISTRO%
+ECHO xWSL (%DISTRO%) To be installed in: %DISTROFULL%
 ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...
 REM If We already have the distro don't waste time grabbing it again
 IF NOT EXIST %TEMP%\Ubuntu1804.zip POWERSHELL.EXE -Command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile %TEMP%\Ubuntu1804.zip"
@@ -21,7 +23,7 @@ POWERSHELL.EXE -command "Expand-Archive %TEMP%\Ubuntu1804.zip -DestinationPath %
 POWERSHELL.EXE -command "Expand-Archive %TEMP%\xWSLres.zip    -DestinationPath %DISTRO%\xWSLres"
 NETSH AdvFirewall Firewall add rule name="XRDP Port %RDPPRT% for WSL" dir=in action=allow protocol=TCP localport=%RDPPRT%
 NETSH AdvFirewall Firewall add rule name="SSHd Port %SSHPRT% for WSL" dir=in action=allow protocol=TCP localport=%SSHPRT%
-REM Install Distro with LxRunOffline -- https://github.com/DDoSolitary/LxRunOfflineunOffline
+REM Install Distro with LxRunOffline -- https://github.com/DDoSolitary/LxRunOffline
 CD %DISTRO%
 xWSLres\LxRunOffline.exe install -n %DISTRO% -d . -f install.tar.gz
 REM Register Distro
@@ -58,7 +60,7 @@ powershell -Command $pword = read-host "Enter password" -AsSecureString ; $BSTR=
 bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 for /f "delims=" %%n in ('whoami') do set NAME=%%n
-ECHO Creating Scheduled Task for Init System
-SchTasks /create /xml "xWSL Start Init System at boot.xml" /tn "xWSL Init System at boot" /ru %NAME%
-ECHO Creating Scheduled Task for PulseAudio
-SchTasks /create /xml "xWSL Start PulseAudio at login.xml" /tn "xWSL PulseAudio at login.xml" /ru %NAME%
+ECHO Creating Scheduled Task
+SCHtasks /create /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 5'"
+REM  ECHO Creating Scheduled Task for PulseAudio
+REM  SchTasks /create /xml "xWSL Start PulseAudio at login.xml" /tn "xWSL PulseAudio at login.xml" /ru %NAME%

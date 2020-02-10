@@ -69,4 +69,3 @@ set /p MYPWD=< MYPWD
 echo "%MYPWD%/xWSLpa/bin/pulseaudio.exe --disable-shm=1 --realtime -D > KICKTHEPA
 REM # /mnt/c/Program\ Files/xWSL-Hospital/xWSLres/xWSLpa/bin/pulseaudio.exe --disable-shm=0 --realtime -D -vv
 
-

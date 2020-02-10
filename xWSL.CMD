@@ -63,9 +63,9 @@ for /f "delims=" %%n in ('whoami') do set NAME=%%n
 SCHtasks /create /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 5'"
 
 WSL pwd > PULSEWD
-set /p PULSEWD=<PULSEWD 
+SET /p PULSEWD=<PULSEWD 
 ECHO "%PULSEWD%/xWSLpa/bin/pulseaudio.exe" --disable-shm=1 --realtime -D > PULSEWD
-copy /a initWSLpre + PULSEWD initWSL
+COPY /B initWSLpre + PULSEWD initWSL
 WSL cp initWSL /usr/local/bin/initWSL ; chown root:root /usr/local/bin/initWSL ; chmod 755 /usr/local/bin/initWSL
 
 

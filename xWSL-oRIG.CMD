@@ -11,8 +11,7 @@ SET /p RDPPRT=Enter port number for xRDP traffic or hit Enter to use default [33
 SET /p SSHPRT=Enter port number for SSHd traffic or hit Enter to use default [3322]:
 REM Quit on Name Collision
 REM IF EXIST %DISTRO% ECHO FOLDER EXISTS! & EXIT
-SET DISTROFULL=%CD%\%DISTRO%
-ECHO xWSL (%DISTRO%) To be installed in: %DISTROFULL%
+SET DISTROFULLPATH=%CD%\%DISTRO%
 ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...
 REM If We already have the distro don't waste time grabbing it again
 IF NOT EXIST %TEMP%\Ubuntu1804.zip POWERSHELL.EXE -Command "wget https://aka.ms/wsl-ubuntu-1804 -UseBasicParsing -OutFile %TEMP%\Ubuntu1804.zip"
@@ -60,13 +59,11 @@ powershell -Command $pword = read-host "Enter password" -AsSecureString ; $BSTR=
 bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 for /f "delims=" %%n in ('whoami') do set NAME=%%n
+REM ----
 
-
-
-SCHtasks /create /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 5'"
-WSL pwd > MYPWD
-set /p MYPWD=< MYPWD 
-echo "%MYPWD%/xWSLpa/bin/pulseaudio.exe --disable-shm=1 --realtime -D > KICKTHEPA
-REM # /mnt/c/Program\ Files/xWSL-Hospital/xWSLres/xWSLpa/bin/pulseaudio.exe --disable-shm=0 --realtime -D -vv
-
-
+ECHO Variable: %DISTROFULL%
+SCHtasks /create /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 5'
+"boot" /ru %NAME%
+REM ----
+ECHO Creating Scheduled Task for PulseAudio
+SchTasks /create /xml "xWSL Start PulseAudio at login.xml" /tn "xWSL PulseAudio at login.xml" /ru %NAME%

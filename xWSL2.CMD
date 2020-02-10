@@ -60,13 +60,9 @@ powershell -Command $pword = read-host "Enter password" -AsSecureString ; $BSTR=
 bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 for /f "delims=" %%n in ('whoami') do set NAME=%%n
-
-
-
+ECHO Creating Scheduled Task
 SCHtasks /create /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 5'"
 WSL pwd > MYPWD
 set /p MYPWD=< MYPWD 
 echo "%MYPWD%/xWSLpa/bin/pulseaudio.exe --disable-shm=1 --realtime -D > KICKTHEPA
 REM # /mnt/c/Program\ Files/xWSL-Hospital/xWSLres/xWSLpa/bin/pulseaudio.exe --disable-shm=0 --realtime -D -vv
-
-

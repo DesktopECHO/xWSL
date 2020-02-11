@@ -1,6 +1,6 @@
 @ECHO OFF
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-CLS
+REM CLS
 ECHO.
 ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
 SET "DISTRO=xWSL" 
@@ -42,21 +42,12 @@ WSL dpkg -i libxapian22v5_1.2.22-2-xWSL_amd64.deb
 WSL dpkg -i synaptic_0.83-xWSL_amd64.deb
 WSL apt-mark hold synaptic
 WSL rm -rf /etc/skel ; cp skel.tar /etc ; cd /etc ; tar xvf skel.tar ; chown -R root:root /etc/skel ; chmod -R 755 /etc/skel
-CLS
+REM CLS
 REM Ugly but effective replacement of pkexec with gksu, hey at least Synaptic elevates properly now  
 WSL ln -s /usr/bin/gksu /usr/bin/pkexec 
 WSL ln -s /mnt/c/Windows/Fonts /usr/share/fonts/truetype/microsoft
 REM Get some init system action going...
-WSL cp initWSL /opt/initWSL ; chown root:root /opt/initWSL ; chmod 755 /opt/initWSL
-
-
-REM Sound Support! 
-WSL mv xWSLpa.exe /opt
-WSL find /etc -name "*eptables*" -exec rm -rf {} \;
-WSL find /etc -name "*irqbalance*" -exec rm -rf {} \;
-WSL find /etc -name "*acpid*" -exec rm -rf {} \;
-WSL find /etc -name "*console-setup*" -exec rm -rf {} \;
-WSL find /etc -name "*keyboard-setup*" -exec rm -rf {} \;
+WSL cp initWSL /opt/initWSL ; chown root:root /opt/initWSL ; chmod 755 /opt/initWSL ; mv xWSLpa.exe /opt
 REM Custom xrdp config
 WSL rm /etc/xrdp/xrdp.ini ; rm /etc/xrdp/sesman.ini ; cp *.ini /etc/xrdp ; cp xWSL.png /usr/share/pixmaps
 REM Get rid of a bunch of useless bits taking up space
@@ -73,4 +64,4 @@ bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 for /f "delims=" %%n in ('whoami') do set NAME=%%n
 
-SCHtasks /create /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c '/opt/initWSL 5'"
+SCHtasks /create /RL HIGHEST /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c '/opt/initWSL 2'"

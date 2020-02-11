@@ -28,23 +28,35 @@ CD %DISTRO%
 xWSLres\LxRunOffline.exe install -n %DISTRO% -d . -f install.tar.gz
 REM Register Distro
 xWSLres\LxRunOffline.exe sd -n %DISTRO%
-REM Workaround WSL DNS Isssue
+REM Work-around WSL DNS Resolution Failure Issue
 CD xWSLres
 WSL rm -f /etc/resolv.conf ; cp resolv.conf /etc/resolv.conf ; chmod 444 /etc/resolv.conf ; ssh-keygen -A
-REM Pull in Seamonkey as default browser
+REM Pull in Seamonkey as default browser, WSL Not playing nicely with Chrome or FireFox
 WSL cp mozilla.list /etc/apt/sources.list.d/mozilla.list ; apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2667CA5C 
 REM Pull in PPA's
 WSL add-apt-repository -y ppa:xubuntu-dev/staging ; add-apt-repository -y ppa:mark-pcnetspec/gksu ; apt-add-repository -y ppa:remmina-ppa-team/remmina-next ; add-apt-repository -y ppa:system76/pop ; add-apt-repository -y ppa:xubuntu-dev/ppa ; apt update
 WSL DEBIAN_FRONTEND=noninteractive apt-get -y remove --allow-remove-essential apparmor plymouth plymouth-theme-ubuntu-text cloud-init cloud-initramfs-copymods cloud-initramfs-dyn-netconf friendly-recovery initramfs-tools initramfs-tools-core libnss-systemd libpam-systemd mdadm netplan.io nplan open-iscsi overlayroot policykit-1 snapd ubuntu-minimal ubuntu-server ubuntu-standard libfreetype6
 WSL apt -y install gksu xorg xrdp xorgxrdp pulseaudio imagemagick cgroup-lite zip libnotify-bin at-spi2-core wslu xfce4 xfce4-panel xfce4-terminal thunar dbus-x11 libgtk-3-bin mousepad thunar-volman xfce4-notifyd thunar-archive-plugin remmina-common remmina-plugin-exec remmina-plugin-rdp remmina-plugin-secret remmina-plugin-vnc remmina-plugin-www filezilla seamonkey pop-theme p7zip-full unzip pavucontrol pavumeter xarchiver xdg-utils libept1.5.0 -o APT::Install-Suggests=0 -o APT::Install-Recommends=0
-REM This version of Synaptic works well and prevents a crapton of dependancies from getting pulled in:
+REM This version of Synaptic works well and prevents a crapton of dependancies from getting pulled in due to PolicyKit/systemd:
 WSL dpkg -i libxapian22v5_1.2.22-2-xWSL_amd64.deb
 WSL dpkg -i synaptic_0.83-xWSL_amd64.deb
 WSL apt-mark hold synaptic
 WSL rm -rf /etc/skel ; cp skel.tar /etc ; cd /etc ; tar xvf skel.tar ; chown -R root:root /etc/skel ; chmod -R 755 /etc/skel
+CLS
 REM Ugly but effective replacement of pkexec with gksu, hey at least Synaptic elevates properly now  
 WSL ln -s /usr/bin/gksu /usr/bin/pkexec 
 WSL ln -s /mnt/c/Windows/Fonts /usr/share/fonts/truetype/microsoft
+REM Get some init system action going...
+WSL cp initWSL /opt/initWSL ; chown root:root /opt/initWSL ; chmod 755 /opt/initWSL
+
+
+REM Sound Support! 
+WSL mv xWSLpa.exe /opt
+WSL find /etc -name "*eptables*" -exec rm -rf {} \;
+WSL find /etc -name "*irqbalance*" -exec rm -rf {} \;
+WSL find /etc -name "*acpid*" -exec rm -rf {} \;
+WSL find /etc -name "*console-setup*" -exec rm -rf {} \;
+WSL find /etc -name "*keyboard-setup*" -exec rm -rf {} \;
 REM Custom xrdp config
 WSL rm /etc/xrdp/xrdp.ini ; rm /etc/xrdp/sesman.ini ; cp *.ini /etc/xrdp ; cp xWSL.png /usr/share/pixmaps
 REM Get rid of a bunch of useless bits taking up space
@@ -53,6 +65,7 @@ WSL sed -i 's/3388/%RDPPRT%/g' /etc/xrdp/xrdp.ini
 WSL sed -i 's/#Port 22/Port %SSHPRT%/g' /etc/ssh/sshd_config
 WSL sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 WSL mkdir /var/lib/xrdp-pulseaudio-installer ; cp ./module-xrdp-* /var/lib/xrdp-pulseaudio-installer/
+
 set /p xu=Enter name of xWSL user: 
 bash -c "useradd -m -p nulltemp -s /bin/bash %xu%"
 powershell -Command $pword = read-host "Enter password" -AsSecureString ; $BSTR=[System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($pword) ; [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR) > .tmp.txt & set /p password=<.tmp.txt & del .tmp.txt
@@ -60,14 +73,4 @@ bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 for /f "delims=" %%n in ('whoami') do set NAME=%%n
 
-SCHtasks /create /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 5'"
-
-WSL pwd > PULSEWD
-SET /p PULSEWD=<PULSEWD 
-ECHO "%PULSEWD%/xWSLpa/bin/pulseaudio.exe" --disable-shm=1 --realtime -D > PULSEWD
-COPY /B initWSLpre + PULSEWD initWSL
-WSL cp initWSL /usr/local/bin/initWSL ; chown root:root /usr/local/bin/initWSL ; chmod 755 /usr/local/bin/initWSL
-
-
-
- 
+SCHtasks /create /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c '/opt/initWSL 5'"

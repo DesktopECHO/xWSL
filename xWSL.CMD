@@ -63,5 +63,5 @@ powershell -Command $pword = read-host "Enter password" -AsSecureString ; $BSTR=
 bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 for /f "delims=" %%n in ('whoami') do set NAME=%%n
-
-SCHtasks /create /RL HIGHEST /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c '/opt/initWSL 2'"
+ECHO Creating Scheduled Task for Init System
+SCHtasks /create /RU %NAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c '/opt/initWSL 2'"

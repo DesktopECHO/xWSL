@@ -40,6 +40,7 @@ WSL apt -y install gksu xorg xrdp xorgxrdp pulseaudio imagemagick cgroup-lite zi
 REM This version of Synaptic works well and prevents a crapton of dependancies from getting pulled in due to PolicyKit/systemd:
 WSL dpkg -i libxapian22v5_1.2.22-2-xWSL_amd64.deb
 WSL dpkg -i synaptic_0.83-xWSL_amd64.deb
+WSL dpkg -i xrdp_0.9.9-1-xWSL_amd64.deb
 WSL apt-mark hold synaptic
 WSL rm -rf /etc/skel ; cp skel.tar /etc ; cd /etc ; tar xvf skel.tar ; chown -R root:root /etc/skel ; chmod -R 755 /etc/skel
 REM CLS
@@ -63,5 +64,9 @@ powershell -Command $pword = read-host "Enter password" -AsSecureString ; $BSTR=
 bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 for /f "delims=" %%n in ('whoami') do set NAME=%%n
+
 ECHO Creating Scheduled Task for Init System
-SCHtasks /create /RU %NAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-%RANDOM% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c '/opt/initWSL 2'"
+SET /A RANDY=%RANDOM%
+SCHtasks /create /RU %NAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-%RANDY%            /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c '/opt/initWSL 2'"
+SCHtasks /create /RU %NAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-%RANDY%-PulseAudio /TR "%DISTROFULL%\xWSLres\xWSLpa.exe"
+

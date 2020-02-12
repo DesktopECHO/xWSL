@@ -57,6 +57,7 @@ WSL sed -i 's/3388/%RDPPRT%/g' /etc/xrdp/xrdp.ini
 WSL sed -i 's/#Port 22/Port %SSHPRT%/g' /etc/ssh/sshd_config
 WSL sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 WSL mkdir /var/lib/xrdp-pulseaudio-installer ; cp ./module-xrdp-* /var/lib/xrdp-pulseaudio-installer/
+WSL rm -rf /etc/rc2.d/S01console-setup.sh 
 
 set /p xu=Enter name of xWSL user: 
 bash -c "useradd -m -p nulltemp -s /bin/bash %xu%"
@@ -65,7 +66,7 @@ bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 for /f "delims=" %%n in ('whoami') do set NAME=%%n
 
-ECHO Creating Scheduled Task for Init System
+ECHO Creating Scheduled Task for InitSystem and PulseAudio
 SET /A RANDY=%RANDOM%
 
 SCHtasks /create /RU %NAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-%RANDY%-InitSystem /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c '/opt/initWSL 2'"

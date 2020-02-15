@@ -30,7 +30,7 @@ REM Register Distro
 xWSLres\LxRunOffline.exe sd -n %DISTRO%
 REM Work-around WSL DNS Resolution Failure Issue
 CD xWSLres
-WSL rm -f /etc/resolv.conf ; cp resolv.conf /etc/resolv.conf ; chmod 444 /etc/resolv.conf ; ssh-keygen -A
+WSL rm -f /etc/resolv.conf ; cp resolv.conf /etc/resolv.conf ; chmod 444 /etc/resolv.conf ; ssh-keygen -A ; cp environment /etc/environment
 REM Pull in Seamonkey as default browser, WSL Not playing nicely with Chrome or FireFox
 WSL cp mozilla.list /etc/apt/sources.list.d/mozilla.list ; apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2667CA5C 
 REM Pull in PPA's
@@ -48,11 +48,10 @@ REM Ugly but effective replacement of pkexec with gksu, hey at least Synaptic is
 WSL ln -s /usr/bin/gksu /usr/bin/pkexec 
 WSL ln -s /usr/bin/xfce4-session /usr/bin/xterm
 WSL ln -s /mnt/c/Windows/Fonts /usr/share/fonts/truetype/microsoft
-WSL echo "PULSE_SERVER=tcp:127.0.0.1" >> /etc/environment
 REM Get some init system action going...
 WSL cp initWSL /usr/local/bin/initWSL ; chown root:root /usr/local/bin/initWSL ; chmod 755 /usr/local/bin/initWSL
 REM Custom xrdp config
-WSL rm /etc/xrdp/xrdp.ini ; rm /etc/xrdp/sesman.ini ; cp *.ini /etc/xrdp ; cp xWSL.png /usr/share/pixmaps
+WSL cp xrdp.ini /etc/xrdp/xrdp.ini ; cp sessman.ini /etc/xrdp/sesman.ini ; cp xWSL.png /usr/share/pixmaps
 REM Get rid of a bunch of useless bits taking up space
 WSL rm -rf /usr/share/themes/Xfce* ; rm -rf /usr/share/themes/ZOMG* ; rm -rf /usr/share/themes/R* ; rm -rf /usr/share/icons/Humanity*
 WSL sed -i 's/3388/%RDPPRT%/g' /etc/xrdp/xrdp.ini
@@ -60,7 +59,6 @@ WSL sed -i 's/#Port 22/Port %SSHPRT%/g' /etc/ssh/sshd_config
 WSL sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 WSL mkdir /var/lib/xrdp-pulseaudio-installer ; cp ./module-xrdp-* /var/lib/xrdp-pulseaudio-installer/
 WSL rm -rf /etc/rc2.d/S01console-setup.sh 
-
 set /p xu=Enter name of xWSL user: 
 bash -c "useradd -m -p nulltemp -s /bin/bash %xu%"
 powershell -Command $pword = read-host "Enter password" -AsSecureString ; $BSTR=[System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($pword) ; [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR) > .tmp.txt & set /p password=<.tmp.txt & del .tmp.txt
@@ -73,4 +71,3 @@ SET /A RANDY=%RANDOM%
 
 SCHtasks /create /RU %NAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-%RANDY%-InitSystem /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c '/opt/initWSL 2'"
 SCHtasks /create /RU %NAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-%RANDY%-PulseAudio /TR "%DISTROFULL%\xWSLres\xWSLpa.exe"
-

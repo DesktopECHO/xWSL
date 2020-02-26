@@ -1,8 +1,8 @@
 @ECHO OFF
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-REM CLS
+CLS
+ECHO xWSL Overlay for Ubuntu 18.04 // Daniel Milisic - dmilisic@desktopecho.com
 ECHO.
-ECHO xWSL Installer // Daniel Milisic // dmilisic@desktopecho.com
 SET "DISTRO=xWSL" 
 SET "RDPPRT=3388"
 SET "SSHPRT=3322"
@@ -11,6 +11,9 @@ SET /p RDPPRT=Enter port number for xRDP traffic or hit Enter to use default [33
 SET /p SSHPRT=Enter port number for SSHd traffic or hit Enter to use default [3322]: 
 REM Quit on Name Collision
 IF EXIST %DISTRO% EXIT
+FOR /F "skip=2 tokens=2,*" %%A IN ('reg.exe query "HKLM\Software\Microsoft\Windows NT\CurrentVersion" /v "InstallationType"') DO set "HazCore=%%B"
+IF "%HazCore%"=="Server Core" (ECHO Server Core / Hyper-V Server Detected, installing pre-requisites...)
+IF "%HazCore%"=="Server Core" (POWERSHELL.EXE -Command "wget https://aka.ms/vs/16/release/vc_redist.x64.exe -UseBasicParsing -OutFile %TEMP%\vc_redist.x64.exe ; %TEMP%\vc_redist.x64.exe /install /quiet")
 SET DISTROFULL=%CD%\%DISTRO%
 ECHO xWSL (%DISTRO%) To be installed in: %DISTROFULL%
 ECHO Downloading Ubuntu 18.04 for WSL from Microsoft...

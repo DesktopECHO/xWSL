@@ -36,7 +36,7 @@ WSL cp mozilla.list /etc/apt/sources.list.d/mozilla.list ; apt-key adv --recv-ke
 REM Pull in PPA's
 WSL add-apt-repository -y ppa:xubuntu-dev/staging ; add-apt-repository -y ppa:mark-pcnetspec/gksu ; apt-add-repository -y ppa:remmina-ppa-team/remmina-next ; add-apt-repository -y ppa:system76/pop ; add-apt-repository -y ppa:xubuntu-dev/ppa ; apt update
 WSL DEBIAN_FRONTEND=noninteractive apt-get -y remove --allow-remove-essential apparmor plymouth plymouth-theme-ubuntu-text cloud-init cloud-initramfs-copymods cloud-initramfs-dyn-netconf friendly-recovery initramfs-tools initramfs-tools-core libnss-systemd libpam-systemd mdadm netplan.io nplan open-iscsi overlayroot policykit-1 snapd ubuntu-minimal ubuntu-server ubuntu-standard libfreetype6
-WSL DEBIAN_FRONTEND=noninteractive apt install ./xrdp_0.9.9-1-xWSL_amd64.deb -o APT::Install-Suggests=0 -o APT::Install-Recommends=0
+WSL DEBIAN_FRONTEND=noninteractive apt -y install ./xrdp_0.9.9-1-xWSL_amd64.deb -o APT::Install-Suggests=0 -o APT::Install-Recommends=0
 WSL apt -y install gksu xorg xorgxrdp pulseaudio imagemagick cgroup-lite zip libnotify-bin at-spi2-core wslu xfce4 xfce4-panel xfce4-terminal thunar dbus-x11 libgtk-3-bin mousepad thunar-volman xfce4-notifyd thunar-archive-plugin remmina-common remmina-plugin-exec remmina-plugin-rdp remmina-plugin-secret remmina-plugin-vnc remmina-plugin-www filezilla seamonkey pop-theme p7zip-full unzip pavucontrol pavumeter xarchiver xdg-utils libept1.5.0 -o APT::Install-Suggests=0 -o APT::Install-Recommends=0
 REM This version of Synaptic works well and prevents a crap-ton of dependancies from getting pulled in due to PolicyKit/systemd:
 WSL dpkg -i libxapian22v5_1.2.22-2-xWSL_amd64.deb
@@ -51,7 +51,7 @@ WSL ln -s /mnt/c/Windows/Fonts /usr/share/fonts/truetype/microsoft
 REM Get some init system action going...
 WSL cp initWSL /usr/local/bin/initWSL ; chown root:root /usr/local/bin/initWSL ; chmod 755 /usr/local/bin/initWSL
 REM Custom xrdp config
-WSL cp xrdp.ini /etc/xrdp/xrdp.ini ; cp sessman.ini /etc/xrdp/sesman.ini ; cp xWSL.png /usr/share/pixmaps
+WSL cp xrdp.ini /etc/xrdp/xrdp.ini ; cp sesman.ini /etc/xrdp/sesman.ini ; cp xWSL.png /usr/share/pixmaps
 REM Get rid of a bunch of useless bits taking up space
 WSL rm -rf /usr/share/themes/Xfce* ; rm -rf /usr/share/themes/ZOMG* ; rm -rf /usr/share/themes/R* ; rm -rf /usr/share/icons/Humanity*
 WSL sed -i 's/3388/%RDPPRT%/g' /etc/xrdp/xrdp.ini

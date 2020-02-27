@@ -1,7 +1,7 @@
 @ECHO OFF
 POWERSHELL.EXE -command "Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 CLS
-ECHO xWSL Overlay for Ubuntu 18.04 // Daniel Milisic - dmilisic@desktopecho.com
+ECHO xWSL for Ubuntu 18.04 // Daniel Milisic - dmilisic@desktopecho.com
 ECHO.
 SET "DISTRO=xWSL" 
 SET "RDPPRT=3388"
@@ -72,5 +72,5 @@ for /f "delims=" %%n in ('whoami') do set NAME=%%n
 ECHO Creating Scheduled Task for InitSystem and PulseAudio
 SET /A RANDY=%RANDOM%
 
-SCHtasks /create /RU %NAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-%RANDY%-InitSystem /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c '/opt/initWSL 2'"
-SCHtasks /create /RU %NAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-%RANDY%-PulseAudio /TR "%DISTROFULL%\xWSLres\xWSLpa.exe"
+SCHtasks /create /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-InitSystem-%RANDY% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 2'"
+SCHtasks /create /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-PulseAudio-%RANDY% /TR "%DISTROFULL%\xWSLres\xWSLpa.exe"

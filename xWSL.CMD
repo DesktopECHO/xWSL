@@ -45,7 +45,7 @@ REM This version of Synaptic works well and prevents a crap-ton of dependancies 
 WSL dpkg -i libxapian22v5_1.2.22-2-xWSL_amd64.deb
 WSL dpkg -i synaptic_0.83-xWSL_amd64.deb
 WSL apt-mark hold synaptic
-REM --- WSL rm -rf /etc/skel ; cp skel.tar /etc ; cd /etc ; tar xvf skel.tar ; chown -R root:root /etc/skel ; chmod -R 755 /etc/skel
+WSL rm -rf /etc/skel ; cp skel.tar /etc ; cd /etc ; tar xvf skel.tar ; chown -R root:root /etc/skel ; chmod -R 755 /etc/skel
 REM CLS
 REM Ugly but effective replacement of pkexec with gksu, hey at least Synaptic is able to elevate properly  
 WSL ln -s /usr/bin/gksu /usr/bin/pkexec 

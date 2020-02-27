@@ -74,3 +74,6 @@ SET /A RANDY=%RANDOM%
 
 SCHtasks /create /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-InitSystem-%RANDY% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 2'"
 SCHtasks /create /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-PulseAudio-%RANDY% /TR "%DISTROFULL%\xWSLres\xWSLpa.exe"
+
+IF "%HazCore%"=="Server Core" ("%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 2'")
+IF "%HazCore%"=="Server Core" ("%DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /p:%password%")

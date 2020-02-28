@@ -1,6 +1,8 @@
 # xWSL.CMD 
 
-The fast way to a simple desktop environent in WSL1, no X Server download required.
+A fast way to a simple desktop environent in WSL1
+No additional X Server download required.  
+Works in Server Core.
 
 **From an elevated CMD.EXE prompt**, change to your desired install directory and type or paste the following command:
 
@@ -14,10 +16,10 @@ When the script completes you'll have a lightweight and useable desktop with the
 - Remmina remote desktop viewer from developer PPA
 - PulseAudio for Windows bundled for audio support.
 - Simple init system started through Task Scheduler.
-- Mozilla SeaMonkey is the default Web renderer; YouTube works if at times a little jumpy.  Firefox/Chrome is not currently stable enough to use with this build.   
-- Included FreeRDP client (wfreerdp.exe) is built to run in Server Core. 
+- Mozilla SeaMonkey is the default (stable) Web renderer; YouTube works if at times a little jumpy.     
+- Included FreeRDP client is compiled to run with OpenH264 and media foundation disabled. 
 
-There are some inelegant solutions used to address various WSL quirks; contributions are welcome to improve these and any other areas in need of attention.
+There are some inelegant solutions used to address various WSL quirks; contributions are welcome to improve these and any other areas needing attention.
 
 Enjoy!
 

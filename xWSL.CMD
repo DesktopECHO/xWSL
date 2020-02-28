@@ -46,7 +46,7 @@ WSL dpkg -i libxapian22v5_1.2.22-2-xWSL_amd64.deb
 WSL dpkg -i synaptic_0.83-xWSL_amd64.deb
 WSL apt-mark hold synaptic
 WSL rm -rf /etc/skel ; cp skel.tar /etc ; cd /etc ; tar xvf skel.tar ; chown -R root:root /etc/skel ; chmod -R 755 /etc/skel
-REM CLS
+CLS
 REM Ugly but effective replacement of pkexec with gksu, hey at least Synaptic is able to elevate properly  
 WSL ln -s /usr/bin/gksu /usr/bin/pkexec 
 WSL ln -s /usr/bin/xfce4-session /usr/bin/xterm
@@ -68,12 +68,12 @@ powershell -Command $pword = read-host "Enter password" -AsSecureString ; $BSTR=
 bash -c "echo %xu%:%password% | chpasswd"
 bash -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 for /f "delims=" %%n in ('whoami') do set NAME=%%n
-
 ECHO Creating Scheduled Task for InitSystem and PulseAudio
 SET /A RANDY=%RANDOM%
-
 SCHtasks /create /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-InitSystem-%RANDY% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 2'"
 SCHtasks /create /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-PulseAudio-%RANDY% /TR "%DISTROFULL%\xWSLres\xWSLpa.exe"
-
-IF "%HazCore%"=="Server Core" ("%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 2'")
-IF "%HazCore%"=="Server Core" ("%DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /p:%password%")
+REM -- You could optionally save a plaintext password by adding /p:%password% to the WFreeRDP.exe switches below: 
+ECHO @%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c "initWSL 2" > %DISTRO%-%RANDY%.CMD & ECHO @CLS > CONNECT.CMD & ECHO @START /WAIT /MIN "Wait..." "PING" "-n" 6 "127.0.0.1" >> CONNECT.CMD & ECHO @%DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /bpp:32 >> CONNECT.CMD
+START /MIN %DISTRO%-%RANDY%.CMD
+START /WAIT /MIN "Wait..." "PING" "-n" 6 "127.0.0.1"
+%DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /p:%password% /bpp:32

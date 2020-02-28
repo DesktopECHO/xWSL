@@ -19,7 +19,7 @@ When the script completes you'll have a lightweight and useable desktop with the
 - PulseAudio for Windows bundled for audio support.
 - Simple init system started through Task Scheduler.
 - Mozilla SeaMonkey is the default (stable) Web renderer; YouTube works if at times a little jumpy.     
-- Included FreeRDP client is compiled to run with OpenH264 and media foundation disabled. 
+- Included FreeRDP client is compiled to run using OpenH264 and media foundation disabled (Server Core). 
 
 There are some inelegant solutions used to address various WSL quirks; contributions are welcome to improve these and any other areas needing attention.
 

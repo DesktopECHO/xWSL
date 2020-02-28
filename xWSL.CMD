@@ -72,8 +72,9 @@ ECHO Creating Scheduled Task for InitSystem and PulseAudio
 SET /A RANDY=%RANDOM%
 SCHtasks /create /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-InitSystem-%RANDY% /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 2'"
 SCHtasks /create /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-PulseAudio-%RANDY% /TR "%DISTROFULL%\xWSLres\xWSLpa.exe"
-REM -- You could optionally save a plaintext password by adding /p:%password% to the WFreeRDP.exe switches below: 
-ECHO @%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c "initWSL 2" > %DISTRO%-%RANDY%.CMD & ECHO @CLS > CONNECT.CMD & ECHO @START /WAIT /MIN "Wait..." "PING" "-n" 6 "127.0.0.1" >> CONNECT.CMD & ECHO @%DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /bpp:32 >> CONNECT.CMD
-START /MIN %DISTRO%-%RANDY%.CMD
+CD ..
+REM -- You could optionally save a plaintext(!) password by adding /p:%password% to the WFreeRDP.exe switches below: 
+ECHO @%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c "initWSL 2" > %DISTRO%.CMD & ECHO @CLS > CONNECT.CMD & ECHO @START /WAIT /MIN "Wait..." "PING" "-n" 6 "127.0.0.1" >> CONNECT.CMD & ECHO @%DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /bpp:32 >> CONNECT.CMD
+START /MIN %DISTRO%.CMD
 START /WAIT /MIN "Wait..." "PING" "-n" 6 "127.0.0.1"
 %DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /p:%password% /bpp:32

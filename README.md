@@ -6,7 +6,9 @@
 
 **From an elevated CMD.EXE prompt**, change to your desired install directory and type or paste the following command:
 
-```powershell -command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL/master/xWSL.CMD -UseBasicParsing -OutFile xwsl.cmd ; .\xwsl.cmd" ```
+```
+powershell -command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL/master/xWSL.CMD -UseBasicParsing -OutFile xwsl.cmd ; .\xwsl.cmd"
+```
 
 When the script completes you'll have a lightweight and useable desktop with the following attributes:
 

@@ -71,8 +71,8 @@ ECHO Creating Scheduled Task for InitSystem and PulseAudio
 SCHtasks /create /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-InitSystem /TR "%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c 'initWSL 2'"
 SCHtasks /create /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN %DISTRO%-PulseAudio /TR "%DISTROFULL%\xWSLres\xWSLpa.exe"
 CD ..
-REM -- You could optionally save a plaintext(!) password by adding /p:%password% to the WFreeRDP.exe switches below: 
-ECHO @%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c "initWSL 2" > %DISTRO%.CMD & ECHO @CLS > CONNECT.CMD & ECHO @START /WAIT /MIN "Wait..." "PING" "-n" 6 "127.0.0.1" >> CONNECT.CMD & ECHO @%DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /bpp:32 >> CONNECT.CMD
+ECHO @SCHtasks /run /TN %DISTRO%-InitSystem > %DISTRO%.CMD
+ECHO @SCHtasks /run /TN %DISTRO%-PulseAudio >> %DISTRO%.CMD
 START /MIN %DISTRO%.CMD
-START /WAIT /MIN "Wait..." "PING" "-n" 6 "127.0.0.1"
-IF "%HazCore%"=="Server Core" (%DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /p:%password% /bpp:32) ELSE (%WINDIR%\System32\mstsc.exe /v:LOCALHOST:%RDPPRT% /f)
+START /WAIT /MIN "Bad Wait Loop" "PING" "-n" 7 "127.0.0.1"
+%DISTROFULL%\xWSLres\WFreeRDP.exe /bpp:24 /h:700 w:1024 /v:LOCALHOST:%RDPPRT% /u:%xu% /p:%password%

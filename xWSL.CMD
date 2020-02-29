@@ -77,4 +77,4 @@ REM -- You could optionally save a plaintext(!) password by adding /p:%password%
 ECHO @%DISTROFULL%\xWSLres\LxRunOffline.exe run -w -n %DISTRO% -c "initWSL 2" > %DISTRO%.CMD & ECHO @CLS > CONNECT.CMD & ECHO @START /WAIT /MIN "Wait..." "PING" "-n" 6 "127.0.0.1" >> CONNECT.CMD & ECHO @%DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /bpp:32 >> CONNECT.CMD
 START /MIN %DISTRO%.CMD
 START /WAIT /MIN "Wait..." "PING" "-n" 6 "127.0.0.1"
-%DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /p:%password% /bpp:32
+IF "%HazCore%"=="Server Core" (%DISTROFULL%\xWSLres\WFreeRDP.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu% /p:%password% /bpp:32) ELSE (%WINDIR%\System32\mstsc.exe /v:LOCALHOST:%RDPPRT% /f /u:%xu%)

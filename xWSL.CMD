@@ -75,4 +75,4 @@ ECHO @SCHtasks /run /TN %DISTRO%-InitSystem > %DISTRO%.CMD
 ECHO @SCHtasks /run /TN %DISTRO%-PulseAudio >> %DISTRO%.CMD
 START /MIN %DISTRO%.CMD
 START /WAIT /MIN "Bad Wait Loop" "PING" "-n" 7 "127.0.0.1"
-%DISTROFULL%\xWSLres\WFreeRDP.exe /bpp:24 /h:700 /w:1000 /v:LOCALHOST:%RDPPRT% /u:%xu% /p:%password%
+%DISTROFULL%\xWSLres\WFreeRDP.exe /bpp:24 /h:600 /w:1000 /v:LOCALHOST:%RDPPRT% /u:%xu% /p:%password%

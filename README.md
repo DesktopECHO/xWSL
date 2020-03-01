@@ -21,6 +21,14 @@ When the script completes you'll have a lightweight and useable desktop with the
 - Mozilla SeaMonkey is the default (stable) Web renderer; YouTube works if at times a little jumpy.     
 - Included FreeRDP client is compiled to run using OpenH264 and media foundation disabled (Server Core). 
 
+**Setup Notes:**
+
+In your WSL distro's install folder (For example using the default of C:\Users\Administrator\xWSL) you will see a file called **xWSL.CMD**.  Run this to get the RDP Server, InitScripts and PulseAudio going after a reboot. 
+```
+START XWSL.CMD
+```
+Optioally, adjust the scheduled tasks that were pre-configured to increase the level of startup automation.
+
 There are some inelegant solutions used to address various WSL quirks; contributions are welcome to improve these and any other areas needing attention.
 
 Enjoy!

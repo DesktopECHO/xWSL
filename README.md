@@ -35,5 +35,6 @@ Enjoy!
 
 Dan M.
 
-Reddit thread: https://www.reddit.com/r/bashonubuntuonwindows/comments/fbvbb1/wslxrdp_fully_automated_installation/
-YouTube walkthru: https://www.youtube.com/watch?v=iJc1Su8l9Lo
+- Reddit thread: https://www.reddit.com/r/bashonubuntuonwindows/comments/fbvbb1/wslxrdp_fully_automated_installation/
+
+- YouTube walkthru: https://www.youtube.com/watch?v=iJc1Su8l9Lo

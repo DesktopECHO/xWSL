@@ -36,7 +36,7 @@ WSL apt-get -y purge irqbalance multipath-tools apparmor snapd squashfs-tools li
 WSL add-apt-repository -y ppa:rafaeldtinoco/lp1871129 ; apt-get update ; apt install libc6=2.31-0ubuntu8+lp1871129~1 -y --allow-downgrades ; apt-mark hold libc6 apparmor snapd
 WSL apt-get -y dist-upgrade
 WSL apt-get -y install xrdp xorgxrdp xfce4-terminal pulseaudio xfce4-pulseaudio-plugin libatkmm-1.6-1v5 libcairomm-1.0-1v5 libcanberra-gtk3-0 libcanberra-gtk3-module libglibmm-2.4-1v5 libgtkmm-3.0-1v5 libpangomm-1.4-1v5 libsigc++-2.0-0v5 pavucontrol xfwm4 xfce4-panel xfce4-session xfce4-settings dmz-cursor-theme thunar thunar-volman thunar-archive-plugin x11-apps x11-session-utils x11-xserver-utils xfdesktop4 xfce4-screenshooter libdbus-glib-1-2 libsmbclient gigolo gvfs-fuse gvfs-backends gvfs-bin at-spi2-core mtpaint mousepad evince xarchiver binutils lhasa lrzip lzip lzop ncompress zip unzip adapta-gtk-theme papirus-icon-theme synaptic gconf-defaults-service --no-install-recommends
-WSL apt-get -y install /tmp/xWSL-20.04/deb/gksu_2.0.2-9ubuntu1+peppermint0.0.0.1_amd64.deb /tmp/xWSL-20.04/deb/libgnome-keyring0_3.12.0-1build1_amd64.deb /tmp/xWSL-20.04/deb/libgksu2-0_2.0.13~pre1-9ubuntu2+peppermint0.0.0.1_amd64.deb /tmp/xWSL-20.04/deb/multiarch-support_2.27-3ubuntu1_amd64.deb /tmp/xWSL-20.04/deb/libgnome-keyring-common_3.12.0-1build1_all.deb /tmp/xWSL-20.04/deb/xrdp_0.9.9-1_amd64.deb --allow-downgrades  -o Dpkg::Options::="--force-confold" ; apt-mark hold xrdp
+WSL apt-get -y install /tmp/xWSL/deb/gksu_2.0.2-9ubuntu1+peppermint0.0.0.1_amd64.deb /tmp/xWSL/deb/libgnome-keyring0_3.12.0-1build1_amd64.deb /tmp/xWSL/deb/libgksu2-0_2.0.13~pre1-9ubuntu2+peppermint0.0.0.1_amd64.deb /tmp/xWSL/deb/multiarch-support_2.27-3ubuntu1_amd64.deb /tmp/xWSL/deb/libgnome-keyring-common_3.12.0-1build1_all.deb /tmp/xWSL/deb/xrdp_0.9.9-1_amd64.deb --allow-downgrades  -o Dpkg::Options::="--force-confold" ; apt-mark hold xrdp
 WSL sed -i 's/ls_top_window_bg_color=009cb5/ls_top_window_bg_color=000000/g' /etc/xrdp/xrdp.ini
 WSL sed -i 's/port=3389/port=%RDPPRT%/g' /etc/xrdp/xrdp.ini
 WSL sed -i 's/#Port 22/Port %SSHPRT%/g' /etc/ssh/sshd_config
@@ -45,12 +45,12 @@ WSL ln -s /mnt/c/Windows/Fonts /usr/share/fonts/truetype/microsoft
 WSL systemd-machine-id-setup
 WSL mkdir -p /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/
 WSL mv /bin/pkexec /bin/pkexec.ubuntu ; ln -s /bin/gksudo /bin/pkexec
-WSL chmod 644 /tmp/xWSL-20.04/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/*.xml
-WSL chmod 644 /tmp/xWSL-20.04/dist/etc/wsl.conf
-WSL chmod 644 /tmp/xWSL-20.04/dist/var/lib/xrdp-pulseaudio-installer/*.so
-WSL chmod 755 /tmp/xWSL-20.04/dist/usr/local/bin/initWSL
-WSL chmod 644 /tmp/xWSL-20.04/dist/etc/skel/.moonchild\ productions/pale\ moon/xWSL.default/*
-WSL cp -r /tmp/xWSL-20.04/dist/* /
+WSL chmod 644 /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/*.xml
+WSL chmod 644 /tmp/xWSL/dist/etc/wsl.conf
+WSL chmod 644 /tmp/xWSL/dist/var/lib/xrdp-pulseaudio-installer/*.so
+WSL chmod 755 /tmp/xWSL/dist/usr/local/bin/initWSL
+WSL chmod 644 /tmp/xWSL/dist/etc/skel/.moonchild\ productions/pale\ moon/xWSL.default/*
+WSL cp -r /tmp/xWSL/dist/* /
 
 REM ## Install Pale Moon Browser
 WSL sh -c "echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:stevenpusser.list"
@@ -62,10 +62,10 @@ SET /p xu=Enter name of xWSL user:
 BASH -c "useradd -m -p nulltemp -s /bin/bash %xu%"
 POWERSHELL -Command $prd = read-host "Enter password" -AsSecureString ; $BSTR=[System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($prd) ; [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR) > .tmp.txt & set /p password=<.tmp.txt
 BASH -c "echo %xu%:%password% | chpasswd"
-WSL sed -i 's/PLACEHOLDER/%xu%/g' /tmp/xWSL-20.04/xWSL.rdp
-WSL sed -i 's/COMPY/%COMPUTERNAME%/g' /tmp/xWSL-20.04/xWSL.rdp
-WSL sed -i 's/RDPPRT/%RDPPRT%/g' /tmp/xWSL-20.04/xWSL.rdp
-WSL cp /tmp/xWSL-20.04/xWSL.rdp ./xWSL._
+WSL sed -i 's/PLACEHOLDER/%xu%/g' /tmp/xWSL/xWSL.rdp
+WSL sed -i 's/COMPY/%COMPUTERNAME%/g' /tmp/xWSL/xWSL.rdp
+WSL sed -i 's/RDPPRT/%RDPPRT%/g' /tmp/xWSL/xWSL.rdp
+WSL cp /tmp/xWSL/xWSL.rdp ./xWSL._
 ECHO $prd = Get-Content .tmp.txt > .tmp.ps1
 ECHO ($prd ^| ConvertTo-SecureString -AsPlainText -Force) ^| ConvertFrom-SecureString ^| Out-File .tmp.txt  >> .tmp.ps1
 POWERSHELL -Command .tmp.ps1 

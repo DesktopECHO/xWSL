@@ -6,9 +6,9 @@
 - xRDP Display Server, no additional X Server downloads required
 - RDP Audio playback enabled (YouTube playback in browser works)
 
-xWSL is accessible from anywhere on your internal network and you connect using the standard Remote Desktop Client (mstsc.exe)
+xWSL is accessible from anywhere on your network, you connect to it via Microsoft's Remote Desktop Client (mstsc.exe)
 
-**From an elevated CMD.EXE prompt**, change to your desired install directory and type or paste the following command:
+**From an elevated CMD.EXE prompt** change to your desired install directory and type/paste the following command:
 
 ```
 PowerShell -command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL/master/xWSL.cmd -UseBasicParsing -OutFile xWSL.cmd ; .\xWSL.cmd"

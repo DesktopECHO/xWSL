@@ -88,7 +88,7 @@ ECHO.
 ECHO.  Start: %RUNSTART%
 ECHO.    End: %RUNEND%
 ECHO. 
-ECHO. Installation Complete, xRDP server listening on port %RDPPRT%
+ECHO. Installation Complete, xRDP server listening on port %RDPPRT% and SSH on port %SSHPRT%
 ECHO. Links for GUI and Console sessions have been placed on your desktop.
 ECHO. Autolaunching RDP Desktop Session in 5 seconds...
 PING -n 6 LOCALHOST > NUL 

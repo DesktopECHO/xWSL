@@ -17,13 +17,14 @@ PowerShell -command "wget https://github.com/DesktopECHO/xWSL/raw/master/xWSL.cm
 You will be asked a few questions:
 
 ```
-xWSL for Ubuntu 20.04  
+xWSL for Ubuntu 20.04
 Enter a unique name for the distro or hit Enter to use default [xWSL]: 
 Enter port number for xRDP traffic or hit Enter to use default [3399]: 
 Enter port number for SSHd traffic or hit Enter to use default [3322]: 
+xWSL (xWSL) To be installed in: C:\Users\danm\xWSL
 ```
 
-Near the end of the script you will be prompted to create a non-root user.  This user will be added to sudo'ers automatically.
+Near the end of the script you will be prompted to create a non-root user.  This user will be automatically added to sudo'ers.
 
 ```
 Enter name of xWSL user: danm

@@ -80,9 +80,9 @@ SCHTASKS /CREATE /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN "%DISTRO%-Init" /TR 
 ECHO $task = Get-ScheduledTask "%DISTRO%-Init" ; $task.Settings.ExecutionTimeLimit = "PT0S" ; Set-ScheduledTask $task > %TEMP%\ExecTimeLimit.ps1
 POWERSHELL -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -COMMAND %TEMP%\ExecTimeLimit.ps1
 START /MIN "xWSL Runlevel" "%DISTROFULL%\%DISTRO%-Init.cmd""
-IF EXIST "%USERPROFILE%\Desktop\xWSL Console (%xu%)" DEL "%USERPROFILE%\Desktop\xWSL Console (%xu%)" > NUL
-MKLINK "%USERPROFILE%\Desktop\xWSL Console (%xu%)" "%DISTROFULL%\%DISTRO%-%xu%.cmd" > NUL
-COPY /Y "%DISTROFULL%\%DISTRO%.rdp" "%USERPROFILE%\Desktop\xWSL Desktop (%xu%).rdp" > NUL
+IF EXIST "%USERPROFILE%\Desktop\%DISTRO% Console (%xu%)" DEL "%USERPROFILE%\Desktop\%DISTRO% Console (%xu%)" > NUL
+MKLINK "%USERPROFILE%\Desktop\%DISTRO% Console (%xu%)" "%DISTROFULL%\%DISTRO%-%xu%.cmd" > NUL
+COPY /Y "%DISTROFULL%\%DISTRO%.rdp" "%USERPROFILE%\Desktop\%DISTRO% Desktop (%xu%).rdp" > NUL
 SET RUNEND=%date% @ %time%
 ECHO.
 ECHO.  Start: %RUNSTART%

@@ -1,0 +1,39 @@
+#!/bin/bash
+#Remove services that make no sense in WSL
+update-rc.d -f udev remove >/dev/null 2>&1
+update-rc.d -f multipath-tools remove >/dev/null 2>&1
+update-rc.d -f apport remove >/dev/null 2>&1
+update-rc.d -f ebtables remove >/dev/null 2>&1
+update-rc.d -f lvm2-lvmpolld remove >/dev/null 2>&1
+update-rc.d -f lvm2-lvmetad remove >/dev/null 2>&1
+update-rc.d -f lxcfs remove >/dev/null 2>&1
+update-rc.d -f lxd remove >/dev/null 2>&1
+update-rc.d -f open-vm-tools remove >/dev/null 2>&1
+update-rc.d -f acpid remove >/dev/null 2>&1
+update-rc.d -f rsyslog remove >/dev/null 2>&1
+update-rc.d -f open-iscsi remove >/dev/null 2>&1
+update-rc.d -f iscsid remove >/dev/null 2>&1
+update-rc.d -f plymouth remove >/dev/null 2>&1
+update-rc.d -f plymouth-log remove >/dev/null 2>&1
+update-rc.d -f mdadm remove >/dev/null 2>&1
+update-rc.d -f cryptdisks remove >/dev/null 2>&1
+update-rc.d -f cryptdisks-early remove >/dev/null 2>&1
+update-rc.d -f irqbalance remove >/dev/null 2>&1
+update-rc.d -f ufw remove >/dev/null 2>&1
+
+echo "Init..."
+echo " "
+[[ -z $1 ]] && { echo "Need to specify a run level"; exit 127; }
+run_level=$1
+[[ -d /etc/rc${run_level}.d/ ]] ||  { echo "Need to specify a run level"; exit 127; }
+for rc_service in /etc/rc${run_level}.d/K*; do
+        [[ -e "$rc_service" ]] && $rc_service stop
+done
+for rc_service in /etc/rc${run_level}.d/S*; do
+        [[ -e "$rc_service" ]] && $rc_service start
+done
+
+echo ""
+echo "Type new runlevel (0-6) and press enter"
+read runlevel
+initWSL $runlevel

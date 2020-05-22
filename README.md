@@ -40,7 +40,7 @@ SUCCESS: Attempted to run the scheduled task "xWSL-Init".
 C:\Users\danm>
 ```
 
-Upon completion you'll have a nice looking and functional XFCE4 desktop that's accessible locally or remotely.
+Upon completion you'll be logged into an attractive and fully functional XFCE4 desktop.
 
 A scheduled task is created that runs at login to start xWSL.  **If you prefer to start xWSL at boot (like a service) do the following:**
 

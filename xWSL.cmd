@@ -29,7 +29,7 @@ NETSH AdvFirewall Firewall add rule name="SSHd Port %SSHPRT% for WSL" dir=in act
 REM ## Configure Ubuntu 20.04 on WSL
 CD %DISTROFULL%
 WSL sed -i -e "\$aexport RUNLEVEL=2" /etc/profile
-WSL cd /tmp ; git clone https://github.com/DesktopECHO/xWSL.git
+WSL cd /tmp ; git clone --depth=1 https://github.com/DesktopECHO/xWSL.git
 WSL ssh-keygen -A
 WSL rm -rf /etc/apt/apt.conf.d/20snapd.conf /etc/rc2.d/S01whoopsie /etc/init.d/console-setup.sh
 WSL apt-get -y purge irqbalance multipath-tools apparmor snapd squashfs-tools libplymouth5 plymouth plymouth-theme-ubuntu-text open-vm-tools cloud-init isc-dhcp-* mdadm apport open-iscsi powermgmt-base popularity-contest fwupd libfwupd2 --autoremove

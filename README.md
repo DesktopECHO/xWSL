@@ -1,4 +1,4 @@
-# xWSL-20.04.cmd
+# xWSL.cmd
 
 - Simplicity - One command for a desktop environment in WSL1 with all the quirks taken care of
 - Runs on Windows Server 2019 or Windows 10 Version 1803 (or newer)
@@ -11,7 +11,7 @@ xWSL is accessible from anywhere on your internal network and you connect using 
 **From an elevated CMD.EXE prompt**, change to your desired install directory and type or paste the following command:
 
 ```
-PowerShell -command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL-20.04/master/xWSL-20.04.cmd -UseBasicParsing -OutFile xWSL-20.04.cmd ; .\xWSL-20.04.cmd"
+PowerShell -command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL/master/xWSL.cmd -UseBasicParsing -OutFile xWSL.cmd ; .\xWSL.cmd"
 ```
 
 You will be asked a few questions:

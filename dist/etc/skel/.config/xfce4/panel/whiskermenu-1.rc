@@ -1,11 +1,11 @@
 favorites=exo-web-browser.desktop,exo-mail-reader.desktop,exo-file-manager.desktop,exo-terminal-emulator.desktop
-recent=
+recent=synaptic.desktop,exo-terminal-emulator.desktop
 button-title=\ xWSL\ 
 button-icon=/usr/share/pixmaps/nt.png
 button-single-row=false
 show-button-title=true
 show-button-icon=true
-launcher-show-name=true
+launcher-show-name=false
 launcher-show-description=true
 launcher-show-tooltip=true
 item-icon-size=3

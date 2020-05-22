@@ -16,7 +16,7 @@ ECHO Downloading Ubuntu 20.04 for WSL (or using local copy if available)
 IF NOT EXIST %TEMP%\ubuntu-20.04-server-cloudimg-amd64-wsl.rootfs.tar.gz POWERSHELL.EXE -Command "wget https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64-wsl.rootfs.tar.gz -UseBasicParsing -OutFile %TEMP%\ubuntu-20.04-server-cloudimg-amd64-wsl.rootfs.tar.gz"
 
 REM ## Install Distro with LxRunOffline / https://github.com/DDoSolitary/LxRunOffline
-POWERSHELL.EXE -Command "wget https://raw.githubusercontent.com/DesktopECHO/xWSL-20.04/master/LxRunOffline.exe -UseBasicParsing -OutFile %TEMP%\LxRunOffline.exe"
+POWERSHELL.EXE -Command "wget https://github.com/DesktopECHO/xWSL/raw/master/LxRunOffline.exe -UseBasicParsing -OutFile %TEMP%\LxRunOffline.exe"
 IF EXIST %DISTRO% EXIT
 %TEMP%\LxRunOffline.exe i -d .\%DISTRO% -f %TEMP%\ubuntu-20.04-server-cloudimg-amd64-wsl.rootfs.tar.gz -n %DISTRO%
 %TEMP%\LxRunOffline.exe sd -n %DISTRO%
@@ -29,7 +29,7 @@ NETSH AdvFirewall Firewall add rule name="SSHd Port %SSHPRT% for WSL" dir=in act
 REM ## Configure Ubuntu 20.04 on WSL
 CD %DISTROFULL%
 WSL sed -i -e "\$aexport RUNLEVEL=2" /etc/profile
-WSL cd /tmp ; git clone https://github.com/DesktopECHO/xWSL-20.04.git
+WSL cd /tmp ; git clone https://github.com/DesktopECHO/xWSL.git
 WSL ssh-keygen -A
 WSL rm -rf /etc/apt/apt.conf.d/20snapd.conf /etc/rc2.d/S01whoopsie /etc/init.d/console-setup.sh
 WSL apt-get -y purge irqbalance multipath-tools apparmor snapd squashfs-tools libplymouth5 plymouth plymouth-theme-ubuntu-text open-vm-tools cloud-init isc-dhcp-* mdadm apport open-iscsi powermgmt-base popularity-contest fwupd libfwupd2 --autoremove

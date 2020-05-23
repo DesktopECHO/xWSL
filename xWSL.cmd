@@ -55,7 +55,7 @@ WSL cp -r /tmp/xWSL/dist/* /
 REM ## Install Mozilla or Pale Moon Browser
 WSL sed -i -e "\$adeb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main" /etc/apt/sources.list
 WSL apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2667CA5C
-WSL apt-get -y install seamonkey-mozilla-build
+WSL apt-get update ; apt-get -y install seamonkey-mozilla-build
 REM ## WSL sh -c "echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:stevenpusser.list"
 REM ## WSL wget -nv https://download.opensuse.org/repositories/home:stevenpusser/xUbuntu_20.04/Release.key -O ~/Release.key ; apt-key add ~/Release.key ; apt-get update ; apt-get -y install palemoon --no-install-recommends
 

@@ -52,7 +52,6 @@ user_pref("calendar.category.color.status", "#FFFF33");
 user_pref("calendar.category.color.suppliers", "#000099");
 user_pref("calendar.category.color.travel", "#663300");
 user_pref("calendar.category.color.vacation", "#660000");
-user_pref("calendar.timezone.local", "America/Puerto_Rico");
 user_pref("extensions.blocklist.pingCountTotal", 2);
 user_pref("extensions.blocklist.pingCountVersion", 2);
 user_pref("extensions.bootstrappedAddons", "{}");

@@ -45,9 +45,9 @@ TaskPath                                       TaskName                         
 C:\Users\danm>
 ```
 
-Upon completion you'll be logged into an attractive and fully functional XFCE4 desktop.
+Upon completion you'll be logged into an attractive and fully functional XFCE4 desktop.  A scheduled task is created that runs at login to start xWSL. 
 
-A scheduled task is created that runs at login to start xWSL.  **If you prefer to start xWSL at boot (like a service) do the following:**
+**If you prefer to start xWSL at boot (like a service) do the following:**
 
 - Right-click the task in Task Scheduler, click properties
 - Click the checkboxes for **Run whether user is logged on or not** and **Hidden** then click **OK**

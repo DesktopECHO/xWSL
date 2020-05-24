@@ -6,6 +6,8 @@
 - xRDP Display Server, no additional X Server downloads required
 - RDP Audio playback enabled (YouTube playback in browser works)
 
+<img width="641" alt="xWSL1" src="https://user-images.githubusercontent.com/33142753/82766604-ea801680-9df6-11ea-9045-6ab9540a5424.png">
+
 xWSL is accessible from anywhere on your network, you connect to it via Microsoft's Remote Desktop Client (mstsc.exe)
 
 **INSTRUCTIONS:  From an elevated CMD.EXE prompt change to your desired install directory and type/paste the following command:**
@@ -61,5 +63,3 @@ Upon completion you'll be logged into an attractive and fully functional XFCE4 d
 - Rolled back and held xRDP until the version shipped in Ubuntu is better-behaved (xrdp-chansrv high CPU %)
 - Current version of Chrome or Firefox does not work in WSL1 so Mozilla Seamonkey was included as a stable and maintaned browser
 - Installed image consumes less than 2GB of disk
-
-<img width="641" alt="xWSL1" src="https://user-images.githubusercontent.com/33142753/82766604-ea801680-9df6-11ea-9045-6ab9540a5424.png">

@@ -40,7 +40,7 @@ TaskPath                                       TaskName                         
 
  Installation Complete.  xRDP server listening on port 3399 and SSH on port 3322
  Links for GUI and Console sessions have been placed on your desktop.
- Autolaunching RDP Desktop Session in 5 seconds...
+ Auto-launching RDP Desktop Session in 5 seconds...
 
 C:\Users\danm>
 ```
@@ -55,10 +55,12 @@ Upon completion you'll be logged into an attractive and fully functional XFCE4 d
 
    Reboot your PC.  xWSL will automatically start at boot, no need to login to Windows.
 
-Quirks Addressed:
-- WSL1 Doesn't work with PolicyKit.  Pulled-in GKSU and dependancies to allow runing GUI apps with elevated rights
+**Quirks Addressed and other interesting info:**
+- WSL1 Has issues with the latest libc6 library.  The package is being held until fixes from MS are released over Windows Update.  Unmark and update libc6 after MS releases the update.
+- WSL1 Doesn't work with PolicyKit.  Pulled-in GKSU and dependencies to allow runing GUI apps with elevated rights.  
 - Rolled back version of xRDP until the version shipped in Ubuntu acts better-behaved (xrdp-chansrv high CPU %)
-- Curent version of Chrome or Firefox does not work in WSL1 so Mozilla Seamonkey was included as a stable and maintaned browser
+- Current version of Chrome or Firefox does not work in WSL1 so Mozilla Seamonkey was included as a stable and maintaned browser
+- Installed image takes under 2GB disk space
 
   
 

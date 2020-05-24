@@ -59,6 +59,7 @@ WSL apt-get update ; apt-get -y install xdg-utils seamonkey-mozilla-build
 WSL update-alternatives --install /usr/bin/www-browser www-browser /usr/bin/seamonkey 100 ; update-alternatives --install /usr/bin/gnome-www-browser gnome-www-browser /usr/bin/seamonkey 100 ; update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/seamonkey 100
 REM ## WSL sh -c "echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:stevenpusser.list"
 REM ## WSL wget -nv https://download.opensuse.org/repositories/home:stevenpusser/xUbuntu_20.04/Release.key -O ~/Release.key ; apt-key add ~/Release.key ; apt-get update ; apt-get -y install palemoon --no-install-recommends
+WSL apt clean
 
 REM ## Setup user access 
 CD %DISTROFULL%

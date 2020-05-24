@@ -55,12 +55,11 @@ Upon completion you'll be logged into an attractive and fully functional XFCE4 d
 
    Reboot your PC.  xWSL will automatically start at boot, no need to login to Windows.
 
-**Quirks Addressed and other interesting info:**
+**Quirks Addressed and other interesting tidbits:**
 - WSL1 Has issues with the latest libc6 library.  The package is being held until fixes from MS are released over Windows Update.  Unmark and update libc6 after MS releases the update.
 - WSL1 Doesn't work with PolicyKit.  Pulled-in GKSU and dependencies to allow runing GUI apps with elevated rights.  
 - Rolled back and held xRDP until the version shipped in Ubuntu is better-behaved (xrdp-chansrv high CPU %)
 - Current version of Chrome or Firefox does not work in WSL1 so Mozilla Seamonkey was included as a stable and maintaned browser
 - Installed image consumes less than 2GB of disk
 
-  
-
+<img width="641" alt="xWSL1" src="https://user-images.githubusercontent.com/33142753/82766604-ea801680-9df6-11ea-9045-6ab9540a5424.png">

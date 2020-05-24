@@ -1,6 +1,6 @@
 # xWSL.cmd
 
-- Simplicity - One command for a desktop environment in WSL1 with all the quirks taken care of
+- Simplicity - One command to set up a desktop environment in WSL1 with all the quirks taken care of
 - Runs on Windows Server 2019 or Windows 10 Version 1803 (or newer)
 - Ubuntu Linux 20.04 and custom themed XFCE 4.14 for a smooth user experience
 - xRDP Display Server, no additional X Server downloads required

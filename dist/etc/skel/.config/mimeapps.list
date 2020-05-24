@@ -1,0 +1,29 @@
+[Default Applications]
+text/html=custom-WebBrowser.desktop
+application/x-extension-htm=custom-WebBrowser.desktop
+application/x-extension-html=custom-WebBrowser.desktop
+application/xhtml+xml=custom-WebBrowser.desktop
+application/x-extension-xhtml=custom-WebBrowser.desktop
+message/rfc822=custom-WebBrowser.desktop
+application/x-extension-eml=custom-WebBrowser.desktop
+x-scheme-handler/http=custom-WebBrowser.desktop
+x-scheme-handler/https=custom-WebBrowser.desktop
+x-scheme-handler/mailto=custom-WebBrowser.desktop
+x-scheme-handler/news=custom-WebBrowser.desktop
+x-scheme-handler/snews=custom-WebBrowser.desktop
+application/rss+xml=custom-WebBrowser.desktop
+application/x-extension-rss=custom-WebBrowser.desktop
+x-scheme-handler/feed=custom-WebBrowser.desktop
+
+[Added Associations]
+text/html=custom-WebBrowser.desktop;
+application/x-extension-htm=custom-WebBrowser.desktop;
+application/x-extension-html=custom-WebBrowser.desktop;
+application/xhtml+xml=custom-WebBrowser.desktop;
+application/x-extension-xhtml=custom-WebBrowser.desktop;
+message/rfc822=custom-WebBrowser.desktop;
+application/x-extension-eml=custom-WebBrowser.desktop;
+x-scheme-handler/http=exo-web-browser.desktop;
+x-scheme-handler/https=exo-web-browser.desktop;
+x-scheme-handler/mailto=exo-mail-reader.desktop;
+text/plain=mousepad.desktop;

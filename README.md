@@ -47,13 +47,13 @@ C:\Users\danm>
 
 Upon completion you'll be logged into an attractive and fully functional XFCE4 desktop.  A scheduled task is created that runs at login to start xWSL. 
 
-	**If you prefer to start xWSL at boot (like a service) do the following:**
+   **If you prefer to start xWSL at boot (like a service) do the following:**
 
-	- Right-click the task in Task Scheduler, click properties
-	- Click the checkboxes for **Run whether user is logged on or not** and **Hidden** then click **OK**
-	- Enter your Windows credentials when prompted
+   - Right-click the task in Task Scheduler, click properties
+   - Click the checkboxes for **Run whether user is logged on or not** and **Hidden** then click **OK**
+   - Enter your Windows credentials when prompted
 
-	Reboot your PC.  xWSL will automatically start at boot, no need to login to Windows.
+   Reboot your PC.  xWSL will automatically start at boot, no need to login to Windows.
 
 Quirks Addressed:
 - WSL1 Doesn't work with PolicyKit.  Pulled-in GKSU and dependancies to allow runing GUI apps with elevated rights

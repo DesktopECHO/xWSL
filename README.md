@@ -8,7 +8,7 @@
 
 xWSL is accessible from anywhere on your network, you connect to it via Microsoft's Remote Desktop Client (mstsc.exe)
 
-**From an elevated CMD.EXE prompt** change to your desired install directory and type/paste the following command:
+**INSTRUCTIONS:  From an elevated CMD.EXE prompt change to your desired install directory and type/paste the following command:**
 
 ```
 PowerShell -command "wget https://github.com/DesktopECHO/xWSL/raw/master/xWSL.cmd -UseBasicParsing -OutFile xWSL.cmd ; .\xWSL.cmd"

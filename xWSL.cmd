@@ -48,7 +48,7 @@ WSL mv /bin/pkexec /bin/pkexec.ubuntu ; ln -s /bin/gksudo /bin/pkexec
 WSL chmod 644 /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/*.xml
 WSL chmod 644 /tmp/xWSL/dist/etc/wsl.conf
 WSL chmod 644 /tmp/xWSL/dist/var/lib/xrdp-pulseaudio-installer/*.so
-WSL chmod 755 /tmp/xWSL/dist/usr/local/bin/initWSL
+WSL chmod 700 /tmp/xWSL/dist/usr/local/bin/initWSL
 WSL chmod 644 /tmp/xWSL/dist/etc/skel/.moonchild\ productions/pale\ moon/xWSL.default/*
 WSL cp -r /tmp/xWSL/dist/* /
 
@@ -56,6 +56,7 @@ REM ## Install Mozilla or Pale Moon Browser
 WSL sed -i -e "\$adeb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main" /etc/apt/sources.list
 WSL apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2667CA5C
 WSL apt-get update ; apt-get -y install xdg-utils seamonkey-mozilla-build
+WSL update-alternatives --install /usr/bin/www-browser www-browser /usr/bin/seamonkey 100 ; update-alternatives --install /usr/bin/gnome-www-browser gnome-www-browser /usr/bin/seamonkey 100 ; update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/seamonkey 100
 REM ## WSL sh -c "echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser/xUbuntu_20.04/ /' > /etc/apt/sources.list.d/home:stevenpusser.list"
 REM ## WSL wget -nv https://download.opensuse.org/repositories/home:stevenpusser/xUbuntu_20.04/Release.key -O ~/Release.key ; apt-key add ~/Release.key ; apt-get update ; apt-get -y install palemoon --no-install-recommends
 
@@ -76,9 +77,9 @@ TYPE .tmp.txt>.tmpsec.txt
 COPY /y /b %DISTROFULL%\xWSL._+.tmpsec.txt %DISTROFULL%\%DISTRO%.rdp > NUL
 DEL /Q  xWSL._ .tmp*.* > NUL
 BASH -c "echo '%xu% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
-ECHO @WSL -u %xu% -d %DISTRO%  > "%DISTROFULL%\%DISTRO%-%xu%.cmd"
-ECHO @WSLCONFIG /t %DISTRO%    > "%DISTROFULL%\%DISTRO%-Init.cmd"
-ECHO @WSL -u root -d %DISTRO% -e initWSL 2  >> "%DISTROFULL%\%DISTRO%-Init.cmd"
+ECHO WSL -u %xu% -d %DISTRO%  > "%DISTROFULL%\%DISTRO%-%xu%.cmd"
+ECHO WSLCONFIG /t %DISTRO%    > "%DISTROFULL%\%DISTRO%-Init.cmd"
+ECHO WSL -u root -d %DISTRO% -e initWSL 2  >> "%DISTROFULL%\%DISTRO%-Init.cmd"
 SCHTASKS /CREATE /RU %USERNAME% /RL HIGHEST /SC ONSTART /TN "%DISTRO%-Init" /TR "%DISTROFULL%\%DISTRO%-Init.cmd" /F
 ECHO $task = Get-ScheduledTask "%DISTRO%-Init" ; $task.Settings.ExecutionTimeLimit = "PT0S" ; Set-ScheduledTask $task > %TEMP%\ExecTimeLimit.ps1
 POWERSHELL -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -COMMAND %TEMP%\ExecTimeLimit.ps1

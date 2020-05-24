@@ -27,16 +27,20 @@ xWSL (xWSL) To be installed in: C:\Users\danm\xWSL
 Near the end of the script you will be prompted to create a non-root user.  This user will be automatically added to sudo'ers.
 
 ```
-Enter name of xWSL user: danm
-Enter password: ********
+**Enter name of xWSL user: danm **
+**Enter password: ********  **
+SUCCESS: The scheduled task "xWSL-Init" has successfully been created.
 
-SUCCESS: Attempted to run the scheduled task "xWSL-Init".
+TaskPath                                       TaskName                          State
+--------                                       --------                          -----
+\                                              xWSL-Init                         Ready
 
-  Start: Thu 05/21/2020 @ 18:04:20.86
-    End: Thu 05/21/2020 @ 18:20:09.18
+  Start: Sun 05/24/2020 @ 20:08:00.84
+    End: Sun 05/24/2020 @ 20:16:48.87
 
- Installation Complete, xRDP server listening on port 3399
- Connection Hint: MSTSC.EXE /F /V:MYPC:3399
+ Installation Complete.  xRDP server listening on port 3399 and SSH on port 3322
+ Links for GUI and Console sessions have been placed on your desktop.
+ Autolaunching RDP Desktop Session in 5 seconds...
 
 C:\Users\danm>
 ```

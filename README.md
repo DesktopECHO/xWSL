@@ -27,8 +27,8 @@ xWSL (xWSL) To be installed in: C:\Users\danm\xWSL
 Near the end of the script you will be prompted to create a non-root user.  This user will be automatically added to sudo'ers.
 
 ```
-**Enter name of xWSL user: danm **
-**Enter password: ********  **
+Enter name of xWSL user: danm
+Enter password: ********
 SUCCESS: The scheduled task "xWSL-Init" has successfully been created.
 
 TaskPath                                       TaskName                          State
@@ -50,7 +50,7 @@ Upon completion you'll be logged into an attractive and fully functional XFCE4 d
 A scheduled task is created that runs at login to start xWSL.  **If you prefer to start xWSL at boot (like a service) do the following:**
 
 - Right-click the task in Task Scheduler, click properties
-- Click checkboxes for **Run whether user is logged on or not** and **Hidden** then click **OK**
+- Click the checkboxes for **Run whether user is logged on or not** and **Hidden** then click **OK**
 - Enter your Windows credentials when prompted
 
 Reboot your PC.  xWSL will automatically start at boot, no need to login to Windows.

@@ -63,3 +63,5 @@ Upon completion you'll be logged into an attractive and fully functional XFCE4 d
 - Rolled back and held xRDP until the version shipped in Ubuntu is better-behaved (xrdp-chansrv high CPU %)
 - Current version of Chrome or Firefox does not work in WSL1 so Mozilla Seamonkey was included as a stable and maintaned browser
 - Installed image consumes less than 2GB of disk
+- Symlinked Windows fonts in Linux which make for a very nice looking XFCE4 session using Segoe UI and Consolas
+- Password-saving magic for RDP connections performed safely using Windows credential store and Powershell ConvertTo-SecureString 

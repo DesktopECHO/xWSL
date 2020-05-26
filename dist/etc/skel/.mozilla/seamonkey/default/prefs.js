@@ -17,7 +17,6 @@ user_pref("browser.bookmarks.restore_default_bookmarks", false);
 user_pref("browser.cache.disk.capacity", 358400);
 user_pref("browser.cache.disk.filesystem_reported", 1);
 user_pref("browser.cache.disk.smart_size.first_run", false);
-user_pref("browser.download.dir", "/home/one");
 user_pref("browser.download.folderList", 0);
 user_pref("browser.history.last_page_visited", "https://news.google.com/?hl=en-US&gl=US&ceid=US:en");
 user_pref("browser.places.smartBookmarksVersion", 4);
@@ -66,7 +65,6 @@ user_pref("extensions.installedDistroAddon.{e2fda1a4-762b-4020-b5ad-a41df1933103
 user_pref("extensions.lastAppVersion", "2.49.5");
 user_pref("extensions.lastPlatformVersion", "52.9.1");
 user_pref("extensions.pendingOperations", false);
-user_pref("extensions.xpiState", "{\"app-profile\":{\"inspector@mozilla.org\":{\"d\":\"/home/one/.mozilla/seamonkey/ujzzsldo.default/extensions/inspector@mozilla.org.xpi\",\"e\":true,\"v\":\"2.0.17.2\",\"st\":1580881591000},\"{59c81df5-4b7a-477b-912d-4e0fdf64e5f2}\":{\"d\":\"/home/one/.mozilla/seamonkey/ujzzsldo.default/extensions/{59c81df5-4b7a-477b-912d-4e0fdf64e5f2}.xpi\",\"e\":true,\"v\":\"0.9.94\",\"st\":1580881591000},\"{e2fda1a4-762b-4020-b5ad-a41df1933103}\":{\"d\":\"/home/one/.mozilla/seamonkey/ujzzsldo.default/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}\",\"e\":true,\"v\":\"5.4\",\"st\":1580881592000,\"mt\":1580881592000}},\"app-global\":{\"modern@themes.mozilla.org\":{\"d\":\"/opt/seamonkey/extensions/modern@themes.mozilla.org.xpi\",\"e\":false,\"v\":\"2.49.5\",\"st\":1564933843000},\"{972ce4c6-7e08-4474-a285-3208198ce6fd}\":{\"d\":\"/opt/seamonkey/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi\",\"e\":true,\"v\":\"2.49.5\",\"st\":1564933843000}}}");
 user_pref("mail.ab_remote_content.migrated", 1);
 user_pref("mail.default_charsets.migrated", 1);
 user_pref("media.gmp.storage.version.observed", 1);

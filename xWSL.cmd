@@ -28,7 +28,6 @@ NETSH AdvFirewall Firewall add rule name="SSHd Port %SSHPRT% for WSL" dir=in act
 
 REM ## Configure Ubuntu 20.04 on WSL
 CD %DISTROFULL%
-WSL sed -i -e "\$aexport RUNLEVEL=2" /etc/profile
 WSL cd /tmp ; git clone --depth=1 https://github.com/DesktopECHO/xWSL.git
 WSL ssh-keygen -A
 WSL rm -rf /etc/apt/apt.conf.d/20snapd.conf /etc/rc2.d/S01whoopsie /etc/init.d/console-setup.sh
@@ -49,6 +48,7 @@ WSL chmod 644 /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/*
 WSL chmod 644 /tmp/xWSL/dist/etc/wsl.conf
 WSL chmod 644 /tmp/xWSL/dist/var/lib/xrdp-pulseaudio-installer/*.so
 WSL chmod 700 /tmp/xWSL/dist/usr/local/bin/initWSL
+WSL chmod 644 /tmp/xWSL/dist/etc/profile.d/xwsl.sh
 WSL chmod 644 /tmp/xWSL/dist/etc/skel/.moonchild\ productions/pale\ moon/xWSL.default/*
 WSL cp -r /tmp/xWSL/dist/* /
 

@@ -1,14 +1,16 @@
 # xWSL.cmd
 
-- Simplicity - One command for a desktop environment in WSL1 with all the quirks taken care of
+- Simplicity - One command to set up a desktop environment in WSL1 with all the quirks taken care of
 - Runs on Windows Server 2019 or Windows 10 Version 1803 (or newer)
 - Ubuntu Linux 20.04 and custom themed XFCE 4.14 for a smooth user experience
 - xRDP Display Server, no additional X Server downloads required
 - RDP Audio playback enabled (YouTube playback in browser works)
 
+<img width="641" alt="xWSL1" src="https://user-images.githubusercontent.com/33142753/82766604-ea801680-9df6-11ea-9045-6ab9540a5424.png">
+
 xWSL is accessible from anywhere on your network, you connect to it via Microsoft's Remote Desktop Client (mstsc.exe)
 
-**From an elevated CMD.EXE prompt** change to your desired install directory and type/paste the following command:
+**INSTRUCTIONS:  From an elevated CMD.EXE prompt change to your desired install directory and type/paste the following command:**
 
 ```
 PowerShell -command "wget https://github.com/DesktopECHO/xWSL/raw/master/xWSL.cmd -UseBasicParsing -OutFile xWSL.cmd ; .\xWSL.cmd"
@@ -55,12 +57,11 @@ Upon completion you'll be logged into an attractive and fully functional XFCE4 d
 
    Reboot your PC.  xWSL will automatically start at boot, no need to login to Windows.
 
-**Quirks Addressed and other interesting info:**
+**Quirks Addressed and other interesting tidbits:**
 - WSL1 Has issues with the latest libc6 library.  The package is being held until fixes from MS are released over Windows Update.  Unmark and update libc6 after MS releases the update.
 - WSL1 Doesn't work with PolicyKit.  Pulled-in GKSU and dependencies to allow runing GUI apps with elevated rights.  
 - Rolled back and held xRDP until the version shipped in Ubuntu is better-behaved (xrdp-chansrv high CPU %)
 - Current version of Chrome or Firefox does not work in WSL1 so Mozilla Seamonkey was included as a stable and maintaned browser
 - Installed image consumes less than 2GB of disk
-
-  
-
+- Symlinked Windows fonts in Linux which make for a very nice looking XFCE4 session using Segoe UI and Consolas
+- Password-saving magic for RDP connections performed safely using Windows credential store and Powershell ConvertTo-SecureString 

@@ -1,30 +1,32 @@
 #!/bin/bash
-#Remove services that make no sense in WSL
-update-rc.d -f udev remove >/dev/null 2>&1
-update-rc.d -f multipath-tools remove >/dev/null 2>&1
-update-rc.d -f apport remove >/dev/null 2>&1
-update-rc.d -f ebtables remove >/dev/null 2>&1
-update-rc.d -f lvm2-lvmpolld remove >/dev/null 2>&1
-update-rc.d -f lvm2-lvmetad remove >/dev/null 2>&1
-update-rc.d -f lxcfs remove >/dev/null 2>&1
-update-rc.d -f lxd remove >/dev/null 2>&1
-update-rc.d -f open-vm-tools remove >/dev/null 2>&1
+touch /run/initctl
+chmod 644 /var/run/syslog.pid
+clear
+run_level=$1
+
+# Remove services not needed in WSL1
+# update-rc.d -f dbus remove >/dev/null 2>&1
+update-rc.d -f whoopsie remove >/dev/null 2>&1
 update-rc.d -f acpid remove >/dev/null 2>&1
-update-rc.d -f rsyslog remove >/dev/null 2>&1
-update-rc.d -f open-iscsi remove >/dev/null 2>&1
-update-rc.d -f iscsid remove >/dev/null 2>&1
 update-rc.d -f plymouth remove >/dev/null 2>&1
 update-rc.d -f plymouth-log remove >/dev/null 2>&1
-update-rc.d -f mdadm remove >/dev/null 2>&1
-update-rc.d -f cryptdisks remove >/dev/null 2>&1
-update-rc.d -f cryptdisks-early remove >/dev/null 2>&1
-update-rc.d -f irqbalance remove >/dev/null 2>&1
+update-rc.d -f gdm3 remove >/dev/null 2>&1
+update-rc.d -f lightdm remove >/dev/null 2>&1
 update-rc.d -f ufw remove >/dev/null 2>&1
+update-rc.d -f bluetooth remove >/dev/null 2>&1
+update-rc.d -f open-iscsi remove >/dev/null 2>&1
+update-rc.d -f hwclock.sh remove >/dev/null 2>&1
+update-rc.d -f open-vm-tools remove >/dev/null 2>&1
+update-rc.d -f pulseaudio-enable-autospawn remove >/dev/null 2>&1
 
-echo "Init..."
+echo "XWSLINSTANCENAME Runlevel" $1
 echo " "
+
+if [ $1 -eq "0" ]; then
+bash -c "sleep 10 && wslconfig.exe /t XWSLINSTANCENAME" &
+fi
+
 [[ -z $1 ]] && { echo "Need to specify a run level"; exit 127; }
-run_level=$1
 [[ -d /etc/rc${run_level}.d/ ]] ||  { echo "Need to specify a run level"; exit 127; }
 for rc_service in /etc/rc${run_level}.d/K*; do
         [[ -e "$rc_service" ]] && $rc_service stop
@@ -32,8 +34,14 @@ done
 for rc_service in /etc/rc${run_level}.d/S*; do
         [[ -e "$rc_service" ]] && $rc_service start
 done
-
+echo "One moment..."
+sleep 8
 echo ""
-echo "Type new runlevel (0-6) and press enter"
+echo "2 = Multi-User System"
+echo "1 = Single-User System"
+echo "0 = Stop services and terminate instance."
+echo ""
+echo -n "Select Runlevel and hit Enter: "
 read runlevel
+
 initWSL $runlevel

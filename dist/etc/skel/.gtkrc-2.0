@@ -1,0 +1,58 @@
+gtk-primary-button-warps-slider=0
+gtk-button-images=0
+gtk-menu-images=0
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-fallback-icon-theme="hicolor"
+gtk-icon-theme-name="breeze-dark"
+gtk-theme-name="Breeze-Dark"
+gtk-font-name="Segoe UI Regular 10"
+gtk-cursor-theme-size=32 
+
+style "default"
+{
+  bg[NORMAL] = { 0.192, 0.212, 0.231 }
+  bg[SELECTED] = { 0.239, 0.682, 0.914 }
+  bg[INSENSITIVE] = { 0.192, 0.212, 0.231 }
+  bg[ACTIVE] = { 0.169, 0.184, 0.204 }
+  bg[PRELIGHT] = { 0.192, 0.212, 0.231 }
+
+  base[NORMAL] = { 0.137, 0.149, 0.161 }
+  base[SELECTED] = { 0.239, 0.682, 0.914 }
+  base[INSENSITIVE] = { 0.192, 0.212, 0.231 }
+  base[ACTIVE] = { 0.239, 0.682, 0.914 }
+  base[PRELIGHT] = { 0.239, 0.682, 0.914 }
+
+  text[NORMAL] = { 0.937, 0.941, 0.945 }
+  text[SELECTED] = { 0.937, 0.941, 0.945 }
+  text[INSENSITIVE] = { 0.169, 0.184, 0.204 }
+  text[ACTIVE] = { 0.937, 0.941, 0.945 }
+  text[PRELIGHT] = { 0.937, 0.941, 0.945 }
+
+  fg[NORMAL] = { 0.937, 0.941, 0.945 }
+  fg[SELECTED] = { 0.937, 0.941, 0.945 }
+  fg[INSENSITIVE] = { 0.169, 0.184, 0.204 }
+  fg[ACTIVE] = { 0.937, 0.941, 0.945 }
+  fg[PRELIGHT] = { 0.937, 0.941, 0.945 }
+}
+
+class "*" style "default"
+
+style "ToolTip"
+{
+  bg[NORMAL] = { 0.192, 0.212, 0.231 }
+  base[NORMAL] = { 0.192, 0.212, 0.231 }
+  text[NORMAL] = { 0.937, 0.941, 0.945 }
+  fg[NORMAL] = { 0.937, 0.941, 0.945 }
+}
+
+widget "gtk-tooltip" style "ToolTip"
+widget "gtk-tooltips" style "ToolTip"
+widget "gtk-tooltip*" style "ToolTip"
+
+style "MenuItem"
+{
+  bg[PRELIGHT] = { 0.239, 0.682, 0.914 }
+  fg[PRELIGHT] = { 0.937, 0.941, 0.945 }
+}
+
+class "*MenuItem" style "MenuItem"

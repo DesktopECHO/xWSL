@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="urn:sidebar:master-panel-list">
+    <NC:panel-list RDF:resource="rdf:#$DV69y"/>
+  </RDF:Description>
+  <RDF:Seq RDF:about="rdf:#$DV69y">
+    <RDF:li RDF:resource="urn:sidebar:panel:bookmarks"/>
+    <RDF:li RDF:resource="urn:sidebar:panel:history"/>
+    <RDF:li RDF:resource="urn:sidebar:panel:search"/>
+    <RDF:li RDF:resource="urn:sidebar:panel:addressbook"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="urn:sidebar:current-panel-list"
+                   NC:version="0.1">
+    <NC:panel-list RDF:resource="rdf:#$BV69y"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="urn:sidebar:panel:history"
+                   NC:title="History"
+                   NC:content="chrome://communicator/content/history/history-panel.xul" />
+  <RDF:Seq RDF:about="rdf:#$BV69y">
+    <RDF:li RDF:resource="urn:sidebar:panel:bookmarks"/>
+    <RDF:li RDF:resource="urn:sidebar:panel:history"/>
+    <RDF:li RDF:resource="urn:sidebar:panel:search"/>
+    <RDF:li RDF:resource="urn:sidebar:panel:addressbook"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="urn:sidebar:panel:addressbook"
+                   NC:title="Address Book"
+                   NC:content="chrome://messenger/content/addressbook/addressbook-panel.xul" />
+  <RDF:Description RDF:about="urn:sidebar:panel:search"
+                   NC:title="Search"
+                   NC:content="chrome://communicator/content/search/search-panel.xul" />
+  <RDF:Description RDF:about="urn:sidebar:panel:bookmarks"
+                   NC:title="Bookmarks"
+                   NC:content="chrome://communicator/content/bookmarks/bookmarksPanel.xul" />
+</RDF:RDF>

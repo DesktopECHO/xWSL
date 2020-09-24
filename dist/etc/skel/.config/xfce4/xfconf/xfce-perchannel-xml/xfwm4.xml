@@ -4,8 +4,8 @@
   <property name="general" type="empty">
     <property name="activate_action" type="string" value="bring"/>
     <property name="borderless_maximize" type="bool" value="true"/>
-    <property name="box_move" type="bool" value="true"/>
-    <property name="box_resize" type="bool" value="true"/>
+    <property name="box_move" type="bool" value="false"/>
+    <property name="box_resize" type="bool" value="false"/>
     <property name="button_layout" type="string" value="O|SHMC"/>
     <property name="button_offset" type="int" value="0"/>
     <property name="button_spacing" type="int" value="0"/>
@@ -32,7 +32,7 @@
     <property name="inactive_opacity" type="int" value="100"/>
     <property name="maximized_offset" type="int" value="0"/>
     <property name="mousewheel_rollup" type="bool" value="true"/>
-    <property name="move_opacity" type="int" value="100"/>
+    <property name="move_opacity" type="int" value="80"/>
     <property name="placement_mode" type="string" value="center"/>
     <property name="placement_ratio" type="int" value="20"/>
     <property name="popup_opacity" type="int" value="100"/>
@@ -42,8 +42,8 @@
     <property name="raise_on_focus" type="bool" value="false"/>
     <property name="raise_with_any_button" type="bool" value="true"/>
     <property name="repeat_urgent_blink" type="bool" value="false"/>
-    <property name="resize_opacity" type="int" value="100"/>
-    <property name="scroll_workspaces" type="bool" value="true"/>
+    <property name="resize_opacity" type="int" value="80"/>
+    <property name="scroll_workspaces" type="bool" value="false"/>
     <property name="shadow_delta_height" type="int" value="0"/>
     <property name="shadow_delta_width" type="int" value="0"/>
     <property name="shadow_delta_x" type="int" value="0"/>
@@ -52,16 +52,16 @@
     <property name="show_app_icon" type="bool" value="false"/>
     <property name="show_dock_shadow" type="bool" value="true"/>
     <property name="show_frame_shadow" type="bool" value="true"/>
-    <property name="show_popup_shadow" type="bool" value="false"/>
+    <property name="show_popup_shadow" type="bool" value="true"/>
     <property name="snap_resist" type="bool" value="false"/>
     <property name="snap_to_border" type="bool" value="true"/>
     <property name="snap_to_windows" type="bool" value="false"/>
     <property name="snap_width" type="int" value="10"/>
     <property name="vblank_mode" type="string" value="auto"/>
-    <property name="theme" type="string" value="xWSL WM Theme"/>
+    <property name="theme" type="string" value="Default-hdpi"/>
     <property name="tile_on_move" type="bool" value="true"/>
     <property name="title_alignment" type="string" value="center"/>
-    <property name="title_font" type="string" value="Segoe UI Semibold 11"/>
+    <property name="title_font" type="string" value="Segoe UI Semi-Bold 11"/>
     <property name="title_horizontal_offset" type="int" value="0"/>
     <property name="titleless_maximize" type="bool" value="false"/>
     <property name="title_shadow_active" type="string" value="false"/>

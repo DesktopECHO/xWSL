@@ -11,6 +11,8 @@ The xWSL instance is accessible from anywhere on your network, connect to it via
 
 You will see best performance connecting from the local machine or over gigabit ethernet.
 
+![xWSL Desktop](https://user-images.githubusercontent.com/33142753/94092529-687a1b80-fdf1-11ea-9e3b-bfbb6228e893.png)
+
 **INSTRUCTIONS:  From an elevated prompt, change to your desired install directory and type/paste the following command:**
 
     PowerShell -executionpolicy bypass -command "wget https://github.com/DesktopECHO/xWSL/raw/master/xWSL.cmd -UseBasicParsing -OutFile xWSL.cmd ; .\xWSL.cmd"
@@ -89,3 +91,11 @@ It's highly advisable to fork this project into your own repository so you have 
 * XFCE uses the Plata (light or dark) theme and Windows fonts (Segoe UI / Cascadia Code)
 * This is a basic installation of XFCE to save bandwidth.  If you want the **complete** XFCE Desktop environment run `sudo apt-get install xubuntu-desktop`
 * Uninstall Instructions: [https://github.com/DesktopECHO/xWSL/wiki/Uninstallation](https://github.com/DesktopECHO/xWSL/wiki/Uninstallation)
+
+**Screenshots:**
+
+xWSL Install Complete![xWSL Install Complete](https://user-images.githubusercontent.com/33142753/94115143-b6a61380-fe1f-11ea-8606-fc3caf13fbd1.png)
+
+xWSL Install Folder![xWSL Install Folder](https://user-images.githubusercontent.com/33142753/94117779-089c6880-fe23-11ea-9553-5e7bebae3165.png)
+
+

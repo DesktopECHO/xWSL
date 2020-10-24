@@ -90,7 +90,6 @@ It's highly advisable to fork this project into your own repository so you have 
 **Quirks Addressed / Additional Info:**
 
 * xWSL works fine with an X Server instead of xRDP but this has not been thoroughly tested.  The file `/etc/profile.d/WinNT.sh` contains WSL-centric environment variables that may need adjustment such as LIBGL\_ALWAYS\_INDIRECT.
-* WSL1 Has issues with the latest libc library.  The package is being held so unmark and update libc after you get the updated WSL kernel:  \[1809\] **KB4571748**  \*  \[1903/1909\] **KB4566116**  \*  \[2004\] **KB4571756**
 * WSL1 Doesn't work with PolicyKit.  Pulled-in GKSU and dependencies to accommodate GUI apps that need elevated rights.
 * Mozilla Seamonkey is bundled as a stable browser that's kept up to date via apt.  Current versions of Chrome / Firefox do not work in WSL1.
 * Installed image consumes approximately 2.6 GB of disk space

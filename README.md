@@ -94,7 +94,7 @@ It's highly advisable to fork this project into your own repository so you have 
 
 **Screenshots:**
 
-xWSL Install Complete![xWSL Install Complete](https://user-images.githubusercontent.com/33142753/94115143-b6a61380-fe1f-11ea-8606-fc3caf13fbd1.png)
+xWSL Install Complete![xWSL Install Complete](https://user-images.githubusercontent.com/33142753/97086251-7a212f80-15f8-11eb-92f8-567185cc8585.png)
 
 xWSL Install Folder![xWSL Install Folder](https://user-images.githubusercontent.com/33142753/94117779-089c6880-fe23-11ea-9553-5e7bebae3165.png)
 

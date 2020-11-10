@@ -1,4 +1,4 @@
-# [xWSL.cmd (Version 1.1 / 20200923)](https://github.com/DesktopECHO/xWSL)
+# [xWSL.cmd (Version 1.2 / 20201110)](https://github.com/DesktopECHO/xWSL)
 
 Simplicity - A 'one-liner' completely configures XFCE 4.14 on Ubuntu 20.04 in WSL
 
@@ -13,11 +13,12 @@ You will see best performance connecting from the local machine or over gigabit 
 
 ![xWSL Desktop](https://user-images.githubusercontent.com/33142753/94092529-687a1b80-fdf1-11ea-9e3b-bfbb6228e893.png)
 
-**IMPORTANT!  Requires the recent (August/Sept 2020) WSL update for Windows 10:**
+**IMPORTANT!  Requires August/Sept 2020 WSL update for Windows 10, included in 20H2:**
 
 * 1809 - KB4571748
 * 1909 - KB4566116
 * 2004 - KB4571756
+* 20H2 - FIXED
 
 **INSTRUCTIONS:  From an elevated prompt, change to your desired install directory and type/paste the following command:**
 
@@ -25,36 +26,55 @@ You will see best performance connecting from the local machine or over gigabit 
 
 You will be asked a few questions.  The install script finds out the current DPI scaling from Windows; you can set your own value if preferred:
 
-    xWSL Installer
-    
-    Enter a unique name for the distro or hit Enter to use default [xWSL]:
-    Set custom DPI scale or hit Enter to use Windows value [144]:
+    [xWSL Installer]
+
+    Enter a unique name for your xWSL distro or hit Enter to use default.
+    Keep this name simple, no space or underscore characters [xWSL]:
     Port number for xRDP traffic or hit Enter to use default [3399]:
     Port number for SSHd traffic or hit Enter to use default [3322]:
-    [Not recommended!] Type X to eXclude xWSL from Windows Defender:
-    
-    xWSL to be installed in C:\Users\TestUser\xWSL
+    Set a custom DPI scale, or hit Enter to use Windows value [120]:
+    [Not recommended!] Type X to eXclude from Windows Defender: X
 
-The installer will download the Windows Store Ubuntu image and the customizations located in this repository. Near the end of the script you will be prompted to create a non-root user which will automatically be added to sudo'ers.
+    Installing xWSL Distro [xWSL] to "C:\Users\Zero\xWSL"
+    This will take a few minutes, please wait...    
 
-    Enter name of xWSL user: zero
-    Enter password: ********
+The installer will download the Windows Store Ubuntu image and the customizations located in this repository. 
+
+    [20:35:21] Installing Ubuntu 20.04 LTS
+    [20:36:51] Git clone xWSL from GitHub
+    [20:38:00] Install base packages
+    [20:44:59] Install dependencies for desktop environment
+    [20:46:46] Install XFCE4 desktop environment
+    [20:49:41] Install media playback components
+    [20:51:46] Cleaning up unneeded packages
+    [20:52:44] Install Mozilla Seamonkey web browser
+   
+At the end of the script you will be prompted to create a non-root user which will automatically be added to sudo'ers.
+
+    Enter name of primary user for xWSL: zero
+    Enter password for zero: ********
+
+    Open Windows Firewall Ports for xRDP, SSH, mDNS...
+    Building RDP Connection file, Console link, Init system...
+    Building Uninstaller... [C:\Users\Zero\xWSL\Uninstall xWSL.cmd]
+    Building Scheduled Task...
     SUCCESS: The scheduled task "xWSL" has successfully been created.
-    
-          Start: Wed 09/23/2020 @ 15:37:23.97
-            End: Wed 09/23/2020 @ 15:50:17.19
+
+          Start: Mon 11/09/2020 @ 20:29
+            End: Mon 11/09/2020 @ 20:54
        Packages: 911
-    
+
       - xRDP Server listening on port 3399 and SSHd on port 3322.
-    
+
       - Links for GUI and Console sessions have been placed on your desktop.
-    
+
       - (Re)launch init from the Task Scheduler or by running the following command:
         schtasks /run /tn xWSL
-    
-     xWSL Installation Complete!  RDP Client will start in a few seconds...
 
-Currently you should see approximately 911 packages installed.  If the number reported is lower it means you had a download failure and should uninstall and re-start the installation.
+     xWSL Installation Complete!  GUI will start in a few seconds...
+
+
+A successful xWSL install will report 911 packages installed.  If the count shown is lower, it means you had a download failure and it is advisable to uninstall and re-start the installation.
 
 Upon completion the Remote Desktop client will launch a functional XFCE4 Desktop.  A scheduled task is created for starting/managing xWSL.
 
@@ -95,12 +115,10 @@ It's highly advisable to fork this project into your own repository so you have 
 * Installed image consumes approximately 2.6 GB of disk space
 * XFCE uses the Plata (light or dark) theme and Windows fonts (Segoe UI / Cascadia Code)
 * This is a basic installation of XFCE to save bandwidth.  If you want the **complete** XFCE Desktop environment run `sudo apt-get install xubuntu-desktop`
-* Uninstall Instructions: [https://github.com/DesktopECHO/xWSL/wiki/Uninstallation](https://github.com/DesktopECHO/xWSL/wiki/Uninstallation)
+* Uninstaller is located in root of xWSL folder, **Uninstall xWSL.cmd**
 
 **Screenshots:**
 
-xWSL Install Complete![xWSL Install Complete](https://user-images.githubusercontent.com/33142753/97086251-7a212f80-15f8-11eb-92f8-567185cc8585.png)
+xWSL Install Complete![xWSL Install Complete](https://user-images.githubusercontent.com/33142753/98679083-dcd33480-2335-11eb-98f2-d03114d7b2fd.png)
 
-xWSL Install Folder![xWSL Install Folder](https://user-images.githubusercontent.com/33142753/94117779-089c6880-fe23-11ea-9553-5e7bebae3165.png)
-
-
+xWSL Install Folder![xWSL Install Folder](https://user-images.githubusercontent.com/33142753/98679263-215ed000-2336-11eb-8d06-5463f0614e87.png)

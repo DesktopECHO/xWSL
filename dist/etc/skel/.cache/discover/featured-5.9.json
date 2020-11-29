@@ -1,0 +1,12 @@
+[
+    "appstream://org.kde.krita.desktop",
+    "appstream://org.kde.digikam.desktop",
+    "appstream://org.kde.kdenlive.desktop",
+    "appstream://org.kde.ktorrent.desktop",
+    "appstream://org.kde.gcompris.desktop",
+    "appstream://org.kde.kmymoney.desktop",
+    "appstream://org.kde.kolourpaint.desktop",
+    "appstream://blender.desktop",
+    "appstream://inkscape.desktop",
+    "appstream://org.kde.development"
+]

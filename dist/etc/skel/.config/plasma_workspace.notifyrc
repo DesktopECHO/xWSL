@@ -1,0 +1,6 @@
+[Event/applicationcrash]
+Action=
+Execute=
+Logfile=
+Sound=
+TTS=

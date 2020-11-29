@@ -1,0 +1,33 @@
+[Added Associations]
+application/x-extension-eml=userapp-SeaMonkey-G4PKU0.desktop;
+application/x-extension-htm=userapp-SeaMonkey-G4PKU0.desktop;
+application/x-extension-html=userapp-SeaMonkey-G4PKU0.desktop;
+application/x-extension-shtml=userapp-SeaMonkey-G4PKU0.desktop;
+application/x-extension-xht=userapp-SeaMonkey-G4PKU0.desktop;
+application/x-extension-xhtml=userapp-SeaMonkey-G4PKU0.desktop;
+application/xhtml+xml=userapp-SeaMonkey-G4PKU0.desktop;
+inode/directory=org.kde.dolphin.desktop;
+message/rfc822=userapp-SeaMonkey-G4PKU0.desktop;
+text/html=userapp-SeaMonkey-G4PKU0.desktop;
+x-scheme-handler/chrome=userapp-SeaMonkey-G4PKU0.desktop;
+x-scheme-handler/ftp=userapp-SeaMonkey-G4PKU0.desktop;
+x-scheme-handler/http=userapp-SeaMonkey-G4PKU0.desktop;
+x-scheme-handler/https=userapp-SeaMonkey-G4PKU0.desktop;
+x-scheme-handler/mailto=seamonkey-mozilla-build.desktop;userapp-SeaMonkey-G4PKU0.desktop;
+
+[Default Applications]
+application/x-extension-eml=userapp-SeaMonkey-G4PKU0.desktop
+application/x-extension-htm=userapp-SeaMonkey-G4PKU0.desktop
+application/x-extension-html=userapp-SeaMonkey-G4PKU0.desktop
+application/x-extension-shtml=userapp-SeaMonkey-G4PKU0.desktop
+application/x-extension-xht=userapp-SeaMonkey-G4PKU0.desktop
+application/x-extension-xhtml=userapp-SeaMonkey-G4PKU0.desktop
+application/xhtml+xml=userapp-SeaMonkey-G4PKU0.desktop
+inode/directory=org.kde.dolphin.desktop;
+message/rfc822=userapp-SeaMonkey-G4PKU0.desktop
+text/html=userapp-SeaMonkey-G4PKU0.desktop
+x-scheme-handler/chrome=userapp-SeaMonkey-G4PKU0.desktop
+x-scheme-handler/ftp=userapp-SeaMonkey-G4PKU0.desktop
+x-scheme-handler/http=seamonkey-mozilla-build.desktop;
+x-scheme-handler/https=seamonkey-mozilla-build.desktop;
+x-scheme-handler/mailto=seamonkey-mozilla-build.desktop;

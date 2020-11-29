@@ -1,8 +1,11 @@
 #!/bin/bash
-touch /run/initctl
-chmod 644 /var/run/syslog.pid
-clear
 run_level=$1
+touch /run/initctl >/dev/null 2>&1
+chmod 644 /var/run/syslog.pid >/dev/null 2>&1
+strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5 >/dev/null 2>&1
+rm /usr/bin/konqueror ; ln -s  /opt/seamonkey/seamonkey-bin /usr/bin/konqueror >/dev/null 2>&1
+chmod a-x /usr/lib/x86_64-linux-gnu/libexec/kscreenlocker_greet >/dev/null 2>&1
+clear
 
 # Remove services not needed in WSL1
 # update-rc.d -f dbus remove >/dev/null 2>&1
@@ -17,13 +20,15 @@ update-rc.d -f bluetooth remove >/dev/null 2>&1
 update-rc.d -f open-iscsi remove >/dev/null 2>&1
 update-rc.d -f hwclock.sh remove >/dev/null 2>&1
 update-rc.d -f open-vm-tools remove >/dev/null 2>&1
+update-rc.d -f apport remove >/dev/null 2>&1
+update-rc.d -f udev remove >/dev/null 2>&1
 update-rc.d -f pulseaudio-enable-autospawn remove >/dev/null 2>&1
 
-echo "XWSLINSTANCENAME Runlevel" $1
+echo "WSLINSTANCENAME Runlevel" $1
 echo " "
 
 if [ $1 -eq "0" ]; then
-bash -c "sleep 10 && wslconfig.exe /t XWSLINSTANCENAME" &
+bash -c "sleep 5 && wslconfig.exe /t WSLINSTANCENAME" &
 fi
 
 [[ -z $1 ]] && { echo "Need to specify a run level"; exit 127; }
@@ -34,9 +39,6 @@ done
 for rc_service in /etc/rc${run_level}.d/S*; do
         [[ -e "$rc_service" ]] && $rc_service start
 done
-echo "One moment..."
-sleep 8
-echo ""
 echo "2 = Multi-User System"
 echo "1 = Single-User System"
 echo "0 = Stop services and terminate instance."
@@ -44,4 +46,4 @@ echo ""
 echo -n "Select Runlevel and hit Enter: "
 read runlevel
 
-initWSL $runlevel
+initwsl $runlevel

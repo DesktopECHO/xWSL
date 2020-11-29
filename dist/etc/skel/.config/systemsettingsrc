@@ -1,0 +1,21 @@
+[KFileDialog Settings][$i]
+Recent Files[$ie]=file:///usr/bin/pulseaudio,file:///usr/bin/pulseaudio
+Recent URLs[$ie]=file:///usr/bin/
+detailViewIconSize[$i]=0
+
+[KPropertiesDialog]
+rdp0 Height 1600=477
+rdp0 Width 2560=427
+
+[MainWindow]
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAABAAAAAK8AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+rdp0 Height 1600=700
+rdp0 Width 2560=1024
+rdp0 XPosition=421
+rdp0 YPosition=747
+
+[Open-with settings]
+CompletionMode=1
+History=/usr/bin/pulseaudio,pulseaudio

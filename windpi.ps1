@@ -24,4 +24,4 @@ Add-Type @'
   }
 '@ -ReferencedAssemblies 'System.Drawing.dll'
 
-[Math]::round([DPI]::scaling(), 2) * 96
+[Math]::round([DPI]::scaling(), 2) 

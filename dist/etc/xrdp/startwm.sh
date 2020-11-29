@@ -26,4 +26,5 @@ if test -r /etc/default/locale; then
         test -z "${LOCPATH+x}" || export LOCPATH
 fi
 
-startplasma-x11
+#startplasma-x11
+startxfce4

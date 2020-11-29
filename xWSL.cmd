@@ -3,7 +3,7 @@ IF %ERRORLEVEL% == 0 (ECHO Administrator check passed...) ELSE (ECHO You need to
 COLOR 1F
 SET GITORG=DesktopECHO
 SET GITPRJ=xWSL
-SET BRANCH=master
+SET BRANCH=experimental
 SET BASE=https://github.com/%GITORG%/%GITPRJ%/raw/%BRANCH%
 
 REM ## Enable WSL if required
@@ -16,7 +16,7 @@ FOR /f "delims=" %%a in ('powershell -ExecutionPolicy bypass -command "%TEMP%\wi
 CLS && SET RUNSTART=%date% @ %time:~0,5%
 IF EXIST .\CMD.EXE CD ..\..
 
-ECHO [xWSL Installer 20201126]
+ECHO [xWSL Installer 20201129]
 ECHO:
 ECHO Enter a unique name for your xWSL distro or hit Enter to use default. 
 SET DISTRO=xWSL& SET /p DISTRO=Keep this name simple, no space or underscore characters [xWSL]: 
@@ -70,14 +70,14 @@ START /WAIT /MIN "Installing Distro Base..." "%TEMP%\LxRunOffline.exe" "i" "-n" 
 
 ECHO [%TIME:~0,8%] Git clone and update repositories (~1m15s)
 START /MIN /WAIT "Git Clone xWSL" %GO% "cd /tmp ; git clone -b %BRANCH% --depth=1 https://github.com/%GITORG%/%GITPRJ%.git"
-START /MIN /WAIT "Acquire KDE Neon Keys" %GO% "apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E6D4736255751E5D"
+START /MIN /WAIT "Acquire XFCE 4.16 Keys" %GO% "apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 8BEFF2033DE06C97"
 START /MIN /WAIT "Acquire Mozilla Seamonkey Keys" %GO% "apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2667CA5C"
 START /MIN /WAIT "Acquire Ubuntu Graphics Keys" %GO% "apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 957D2708A03A4626"
 %GO% "echo 'deb http://archive.ubuntu.com/ubuntu/ focal main restricted universe' > /etc/apt/sources.list"
 %GO% "echo 'deb http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe' >> /etc/apt/sources.list"
 %GO% "echo 'deb http://security.ubuntu.com/ubuntu/ focal-security main restricted universe' >> /etc/apt/sources.list"
 %GO% "echo 'deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main' >> /etc/apt/sources.list.d/mozilla.list"
-%GO% "echo 'deb http://archive.neon.kde.org/user/ focal main' >>  /etc/apt/sources.list.d/neon.list"
+%GO% "echo 'deb http://ppa.launchpad.net/bluesabre/xfce-4.16/ubuntu focal main' >>  /etc/apt/sources.list.d/xfce-4_16.list"
 %GO% "echo 'deb http://ppa.launchpad.net/oibaf/graphics-drivers/ubuntu focal main' >>  /etc/apt/sources.list.d/ubuntu-graphics.list"
 %GO% "rm -rf /etc/apt/apt.conf.d/20snapd.conf /etc/rc2.d/S01whoopsie /etc/init.d/console-setup.sh" 
 :APTRELY
@@ -94,7 +94,7 @@ ECHO [%TIME:~0,8%] Configure apt-fast Downloader (~0m45s)
 ECHO [%TIME:~0,8%] Remote Desktop Components (~2m45s)
 %GO% "DEBIAN_FRONTEND=noninteractive apt-fast -y install /tmp/xWSL/deb/xrdp_0.9.13.1-2_amd64.deb /tmp/xWSL/deb/xorgxrdp_0.2.12-1_amd64.deb /tmp/xWSL/deb/libfdk-aac1_0.1.6-1_amd64.deb /tmp/xWSL/deb/fonts-cascadia-code_2005.15-1_all.deb x11-apps x11-session-utils x11-xserver-utils dialog distro-info-data dumb-init inetutils-syslogd xdg-utils avahi-daemon libnss-mdns binutils putty unzip zip unar unzip dbus-x11 samba-common-bin base-files ubuntu-release-upgrader-core python3-distupgrade packagekit packagekit-tools lhasa arj unace liblhasa0 apt-config-icons apt-config-icons-hidpi apt-config-icons-large apt-config-icons-large-hidpi libgtkd-3-0 libphobos2-ldc-shared90 libvte-2.91-0 libvte-2.91-common libvted-3-0 tilix tilix-common libdbus-glib-1-2 --no-install-recommends" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Remote Desktop Components.log" 2>&1
 
-ECHO [%TIME:~0,8%] KDE Neon 5.20 User Edition (~11m30s)
+ECHO [%TIME:~0,8%] XFCE 4.16 Beta (~11m30s)
 %GO% "DEBIAN_FRONTEND=noninteractive apt-fast -y install appstream apulse ark aspell-en breeze-gtk-theme desktop-file-utils gdb gdbserver gstreamer1.0-plugins-base hunspell-en-us im-config javascript-common kaccounts-providers kactivities-bin kde-config-gtk-style kde-config-gtk-style-preview kde-plasma-desktop kdeconnect kdiff3 kgamma5 khelpcenter kimageformat-plugins kinfocenter kio-extras kmenuedit kpackagelauncherqml kpackagetool5 krename krusader kscreen ksshaskpass ksysguard ksysguard-data kuserfeedback-doc kwalletmanager kwin-x11 kwrited libaacs0 libappstream-glib8 libavahi-glib1 libbdplus0 libcanberra-gtk3-module libcc1-0 libc-dbg libfftw3-single3 libfwupd2 libgdk-pixbuf2.0-bin libgtk-3-bin libjs-jquery libkf5baloowidgets-bin libkf5config-bin libkf5dbusaddons-bin libkf5iconthemes-bin libkf5kdelibs4support5-bin libkf5khtml-bin libkf5pulseaudioqt2 libkf5purpose-bin libkf5xmlgui-bin libmarkdown2 libmtp-runtime libostree-1-1 libpam-kwallet5 libproxy-tools libqt5designer5 libqt5help5 libqt5multimedia5-plugins libqt5test5 libblkid1 libbrotli1 libfreetype6 libglib2.0-0 libglib2.0-bin libmount1 libsqlite3-0 libuuid1 libx11-6 zlib1g media-player-info mesa-utils mesa-va-drivers debconf-kde-data libdebconf-kde1 muon p11-kit p11-kit-modules p7zip-full pulseaudio pavucontrol plasma-discover plasma-discover-common plasma-workspace-wallpapers policykit-desktop-privileges poppler-data pulseaudio-equalizer python3-dbus.mainloop.pyqt5 python3-pyqt5 python3-sip qml-module-org-kde-runnermodel qml-module-org-kde-purpose qml-module-org-kde-prison qt5-gtk-platformtheme qtspeech5-speechd-plugin qttranslations5-l10n qtwayland5 ruby sonnet-plugins systemsettings va-driver-all xdg-dbus-proxy apt-xapian-index libqapt3 libqapt3-runtime neon-apport python3-apport python3-problem-report python3-systemd python3-xapian qapt-batch debconf-kde-helper software-properties-qt ksystemlog ubuntu-drivers-common libcanberra-pulse plasma-pa pulseaudio-module-gsettings python3-psutil xbase-clients xinit xvfb --no-install-recommends " > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% KDE Neon 5.20 User Edition.log" 2>&1
 
 ECHO [%TIME:~0,8%] Install Mozilla Seamonkey and media playback (~1m30s)
@@ -134,7 +134,7 @@ SET /A SESMAN = %RDPPRT% - 50
 %GO% "chmod 755 /tmp/xWSL/dist/etc/profile.d/xWSL.sh ; chmod +x /tmp/xWSL/dist/etc/profile.d/xWSL.sh ; chmod 755 /tmp/xWSL/dist/etc/xrdp/startwm.sh ; chmod +x /tmp/xWSL/dist/etc/xrdp/startwm.sh"
 %GO% "rm /usr/lib/systemd/system/dbus-org.freedesktop.login1.service /usr/share/dbus-1/system-services/org.freedesktop.login1.service /usr/share/polkit-1/actions/org.freedesktop.login1.policy"
 %GO% "rm /usr/share/dbus-1/services/org.freedesktop.systemd1.service /usr/share/dbus-1/system-services/org.freedesktop.systemd1.service /usr/share/dbus-1/system.d/org.freedesktop.systemd1.conf /usr/share/polkit-1/actions/org.freedesktop.systemd1.policy"
-%GO% "unamestr=`uname -r` ; if [[ "$unamestr" == '4.4.0-17763-Microsoft' ]]; then apt-get purge -y plasma-discover ; sed -i 's/discover/muon/g' /tmp/xWSL/dist/etc/skel/.config/plasma-org.kde.plasma.desktop-appletsrc ; ln -s /usr/bin/software-properties-qt /usr/bin/software-properties-kde ; fi" > NUL
+REM %GO% "unamestr=`uname -r` ; if [[ "$unamestr" == '4.4.0-17763-Microsoft' ]]; then apt-get purge -y plasma-discover ; sed -i 's/discover/muon/g' /tmp/xWSL/dist/etc/skel/.config/plasma-org.kde.plasma.desktop-appletsrc ; ln -s /usr/bin/software-properties-qt /usr/bin/software-properties-kde ; fi" > NUL
 %GO% "cp -Rp /tmp/xWSL/dist/* / ; cp -Rp /tmp/xWSL/dist/etc/skel/.cache /root ; cp -Rp /tmp/xWSL/dist/etc/skel/.config /root ; cp -Rp /tmp/xWSL/dist/etc/skel/.local /root"
 
 SET RUNEND=%date% @ %time:~0,5%
@@ -142,8 +142,9 @@ CD %DISTROFULL%
 ECHO:
 SET /p XU=Enter name of primary user for %DISTRO%: 
 POWERSHELL -Command $prd = read-host "Enter password for %XU%" -AsSecureString ; $BSTR=[System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($prd) ; [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR) > .tmp & set /p PWO=<.tmp
-BASH -c "useradd -m -p nulltemp -s /bin/bash %XU%"
-BASH -c "echo %XU%:%PWO% | chpasswd"
+%GO% "useradd -m -p nulltemp -s /bin/bash %XU%"
+%GO% "(echo '%XU%:%PWO%') | chpasswd"
+%GO% "echo '%XU% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 %GO% "sed -i 's/PLACEHOLDER/%XU%/g' /tmp/xWSL/xWSL.rdp"
 %GO% "sed -i 's/COMPY/%COMPUTERNAME%/g' /tmp/xWSL/xWSL.rdp"
 %GO% "sed -i 's/RDPPRT/%RDPPRT%/g' /tmp/xWSL/xWSL.rdp"
@@ -154,7 +155,6 @@ POWERSHELL -ExecutionPolicy Bypass -Command ./.tmp.ps1
 TYPE .tmp>.tmpsec.txt
 COPY /y /b xWSL._+.tmpsec.txt "%DISTROFULL%\%DISTRO% (%XU%) Desktop.rdp" > NUL
 DEL /Q  xWSL._ .tmp*.* > NUL
-BASH -c "echo '%XU% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 ECHO:
 ECHO Open Windows Firewall Ports for xRDP, SSH, mDNS...
 NETSH AdvFirewall Firewall add rule name="%DISTRO% xRDP" dir=in action=allow protocol=TCP localport=%RDPPRT% > NUL
@@ -162,8 +162,7 @@ NETSH AdvFirewall Firewall add rule name="%DISTRO% Secure Shell" dir=in action=a
 NETSH AdvFirewall Firewall add rule name="%DISTRO% Avahi Multicast DNS" dir=in action=allow program="%DISTROFULL%\rootfs\usr\sbin\avahi-daemon" enable=yes > NUL
 NETSH AdvFirewall Firewall add rule name="%DISTRO% KDE Connect" dir=in action=allow program="%DISTROFULL%\rootfs\usr\lib\x86_64-linux-gnu\libexec\kdeconnectd" enable=yes > NUL
 NETSH AdvFirewall Firewall add rule name="%DISTRO% KDEinit" dir=in action=allow program="%DISTROFULL%\rootfs\usr\bin\kdeinit5" enable=yes > NUL
-
-START /MIN /WAIT "KDE Patches for WSL1" "%DISTROFULL%\LxRunOffline.exe" "r" "-n" "%DISTRO%" "-c" "dpkg -i /tmp/xWSL/deb/libkf5activitiesstats1_5.75.0-0xneon+20.04+focal+wsl_amd64.deb ; dpkg -i /tmp/xWSL/deb/kactivitymanagerd_5.20.0-0xneon+20.04+focal+wsl_amd64.deb ; apt-mark hold libkf5activitiesstats1 kactivitymanagerd"
+REM START /MIN /WAIT "KDE Patches for WSL1" "%DISTROFULL%\LxRunOffline.exe" "r" "-n" "%DISTRO%" "-c" "dpkg -i /tmp/xWSL/deb/libkf5activitiesstats1_5.75.0-0xneon+20.04+focal+wsl_amd64.deb ; dpkg -i /tmp/xWSL/deb/kactivitymanagerd_5.20.0-0xneon+20.04+focal+wsl_amd64.deb ; apt-mark hold libkf5activitiesstats1 kactivitymanagerd"
 START /MIN "%DISTRO% Init" WSL ~ -u root -d %DISTRO% -e initwsl 2
 ECHO Building RDP Connection file, Console link, Init system...
 ECHO @START /MIN "%DISTRO%" WSLCONFIG.EXE /t %DISTRO%                  >  "%DISTROFULL%\Init.cmd"

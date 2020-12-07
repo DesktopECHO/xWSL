@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Synaptic Package Manager
+GenericName=Package Manager
+Comment=Install, remove and upgrade software packages
+Exec=gksu -g -S -- bash -c "source /etc/profile.d/xWSL.sh ; synaptic"
+Icon=synaptic
+Terminal=false
+Type=Application
+Categories=PackageManager;GTK;System;Settings;
+X-Ubuntu-Gettext-Domain=synaptic
+StartupNotify=true
+StartupWMClass=synaptic
+Path=

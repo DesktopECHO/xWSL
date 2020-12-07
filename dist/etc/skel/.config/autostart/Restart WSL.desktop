@@ -2,11 +2,12 @@
 Encoding=UTF-8
 Version=0.9.4
 Type=Application
-Name=xWSL PulseAudio
-Comment=
-Exec=pulseaudio --enable-memfd=false
+Name=Restart WSL
+Comment=Restart WSL Instance on Logout
+Exec=restartwsl
 OnlyShowIn=XFCE;
-RunHook=0
+RunHook=1
 StartupNotify=false
 Terminal=false
 Hidden=false
+

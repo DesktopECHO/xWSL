@@ -16,7 +16,7 @@ if [ -z "$XDG_DATA_DIRS" ]; then
     export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 fi
 
-#export GTK2_RC_FILES=$HOME/.config/gtkrc-2.0
+export GTK2_RC_FILES=$HOME/.config/gtkrc-2.0
 export NO_AT_BRIDGE=1
 export XLIB_SKIP_ARGB_VISUALS=1
 export LIBXCB_ALLOW_SLOPPY_LOCK=1
@@ -25,9 +25,9 @@ export MOZ_LAYERS_ALLOW_SOFTWARE_GL=1
 export QT_X11_NO_MITSHM=1
 export QT_ACCESSIBILITY=0
 export XDG_SESSION_TYPE=x11
-export DESKTOP_SESSION=plasma
-export XDG_SESSION_DESKTOP=KDE
-export XDG_CURRENT_DESKTOP=KDE
+export DESKTOP_SESSION=xfce
+export XDG_SESSION_DESKTOP=xfce
+export XDG_CURRENT_DESKTOP=XFCE
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_RUNTIME_DIR=$HOME/.local
 export XDG_CACHE_HOME=$HOME/.cache

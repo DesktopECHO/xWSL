@@ -3,7 +3,7 @@ Version=1.0
 Name=Root Terminal [Tilix]
 Comment=Use with caution!
 Keywords=shell;prompt;command;commandline;cmd;
-Exec=gksu -g -S -- bash -c "source /etc/profile.d/xWSL.sh ; tilix"
+Exec=gksu -m "This operation requires elevation" -g -S -- bash -c "source /etc/profile.d/xWSL.sh ; tilix"
 Terminal=false
 Type=Application
 StartupNotify=true
@@ -15,12 +15,12 @@ X-Ubuntu-Gettext-Domain=tilix
 
 [Desktop Action new-window]
 Name=New Window
-Exec=gksu -g -S -- bash -c "source /etc/profile.d/kWSL.sh ; tilix --action=app-new-window"
+Exec=gksu -m "This operation requires elevation" -g -S -- bash -c "source /etc/profile.d/kWSL.sh ; tilix --action=app-new-window"
 
 [Desktop Action new-session]
 Name=New Session
-Exec=gksu -g -S -- bash -c "source /etc/profile.d/kWSL.sh ; tilix --action=app-new-session"
+Exec=gksu -m "This operation requires elevation" -g -S -- bash -c "source /etc/profile.d/kWSL.sh ; tilix --action=app-new-session"
 
 [Desktop Action preferences]
 Name=Preferences
-Exec=gksu -g -S -- bash -c "source /etc/profile.d/kWSL.sh ; tilix --preferences"
+Exec=gksu -m "This operation requires elevation" -g -S -- bash -c "source /etc/profile.d/kWSL.sh ; tilix --preferences"

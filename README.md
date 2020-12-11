@@ -88,15 +88,12 @@ A successful xWSL install will report 956 packages installed.
  
  Reboot your PC when complete and xWSL will startup automatically.
 
-**To "reboot" the instance: (In this example using the default distro name of 'xWSL')**
-````schtasks /run /tn xWSL````
+**To "reboot" the instance, example using default distro name of 'xWSL':**
+````schtasks /run /tn xWSL```` **To terminate the instance:** ````wslconfig /t xWSL````
 
-**To terminate the instance:**
-````wslconfig /t xWSL````
+**xWSL is configured to use Bonjour (Multicast DNS) for discovery on WSL2**
 
-**xWSL is configured to use Bonjour (Multicast DNS) for easy access in WSL2**
-
-If your computer has virtualization support you can convert it to WSL2.  kWSL is faster on WSL1, but WSL2 has additional capabilities. 
+If your computer has virtualization support you can convert it to WSL2.  xWSL is faster on WSL1, but WSL2 has additional capabilities. 
 
 Example of conversion to WSL2 on machine name "ENVY":
  - Stop WSL on ENVY:
@@ -120,7 +117,7 @@ From a security standpoint, it would be best to fork this project so you (and on
 
 **Quirks / Limitations / Additional Info:**
 
-* When you log out out of a desktop session the entire xWSL instance is restarted.  .   fresh-boot desktop environment at every login, but the 'reboot' process only takes about 5 seconds.  
+* When you log out out of a desktop session the entire xWSL instance is restarted, the equivilent of a clean-boot at every login.  
 * xWSL should work fine with an X Server instead of xRDP but this has not been thoroughly tested. The file /etc/profile.d/xWSL.sh contains WSL-centric environment variables that may need adjustment such as LIBGL_ALWAYS_INDIRECT.
 * WSL1 Doesn't work with PolicyKit. Enabled kdesu for apps needing elevated rights (plasma-discover, ksystemlog, muon, root console.)
 * Rebuilt xrdp 0.9.13 thanks to Sergey Dryabzhinsky @ http://packages.rusoft.ru/ppa/rusoft/xrdp/

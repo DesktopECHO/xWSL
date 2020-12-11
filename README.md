@@ -1,11 +1,13 @@
-# [xWSL.cmd (Version 1.3 / 20201207)](https://github.com/DesktopECHO/xWSL)
+# [xWSL.cmd (Version 1.3 / 20201211)](https://github.com/DesktopECHO/xWSL)
 
-Beauty and Simplicity - A 'one-liner' command completely configures XFCE 4.16 on Ubuntu 20.04 in WSL
+One command to NetInstall Ubuntu 20.04, xRDP, and XFCE 4.16-beta on WSL.
 
-* Much-improved desktop experience:  Updated xrdp to 0.9.13 and performance improvements in many areas (ie: Fullscreen TuxRacer and Minecraft, full-screen YouTube video, fluid desktop effects)
-* Copy/Paste text and images work reliably between Windows and Linux in both directions
+* Improved desktop experience:  Updated xRDP, performance improvements in many areas (ie: Fullscreen TuxRacer and Minecraft, full-screen YouTube video, desktop effects)
+* [Ubuntu Graphics](https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers) update with Mesa 21 on LLVM 11 
+* [XFCE 4.16-beta](https://launchpad.net/~bluesabre/+archive/ubuntu/xfce-4.16)
 * RDP Audio playback enabled (YouTube playback in browser works well with no audio/video desync)
 * Runs on Windows Server 2019 or Windows 10 Version 1809 (or newer, including Hyper-V Core)
+* Chrome Remote Desktop pre-installed, see wiki for steps to enable
 
 The xWSL instance is accessible from anywhere on your network, connect to it via the MS Remote Desktop Client (mstsc.exe)
 
@@ -38,7 +40,7 @@ You will be asked a few questions.  The install script finds out the current DPI
     Installing xWSL Distro [xWSL] to "C:\Users\Zero\xWSL"
     This will take a few minutes, please wait...    
 
-The installer will download the Windows Store Ubuntu image and the customizations located in this repository. 
+The installer will download and install the [**LxRunOffline**](https://github.com/DDoSolitary/LxRunOffline) distro manager and [Windows Store Ubuntu image](https://www.microsoft.com/en-bm/p/ubuntu/9nblggh4msv6?).  Reference times will vary depending on system performance and the presence of antivrirus software.  A fast system/network can complete the install in about 10 minutes. 
 
     [20:35:21] Installing Ubuntu 20.04 LTS
     [20:36:51] Git clone xWSL from GitHub
@@ -74,42 +76,51 @@ At the end of the script you will be prompted to create a non-root user which wi
      xWSL Installation Complete!  GUI will start in a few seconds...
 
 
-A successful xWSL install will report 911 packages installed.  If the count shown is lower, it means you had a download failure and it is advisable to uninstall and re-start the installation.
+A successful xWSL install will report 956 packages installed. 
 
-Upon completion the Remote Desktop client will launch a functional XFCE4 Desktop.  A scheduled task is created for starting/managing xWSL.
+**Upon completion you'll be logged into your XFCE Desktop.** 
 
-**If you want to start xWSL at boot (like a service) perform the following steps:**
+**Configure xWSL to start at boot (like a service, no console window)**
 
-* Right-click the task in Task Scheduler, click properties
-* Click the checkboxes for **Run whether user is logged on or not** and click **OK**
-* Enter your Windows credentials when prompted
+ - Right-click the task in Task Scheduler, click properties
+ - Click the checkbox for **Run whether user is logged on or not** and click **OK**
+ - Enter your Windows credentials when prompted
+ 
+ Reboot your PC when complete and xWSL will startup automatically.
 
-**To  restart the instance:  (In this example using the default distro name of  'xWSL')**
-
-* `schtasks /run /tn xWSL`
+**To "reboot" the instance: (In this example using the default distro name of 'xWSL')**
+````schtasks /run /tn xWSL````
 
 **To terminate the instance:**
+````wslconfig /t xWSL````
 
-* `wslconfig /t xWSL`
+**xWSL is configured to use Bonjour (Multicast DNS) for easy access in WSL2**
 
-**Convert to WSL2 Virtual Machine:**
+If your computer has virtualization support you can convert it to WSL2.  kWSL is faster on WSL1, but WSL2 has additional capabilities. 
 
-* xWSL can convert easily to a WSL2 VM if required.  First convert the instance: `wsl --set-version [DistroName] 2`
-* Change the hostname in the .RDP connection file to point at the WSL2 instance.  Assuming we're using the default distribution name of `xWSL` (use whatever name you assigned to the distro)  Right click the .RDP file in Windows, click Edit.  Change the Computer name to your Windows hostname and add `-xWSL.local` to the end.
-* For example, if the current value is `LAPTOP:3399`, change it to `LAPTOP-xWSL.local:3399` and save the RDP connection file.  Your WSL2 instance resolves seamlessly with the Windows host using multicast DNS.
+Example of conversion to WSL2 on machine name "ENVY":
+ - Stop WSL on ENVY:
+ ````wsl --shutdown````
+ - Convert the instance to WSL2:
+ ````wsl --set-version xWSL 2````
+ - Restart kWSL Instance:
+ ````schtasks /run /tn xWSL````
+ - Adjust the RDP file saved on the desktop to now point at the new WSL2 instance:
+ ````ENVY-xWSL.local:3399````
 
 **Make it your own:**
 
-It's highly advisable to fork this project into your own repository so you have complete control over the packages and scripts in the repository, making further customization easy:
+From a security standpoint, it would be best to fork this project so you (and only you) control the packages and files in the repository.
 
-* Sign into GitHub and fork this project
-* Edit `xWSL.cmd`.  On line 2 you will see `SET GITORG=DesktopECHO` \- Change `DesktopECHO` to the name of your repository.
-* Personalize the script with dev toolkits or whatever it is you're working on.
-* Launch the script using your repository name: `PowerShell -executionpolicy bypass -command "wget https://github.com/YOUR-REPO-NAME/xWSL/raw/master/xWSL.cmd -UseBasicParsing -OutFile xWSL.cmd ; .\xWSL.cmd"`
+- Sign into GitHub and fork this project
+- Edit ```xWSL.cmd```.  On line 2 you will see ```SET GITORG=DesktopECHO``` - Change ```DesktopECHO``` to the name of your own repository.
+- Customize the script any way you like.
+- Launch the script using your repository name:
+ ```PowerShell -executionpolicy bypass -command "wget https://github.com/YOUR-REPO-NAME/xWSL/raw/master/xWSL.cmd -UseBasicParsing -OutFile xWSL.cmd ; .\xWSL.cmd"```
 
-**Quirks Addressed / Additional Info:**
+**Quirks / Limitations / Additional Info:**
 
-* When you log out out of an XFCE session the WSL instance is restarted. This is the equivilent to having a freshly-booted desktop environment at every login, but the 'reboot' process only takes about 5 seconds.
+* When you log out out of a desktop session the entire xWSL instance is restarted.  .   fresh-boot desktop environment at every login, but the 'reboot' process only takes about 5 seconds.  
 * xWSL should work fine with an X Server instead of xRDP but this has not been thoroughly tested. The file /etc/profile.d/xWSL.sh contains WSL-centric environment variables that may need adjustment such as LIBGL_ALWAYS_INDIRECT.
 * WSL1 Doesn't work with PolicyKit. Enabled kdesu for apps needing elevated rights (plasma-discover, ksystemlog, muon, root console.)
 * Rebuilt xrdp 0.9.13 thanks to Sergey Dryabzhinsky @ http://packages.rusoft.ru/ppa/rusoft/xrdp/
@@ -117,8 +128,8 @@ It's highly advisable to fork this project into your own repository so you have 
 * Mozilla Seamonkey is bundled as a stable browser that's kept up to date via apt.  Current versions of Chrome / Firefox do not work in WSL1.
 * Installed image consumes approximately 2.6 GB of disk space
 * XFCE uses the Plata (light or dark) theme and Windows fonts (Segoe UI / Cascadia Code)
-* This is a basic installation of XFCE to save bandwidth.  If you want the **complete** XFCE Desktop environment run `sudo apt-get install xubuntu-desktop`
-* Uninstaller is located in root of xWSL folder, **Uninstall xWSL.cmd**
+* This is a basic installation of XFCE to save bandwidth.  If you want the complete XFCE Desktop environment run `sudo apt-get install xubuntu-desktop`
+* Uninstaller is located in root of xWSL folder, **Uninstall xWSL.cmd** - Make sure you 'Run As Admin' to clear out the scheduled task and firewall rules
 
 **Screenshots:**
 

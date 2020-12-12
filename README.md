@@ -1,6 +1,7 @@
 # [xWSL.cmd (Version 1.3 / 20201211)](https://github.com/DesktopECHO/xWSL)
 
-One command to NetInstall Ubuntu 20.04, xRDP, and XFCE 4.16-beta on WSL.
+One-line command to NetInstall Ubuntu 20.04, xRDP, and XFCE 4.16-beta on WSL.  If you prefer KDE see [kWSL](https://github.com/DesktopECHO/kWSL)
+
 
 * Improved desktop experience, performance improvements in many areas
 * [Ubuntu Graphics](https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers) update with Mesa 21 on LLVM 11 
@@ -133,3 +134,5 @@ From a security standpoint, it would be best to fork this project so you (and on
 xWSL Install Complete![xWSL Install Complete](https://user-images.githubusercontent.com/33142753/98679083-dcd33480-2335-11eb-98f2-d03114d7b2fd.png)
 
 xWSL Install Folder![xWSL Install Folder](https://user-images.githubusercontent.com/33142753/98679263-215ed000-2336-11eb-8d06-5463f0614e87.png)
+
+WSL1 and WSL2 Instances of xWSL running alongside [Pi-hole for Windows](https://github.com/DesktopECHO/Pi-Hole-for-WSL1)![xWSL Instances](https://user-images.githubusercontent.com/33142753/98769992-8d354d00-23b7-11eb-872b-9f6a622163a5.png)

@@ -40,7 +40,7 @@ You will be asked a few questions.  The installer script finds the current DPI s
      Installing xWSL Distro [xWSL-XFCE416] to "C:\xWSL-XFCE416"
      This will take a few minutes, please wait...  
 
-The installer will download and install the [**LxRunOffline**](https://github.com/DDoSolitary/LxRunOffline) distro manager and [Windows Store Ubuntu image](https://www.microsoft.com/en-bm/p/ubuntu/9nblggh4msv6?).  Reference times will vary depending on system performance and the presence of antivrirus software.  A fast system with good Internet access can finish in less than 10 minutes. 
+The installer will download and install the [**LxRunOffline**](https://github.com/DDoSolitary/LxRunOffline) distro manager and [Windows Store Ubuntu image](https://www.microsoft.com/en-bm/p/ubuntu/9nblggh4msv6?).  Reference times will vary depending on system performance and the presence of antivirus software.  A fast system with good Internet can finish in under 10 minutes. 
 
      [14:49:13] Installing Ubuntu 20.04 LTS (~1m30s)
      [14:49:30] Git clone and update repositories (~2m00s)

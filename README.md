@@ -76,9 +76,7 @@ At the end of the script you will be prompted to create a non-root user which wi
      xWSL Installation Complete!  GUI will start in a few seconds...
 
 
-A successful xWSL install will report 956 packages installed. 
-
-**Upon completion you'll be logged into your XFCE Desktop.** 
+A successful xWSL install will report 956 packages installed.  When the install completes an XFCE desktop will be launched using your saved credentials. 
 
 **Configure xWSL to start at boot (like a service, no console window)**
 
@@ -88,22 +86,24 @@ A successful xWSL install will report 956 packages installed.
  
  Reboot your PC when complete and xWSL will startup automatically.
 
-**To "reboot" the instance, example using default distro name of 'xWSL':**
-````schtasks /run /tn xWSL```` **To terminate the instance:** ````wslconfig /t xWSL````
+**Start/Stop Operation**
 
-**xWSL is configured to use Bonjour (Multicast DNS) for discovery on WSL2**
+* Reboot the instance (example using default distro name of 'xWSL'): ````schtasks /run /tn xWSL```` 
+* Terminate the instance: ````wslconfig /t xWSL````
+
+**xWSL uses Multicast DNS for WSL2 VM discovery**
 
 If your computer has virtualization support you can convert it to WSL2.  xWSL is faster on WSL1, but WSL2 has additional capabilities. 
 
 Example of conversion to WSL2 on machine name "ENVY":
  - Stop WSL on ENVY:
- ````wsl --shutdown````
+    ````wsl --shutdown````
  - Convert the instance to WSL2:
- ````wsl --set-version xWSL 2````
+    ````wsl --set-version xWSL 2````
  - Restart kWSL Instance:
- ````schtasks /run /tn xWSL````
- - Adjust the RDP file saved on the desktop to now point at the new WSL2 instance:
- ````ENVY-xWSL.local:3399````
+    ````schtasks /run /tn xWSL````
+ - Edit the RDP file on your desktop to point at the WSL2 instance by adding ````-xWSL.local```` to the hostname:
+    ````ENVY-xWSL.local:3399````
 
 **Make it your own:**
 
@@ -119,10 +119,10 @@ From a security standpoint, it would be best to fork this project so you (and on
 
 * When you log out out of a desktop session the entire xWSL instance is restarted, the equivilent of a clean-boot at every login.  
 * xWSL should work fine with an X Server instead of xRDP but this has not been thoroughly tested. The file /etc/profile.d/xWSL.sh contains WSL-centric environment variables that may need adjustment such as LIBGL_ALWAYS_INDIRECT.
-* WSL1 Doesn't work with PolicyKit. Enabled kdesu for apps needing elevated rights (plasma-discover, ksystemlog, muon, root console.)
+* WSL1 Doesn't work with PolicyKit. Enabled gksu for apps needing elevated rights (Synaptic, root console)
 * Rebuilt xrdp 0.9.13 thanks to Sergey Dryabzhinsky @ http://packages.rusoft.ru/ppa/rusoft/xrdp/
-* Apt-fast was added to improve download speed and reliability.
-* Mozilla Seamonkey is bundled as a stable browser that's kept up to date via apt.  Current versions of Chrome / Firefox do not work in WSL1.
+* Apt-fast added to improve download speed and reliability.
+* Mozilla Seamonkey included as a stable browser that's kept up to date via apt.  Current versions of Chrome / Firefox do not work in WSL1.
 * Installed image consumes approximately 2.6 GB of disk space
 * XFCE uses the Plata (light or dark) theme and Windows fonts (Segoe UI / Cascadia Code)
 * This is a basic installation of XFCE to save bandwidth.  If you want the complete XFCE Desktop environment run `sudo apt-get install xubuntu-desktop`

@@ -2,7 +2,7 @@
 
 One command to NetInstall Ubuntu 20.04, xRDP, and XFCE 4.16-beta on WSL.
 
-* Improved desktop experience:  Updated xRDP, performance improvements in many areas (ie: Fullscreen TuxRacer and Minecraft, full-screen YouTube video, desktop effects)
+* Improved desktop experience, performance improvements in many areas
 * [Ubuntu Graphics](https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers) update with Mesa 21 on LLVM 11 
 * [XFCE 4.16-beta](https://launchpad.net/~bluesabre/+archive/ubuntu/xfce-4.16)
 * RDP Audio playback enabled (YouTube playback in browser works well with no audio/video desync)
@@ -26,7 +26,7 @@ You will see best performance connecting from the local machine or over gigabit 
 
     PowerShell -executionpolicy bypass -command "wget https://github.com/DesktopECHO/xWSL/raw/master/xWSL.cmd -UseBasicParsing -OutFile xWSL.cmd ; .\xWSL.cmd"
 
-You will be asked a few questions.  The install script finds out the current DPI scaling from Windows; you can set your own value if preferred:
+You will be asked a few questions.  The installer script finds the current DPI scaling in Windows, you can set your own value if preferred:
 
     [xWSL Installer 20201207]
 
@@ -40,7 +40,7 @@ You will be asked a few questions.  The install script finds out the current DPI
     Installing xWSL Distro [xWSL] to "C:\Users\Zero\xWSL"
     This will take a few minutes, please wait...    
 
-The installer will download and install the [**LxRunOffline**](https://github.com/DDoSolitary/LxRunOffline) distro manager and [Windows Store Ubuntu image](https://www.microsoft.com/en-bm/p/ubuntu/9nblggh4msv6?).  Reference times will vary depending on system performance and the presence of antivrirus software.  A fast system/network can complete the install in about 10 minutes. 
+The installer will download and install the [**LxRunOffline**](https://github.com/DDoSolitary/LxRunOffline) distro manager and [Windows Store Ubuntu image](https://www.microsoft.com/en-bm/p/ubuntu/9nblggh4msv6?).  Reference times will vary depending on system performance and the presence of antivrirus software.  A fast system amd network can complete the install in less than 10 minutes. 
 
     [20:35:21] Installing Ubuntu 20.04 LTS
     [20:36:51] Git clone xWSL from GitHub
@@ -76,7 +76,7 @@ At the end of the script you will be prompted to create a non-root user which wi
      xWSL Installation Complete!  GUI will start in a few seconds...
 
 
-A successful xWSL install will report 956 packages installed.  When the install completes an XFCE desktop will be launched using your saved credentials. 
+A successful xWSL install will show 956 packages installed.  When install completes the XFCE desktop session is launched using saved credentials. 
 
 **Configure xWSL to start at boot (like a service, no console window)**
 
@@ -88,10 +88,10 @@ A successful xWSL install will report 956 packages installed.  When the install 
 
 **Start/Stop Operation**
 
-* Reboot the instance (example using default distro name of 'xWSL'): ````schtasks /run /tn xWSL```` 
+* Reboot the instance (example with default distro name of 'xWSL'): ````schtasks /run /tn xWSL```` 
 * Terminate the instance: ````wslconfig /t xWSL````
 
-**xWSL uses Multicast DNS for WSL2 VM discovery**
+**xWSL leverages Multicast DNS to lookup WSL2 instances**
 
 If your computer has virtualization support you can convert it to WSL2.  xWSL is faster on WSL1, but WSL2 has additional capabilities. 
 

@@ -1,4 +1,4 @@
-# [xWSL.cmd (Version 1.3 / 20201211)](https://github.com/DesktopECHO/xWSL)
+# [xWSL.cmd (Version 1.3 / 20201212)](https://github.com/DesktopECHO/xWSL)
 
 One-line command to NetInstall Ubuntu 20.04, xRDP, and XFCE 4.16-beta on WSL.  If you prefer KDE see [kWSL](https://github.com/DesktopECHO/kWSL)
 
@@ -29,63 +29,60 @@ You will see best performance connecting from the local machine or over gigabit 
 
 You will be asked a few questions.  The installer script finds the current DPI scaling in Windows, you can set your own value if preferred:
 
-    [xWSL Installer 20201207]
-
-    Enter a unique name for your xWSL distro or hit Enter to use default.
-    Keep this name simple, no space or underscore characters [xWSL]:
-    Port number for xRDP traffic or hit Enter to use default [3399]:
-    Port number for SSHd traffic or hit Enter to use default [3322]:
-    Set a custom DPI scale, or hit Enter to use Windows value [120]:
-    [Not recommended!] Type X to eXclude from Windows Defender: X
-
-    Installing xWSL Distro [xWSL] to "C:\Users\Zero\xWSL"
-    This will take a few minutes, please wait...    
+     [xWSL Installer 20201212]
+     Enter a unique name for your xWSL distro or hit Enter to use default. 
+     Keep this name simple, no space or underscore characters [xWSL]: xWSL-XFCE416 
+     Port number for xRDP traffic or hit Enter to use default [3399]: 23399
+     Port number for SSHd traffic or hit Enter to use default [3322]: 23322 
+     Set a custom DPI scale, or hit Enter for Windows default [1]: 1.25     
+     [Not recommended!] Type X to eXclude from Windows Defender: 
+     
+     Installing xWSL Distro [xWSL-XFCE416] to "C:\xWSL-XFCE416"
+     This will take a few minutes, please wait...  
 
 The installer will download and install the [**LxRunOffline**](https://github.com/DDoSolitary/LxRunOffline) distro manager and [Windows Store Ubuntu image](https://www.microsoft.com/en-bm/p/ubuntu/9nblggh4msv6?).  Reference times will vary depending on system performance and the presence of antivrirus software.  A fast system amd network can complete the install in less than 10 minutes. 
 
-    [20:35:21] Installing Ubuntu 20.04 LTS
-    [20:36:51] Git clone xWSL from GitHub
-    [20:38:00] Install base packages
-    [20:44:59] Install dependencies for desktop environment
-    [20:46:46] Install XFCE4 desktop environment
-    [20:49:41] Install media playback components
-    [20:51:46] Cleaning up unneeded packages
-    [20:52:44] Install Mozilla Seamonkey web browser
+     [14:49:13] Installing Ubuntu 20.04 LTS (~1m30s)
+     [14:49:30] Git clone and update repositories (~2m00s)
+     [14:50:44] Remove un-needed packages (~1m30s)
+     [14:51:14] Configure apt-fast Downloader (~0m45s)
+     [14:51:25] Remote Desktop Components (~4m45s)
+     [14:55:53] XFCE4 (~2m15s)
+     [14:57:37] Install Mozilla Seamonkey and media playback (~2m00s)
+     [14:59:44] Post-install clean-up (~0m45s)
    
 At the end of the script you will be prompted to create a non-root user which will automatically be added to sudo'ers.
 
-    Enter name of primary user for xWSL: zero
-    Enter password for zero: ********
+     Enter name of primary user for xWSL-XFCE416: utest
+     Enter password for utest: *****
+     
+     Open Windows Firewall Ports for xRDP, SSH, mDNS...
+     Building RDP Connection file, Console link, Init system...
+     Building Scheduled Task...
+     SUCCESS: The scheduled task "xWSL-XFCE416" has successfully been created.
 
-    Open Windows Firewall Ports for xRDP, SSH, mDNS...
-    Building RDP Connection file, Console link, Init system...
-    Building Uninstaller... [C:\Users\Zero\xWSL\Uninstall xWSL.cmd]
-    Building Scheduled Task...
-    SUCCESS: The scheduled task "xWSL" has successfully been created.
+           Start: Sat 12/12/2020 @ 14:46
+             End: Sat 12/12/2020 @ 14:59
+        Packages: 965
 
-          Start: Mon 11/09/2020 @ 20:29
-            End: Mon 11/09/2020 @ 20:54
-       Packages: 911
+       - xRDP Server listening on port 23399 and SSHd on port 23322.
 
-      - xRDP Server listening on port 3399 and SSHd on port 3322.
+       - Links for GUI and Console sessions have been placed on your desktop.
 
-      - Links for GUI and Console sessions have been placed on your desktop.
+       - (Re)launch init from the Task Scheduler or by running the following command:     
+         schtasks /run /tn xWSL-XFCE416
 
-      - (Re)launch init from the Task Scheduler or by running the following command:
-        schtasks /run /tn xWSL
+      xWSL-XFCE416 Installation Complete!  GUI will start in a few seconds...
 
-     xWSL Installation Complete!  GUI will start in a few seconds...
-
-
-A successful xWSL install will show 956 packages installed.  When install completes the XFCE desktop session is launched using saved credentials. 
+A successful install will show 965 packages installed.  An XFCE desktop session is launched with stored credentials. 
 
 **Configure xWSL to start at boot (like a service, no console window)**
 
- - Right-click the task in Task Scheduler, click properties
- - Click the checkbox for **Run whether user is logged on or not** and click **OK**
- - Enter your Windows credentials when prompted
+* Right-click the task in Task Scheduler, click properties
+* Click the checkbox for **Run whether user is logged on or not** and click **OK**
+* Enter your Windows credentials when prompted
  
- Reboot your PC when complete and xWSL will startup automatically.
+Reboot your PC when complete and xWSL will startup automatically.
 
 **Start/Stop Operation**
 

@@ -121,12 +121,12 @@ From a security standpoint, it would be best to fork this project so you (and on
 * xWSL should work fine with an X Server instead of xRDP but this has not been thoroughly tested. The file /etc/profile.d/xWSL.sh contains WSL-centric environment variables that may need adjustment such as LIBGL_ALWAYS_INDIRECT.
 * WSL1 Doesn't work with PolicyKit. Enabled gksu for apps needing elevated rights (Synaptic, root console)
 * Rebuilt xrdp 0.9.13 thanks to Sergey Dryabzhinsky @ http://packages.rusoft.ru/ppa/rusoft/xrdp/
-* Apt-fast added to improve download speed and reliability.
+* [Apt-fast](https://github.com/ilikenwf/apt-fast) added to improve download speed and reliability.
 * Mozilla Seamonkey included as a stable browser that's kept up to date via apt.  Current versions of Chrome / Firefox do not work in WSL1.
 * Installed image consumes approximately 2.6 GB of disk space
 * XFCE uses the Plata (light or dark) theme and Windows fonts (Segoe UI / Cascadia Code)
 * This is a basic installation of XFCE to save bandwidth.  If you want the complete XFCE Desktop environment run `sudo apt-get install xubuntu-desktop`
-* Uninstaller is located in root of xWSL folder, **Uninstall xWSL.cmd** - Make sure you 'Run As Admin' to clear out the scheduled task and firewall rules
+* Uninstaller is located in root of xWSL folder, **Uninstall xWSL.cmd** - Make sure you 'Run As Administrator' to ensure removal of the scheduled task and firewall rules
 
 **Screenshots:**
 

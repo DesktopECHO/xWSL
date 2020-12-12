@@ -16,7 +16,7 @@ FOR /f "delims=" %%a in ('powershell -ExecutionPolicy bypass -command "%TEMP%\wi
 CLS && SET RUNSTART=%date% @ %time:~0,5%
 IF EXIST .\CMD.EXE CD ..\..
 
-ECHO [xWSL Installer 20201207]
+ECHO [xWSL Installer 20201212]
 ECHO:
 ECHO Enter a unique name for your xWSL distro or hit Enter to use default. 
 SET DISTRO=xWSL& SET /p DISTRO=Keep this name simple, no space or underscore characters [xWSL]: 

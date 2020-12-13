@@ -1,7 +1,0 @@
-[Applications][org.kde.discover]
-ShowInHistory=false
-ShowPopups=false
-
-[Services][policykit1-kde]
-ShowInHistory=false
-ShowPopups=false

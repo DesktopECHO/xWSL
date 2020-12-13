@@ -1,2 +1,0 @@
-#!/bin/bash
-bash -c 'sleep 3 ; "SCHT" /RUN /TN:DISTRO' &

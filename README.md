@@ -116,7 +116,7 @@ From a security standpoint, it would be best to fork this project so you (and on
 **Quirks / Limitations / Additional Info:**
 
 * When you log out out of a desktop session the entire xWSL instance is restarted, the equivilent of a clean-boot at every login.  
-* xWSL should work fine with an X Server instead of xRDP but this has not been thoroughly tested. The file /etc/profile.d/xWSL.sh contains WSL-centric environment variables that may need adjustment such as LIBGL_ALWAYS_INDIRECT.
+* xWSL should work fine with an X Server instead of xRDP. The file **/etc/profile.d/xWSL.sh** contains WSL-centric environment variables that may need adjustment such as LIBGL_ALWAYS_INDIRECT.
 * WSL1 Doesn't work with PolicyKit. Enabled gksu for apps needing elevated rights (Synaptic, root console)
 * Rebuilt xrdp 0.9.13 thanks to Sergey Dryabzhinsky @ http://packages.rusoft.ru/ppa/rusoft/xrdp/
 * [Apt-fast](https://github.com/ilikenwf/apt-fast) added to improve download speed and reliability.

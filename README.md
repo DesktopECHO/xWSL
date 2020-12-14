@@ -125,7 +125,7 @@ From a security standpoint, it would be best to fork this project so you (and on
 * Installed image consumes approximately 2.6 GB of disk space
 * XFCE uses the Plata (light or dark) theme and Windows fonts (Segoe UI / Cascadia Code)
 * This is a basic installation of XFCE to save bandwidth.  If you want the complete XFCE Desktop environment run `sudo apt-get install xubuntu-desktop`
-* Uninstaller is located in root of xWSL folder, **Uninstall xWSL.cmd** - Make sure you 'Run As Administrator' to ensure removal of the scheduled task and firewall rules
+* Uninstaller is located in root of xWSL folder, **'Uninstall xWSL.cmd'** - Make sure you **'Run As Administrator'** to ensure removal of the scheduled task and firewall rules
 
 **Screenshots:**
 

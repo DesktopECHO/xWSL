@@ -8,7 +8,7 @@ One-line command to NetInstall Ubuntu 20.04, xRDP, and XFCE 4.16-beta on WSL.  I
 * [XFCE 4.16-beta](https://launchpad.net/~bluesabre/+archive/ubuntu/xfce-4.16)
 * RDP Audio playback enabled (YouTube playback in browser works well with no audio/video desync)
 * Runs on Windows Server 2019 or Windows 10 Version 1809 (or newer, including Hyper-V Core)
-* Chrome Remote Desktop pre-installed, see wiki for steps to enable
+* Chrome Remote Desktop pre-installed, see [wiki](https://github.com/DesktopECHO/xWSL/wiki/Enable-Chrome-Remote-Desktop) for steps to enable
 
 The xWSL instance is accessible from anywhere on your network, connect to it via the MS Remote Desktop Client (mstsc.exe)
 
@@ -41,7 +41,7 @@ You will be asked a few questions.  The installer script finds the current DPI s
      Installing xWSL Distro [XFCE416] to "C:\WSL Distros\XFCE416"
      This will take a few minutes, please wait...
 
-The installer will download and install the [**LxRunOffline**](https://github.com/DDoSolitary/LxRunOffline) distro manager and [Windows Store Ubuntu image](https://www.microsoft.com/en-bm/p/ubuntu/9nblggh4msv6?).  Reference times will vary depending on system performance and the presence of antivirus software.  A fast system with good Internet can finish in under 10 minutes. 
+The installer will download and install the [LxRunOffline](https://github.com/DDoSolitary/LxRunOffline) distro manager and [Windows Store Ubuntu image](https://www.microsoft.com/en-bm/p/ubuntu/9nblggh4msv6?).  Reference times will vary depending on system performance and the presence of antivirus software.  A fast system with good Internet can finish in under 10 minutes. 
 
      [11:14:57] Installing Ubuntu 20.04 LTS (~1m00s)
      [11:15:43] Git clone and update repositories (~1m15s)

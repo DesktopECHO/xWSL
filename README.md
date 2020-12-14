@@ -29,52 +29,53 @@ You will see best performance connecting from the local machine or over gigabit 
 
 You will be asked a few questions.  The installer script finds the current DPI scaling in Windows, you can set your own value if preferred:
 
-     [xWSL Installer 20201212]
-     Enter a unique name for your xWSL distro or hit Enter to use default. 
-     Keep this name simple, no space or underscore characters [xWSL]: xWSL-XFCE416 
-     Port number for xRDP traffic or hit Enter to use default [3399]: 23399
-     Port number for SSHd traffic or hit Enter to use default [3322]: 23322 
-     Set a custom DPI scale, or hit Enter for Windows default [1]: 1.25     
-     [Not recommended!] Type X to eXclude from Windows Defender: 
-     
-     Installing xWSL Distro [xWSL-XFCE416] to "C:\xWSL-XFCE416"
-     This will take a few minutes, please wait...  
+     [xWSL Installer 20201214]
+
+     Enter a unique name for your xWSL distro or hit Enter to use default.
+     Keep this name simple, no space or underscore characters [xWSL]: XFCE416
+     Port number for xRDP traffic or hit Enter to use default [3399]: 13399
+     Port number for SSHd traffic or hit Enter to use default [3322]: 13322
+     Set a custom DPI scale, or hit Enter for Windows default [1.5]: 1.25
+     [Not recommended!] Type X to eXclude from Windows Defender:
+
+     Installing xWSL Distro [XFCE416] to "C:\WSL Distros\XFCE416"
+     This will take a few minutes, please wait...
 
 The installer will download and install the [**LxRunOffline**](https://github.com/DDoSolitary/LxRunOffline) distro manager and [Windows Store Ubuntu image](https://www.microsoft.com/en-bm/p/ubuntu/9nblggh4msv6?).  Reference times will vary depending on system performance and the presence of antivirus software.  A fast system with good Internet can finish in under 10 minutes. 
 
-     [14:49:13] Installing Ubuntu 20.04 LTS (~1m30s)
-     [14:49:30] Git clone and update repositories (~2m00s)
-     [14:50:44] Remove un-needed packages (~1m30s)
-     [14:51:14] Configure apt-fast Downloader (~0m45s)
-     [14:51:25] Remote Desktop Components (~4m45s)
-     [14:55:53] XFCE4 (~2m15s)
-     [14:57:37] Install Mozilla Seamonkey and media playback (~2m00s)
-     [14:59:44] Post-install clean-up (~0m45s)
+     [11:14:57] Installing Ubuntu 20.04 LTS (~1m00s)
+     [11:15:43] Git clone and update repositories (~1m15s)
+     [11:16:37] Remove un-needed packages (~1m00s)
+     [11:17:13] Configure apt-fast Downloader (~0m15s)
+     [11:17:24] Remote Desktop Components (~4m45s)
+     [11:21:43] XFCE 4.16 (~2m00s)
+     [11:23:06] Install Mozilla Seamonkey and media playback (~1m30s)
+     [11:23:53] Post-install clean-up (~0m45s)
    
 At the end of the script you will be prompted to create a non-root user which will automatically be added to sudo'ers.
 
-     Enter name of primary user for xWSL-XFCE416: utest
-     Enter password for utest: *****
-     
+     Enter name of primary user for XFCE416: zero
+     Enter password for zero: ********
+
      Open Windows Firewall Ports for xRDP, SSH, mDNS...
      Building RDP Connection file, Console link, Init system...
      Building Scheduled Task...
-     SUCCESS: The scheduled task "xWSL-XFCE416" has successfully been created.
+     SUCCESS: The scheduled task "XFCE416" has successfully been created.
+     
+           Start: Mon 12/14/2020 @ 11:14
+             End: Mon 12/14/2020 @ 11:24
+        Packages: 968
 
-           Start: Sat 12/12/2020 @ 14:46
-             End: Sat 12/12/2020 @ 14:59
-        Packages: 965
-
-       - xRDP Server listening on port 23399 and SSHd on port 23322.
+       - xRDP Server listening on port 13399 and SSHd on port 13322.
 
        - Links for GUI and Console sessions have been placed on your desktop.
 
-       - (Re)launch init from the Task Scheduler or by running the following command:     
-         schtasks /run /tn xWSL-XFCE416
+       - (Re)launch init from the Task Scheduler or by running the following command:
+         schtasks /run /tn XFCE416
+     
+      XFCE416 Installation Complete!  GUI will start in a few seconds...
 
-      xWSL-XFCE416 Installation Complete!  GUI will start in a few seconds...
-
-A fullscreen XFCE desktop will launch using your stored credentials. 
+A fullscreen XFCE session will launch using your stored credentials. 
 
 **Configure xWSL to start at boot (like a service, no console window)**
 

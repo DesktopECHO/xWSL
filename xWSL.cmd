@@ -3,7 +3,7 @@ IF %ERRORLEVEL% == 0 (ECHO Administrator check passed...) ELSE (ECHO You need to
 COLOR 1F
 SET GITORG=DesktopECHO
 SET GITPRJ=xWSL
-SET BRANCH=experimental
+SET BRANCH=master
 SET BASE=https://github.com/%GITORG%/%GITPRJ%/raw/%BRANCH%
 
 REM ## Enable WSL if required

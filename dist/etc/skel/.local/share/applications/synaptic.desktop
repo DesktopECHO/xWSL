@@ -2,7 +2,7 @@
 Name=Synaptic Package Manager
 GenericName=Package Manager
 Comment=Install, remove and upgrade software packages
-Exec=gksu -m "This operation requires elevation" -S -- bash -c "source /etc/profile.d/xWSL.sh ; synaptic"
+Exec=gksu -m "This operation requires elevation" -g -S -- bash -c "source /etc/profile.d/xWSL.sh ; synaptic"
 Icon=synaptic
 Terminal=false
 Type=Application

@@ -1,4 +1,4 @@
-# [xWSL.cmd (Version 1.3 / 20201212)](https://github.com/DesktopECHO/xWSL)
+# [xWSL.cmd (Version 1.3 / 20201214)](https://github.com/DesktopECHO/xWSL)
 
 One-line command to NetInstall Ubuntu 20.04, xRDP, and XFCE 4.16-beta on WSL.  If you want KDE visit [kWSL](https://github.com/DesktopECHO/kWSL)
 

@@ -4,7 +4,7 @@ One-line command to NetInstall Ubuntu 20.04, xRDP, and XFCE 4.16-beta on WSL.  I
 
 * Improved desktop experience, performance improvements in many areas
 * [Ubuntu Graphics](https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers) update with Mesa 21 on LLVM 11 
-* [XFCE 4.16-beta](https://launchpad.net/~bluesabre/+archive/ubuntu/xfce-4.16)
+* [XFCE 4.16](https://launchpad.net/~xubuntu-dev/+archive/ubuntu/staging)
 * RDP Audio playback enabled (YouTube playback in browser works well with no audio/video desync)
 * Runs on Windows Server 2019 or Windows 10 Version 1809 (or newer, including Hyper-V Core)
 * Chrome Remote Desktop pre-installed, see [wiki](https://github.com/DesktopECHO/xWSL/wiki/Enable-Chrome-Remote-Desktop) for steps to enable

@@ -24,7 +24,7 @@ You will see best performance connecting from the local machine or over gigabit 
 
 **INSTRUCTIONS:  From an elevated prompt, change to your desired install directory and type/paste the following command:**
 
-    PowerShell -executionpolicy bypass -command "wget https://github.com/DesktopECHO/xWSL/raw/master/xWSL-Kali.cmd -UseBasicParsing -OutFile xWSL-Kali.cmd ; .\xWSL-Kali.cmd"
+    PowerShell -executionpolicy bypass -command "wget https://github.com/DesktopECHO/xWSL/raw/master/xWSL.cmd -UseBasicParsing -OutFile xWSL.cmd ; .\xWSL.cmd"
 
 You will be asked a few questions.  The installer script finds the current DPI scaling in Windows, you can set your own value if preferred:
 
@@ -93,15 +93,15 @@ Reboot your PC when complete and xWSL will startup automatically.
 
 If your computer has virtualization support you can convert it to WSL2.  xWSL is faster on WSL1, but WSL2 has additional capabilities. 
 
-Example of conversion to WSL2 on machine name "ENVY":
- - Stop WSL on ENVY:
+Example of conversion to WSL2 on machine name "COMPY":
+ - Stop WSL on COMPY:
     ````wsl --shutdown````
  - Convert the instance to WSL2:
     ````wsl --set-version xWSL 2````
  - Restart kWSL Instance:
     ````schtasks /run /tn xWSL````
- - Edit the RDP file on your desktop to point at the WSL2 instance by adding ````-xWSL.local```` to the hostname:
-    ````ENVY-xWSL.local:3399````
+ - Edit the .RDP file to point at the WSL2 instance by adding ````-xWSL.local```` to the hostname, so for COMPY it would be:
+    ````COMPY-xWSL.local:3399````
 
 **Make it your own:**
 

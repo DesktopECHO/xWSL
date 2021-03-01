@@ -1,48 +1,48 @@
 {
   "data": [
     {
-      "schema": 1594627646773,
-      "details": {
-        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1652076",
-        "why": "Old versions of the Flash Player plugin have known vulnerabilities. All users are strongly recommended to check for updates <a href=\"https://get.adobe.com/flashplayer/\">on Adobe's Flash page</a>.",
-        "name": "Flash Player Plugin 32.0.0.371 and older (click-to-play)"
-      },
-      "enabled": true,
-      "infoURL": "https://get.adobe.com/flashplayer/",
-      "versionRange": [
-        {
-          "severity": 0,
-          "maxVersion": "32.0.0.371",
-          "minVersion": "0",
-          "vulnerabilityStatus": 1
-        }
-      ],
-      "matchFilename": "(NPSWF32.*\\.dll)|(NPSWF64.*\\.dll)|(Flash\\ Player\\.plugin)",
-      "id": "832dc9ff-3314-4df2-abcf-7bd65a645371",
-      "last_modified": 1594658825158,
-      "_status": "synced"
-    },
-    {
       "os": "Linux",
-      "schema": 1594582908914,
+      "schema": 1603099489080,
       "details": {
-        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1652076",
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1671688",
         "why": "Old versions of the Flash Player plugin have known vulnerabilities. All users are strongly recommended to check for updates <a href=\"https://get.adobe.com/flashplayer/\">on Adobe's Flash page</a>.",
-        "name": "Flash Player Plugin on Linux 32.0.0.371 and older (click-to-play)"
+        "name": "Flash Player Plugin on Linux 32.0.0.443 and older (click-to-play)"
       },
       "enabled": true,
       "infoURL": "https://get.adobe.com/flashplayer/",
       "versionRange": [
         {
           "severity": 0,
-          "maxVersion": "32.0.0.371",
+          "maxVersion": "32.0.0.443",
           "minVersion": "0",
           "vulnerabilityStatus": 1
         }
       ],
       "matchFilename": "libflashplayer\\.so",
       "id": "49b843cc-a8fc-4ede-be0c-a0da56d0214f",
-      "last_modified": 1594658825154,
+      "last_modified": 1603126502200,
+      "_status": "synced"
+    },
+    {
+      "schema": 1603050119276,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1671688",
+        "why": "Old versions of the Flash Player plugin have known vulnerabilities. All users are strongly recommended to check for updates <a href=\"https://get.adobe.com/flashplayer/\">on Adobe's Flash page</a>.",
+        "name": "Flash Player Plugin 32.0.0.443 and older (click-to-play)"
+      },
+      "enabled": true,
+      "infoURL": "https://get.adobe.com/flashplayer/",
+      "versionRange": [
+        {
+          "severity": 0,
+          "maxVersion": "32.0.0.443",
+          "minVersion": "0",
+          "vulnerabilityStatus": 1
+        }
+      ],
+      "matchFilename": "(NPSWF32.*\\.dll)|(NPSWF64.*\\.dll)|(Flash\\ Player\\.plugin)",
+      "id": "832dc9ff-3314-4df2-abcf-7bd65a645371",
+      "last_modified": 1603126502196,
       "_status": "synced"
     },
     {

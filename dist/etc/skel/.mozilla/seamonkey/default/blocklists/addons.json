@@ -1,6 +1,846 @@
 {
   "data": [
     {
+      "guid": "{b557cf1f-1399-4beb-b395-71e03757e427}",
+      "prefs": [],
+      "schema": 1604933286063,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1676184",
+        "why": "This add-on violates Mozilla's add-on policies by not providing the necessary information to facilitate a review.",
+        "name": "super-sync-env"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "7b2ff754-e3fd-4c7d-8d6f-b4fd87c71473",
+      "last_modified": 1604940558744,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{00894eeb-db15-499e-98cc-9d352ee42198\\})|(\\{30e6bd98-94c0-41b7-b085-119effe56451\\})|(\\{5f4b8d5b-f8e8-4caf-86e6-151bbff7dead\\})|(\\{6e97c492-7efa-43f2-8ed8-c20c0275cc99\\})|(\\{a04a7d52-1e5a-4608-9d89-6f3a408b92c1\\})|(\\{afc030c0-261a-478e-8074-6e1aeeb5ec45\\}))$/",
+      "prefs": [],
+      "schema": 1604396204131,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1674888",
+        "why": "These add-ons violate Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "Multiple crypto wallets"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "394eae28-5619-45b9-b4bd-b34f58a44015",
+      "last_modified": 1604503468321,
+      "_status": "synced"
+    },
+    {
+      "guid": "{d4e528a9-a6bf-4e35-82b5-cd1ad4b7d331}",
+      "prefs": [],
+      "schema": 1604497062898,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1675201",
+        "why": "This add-on violates Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "TronWallet"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "c786e676-ff43-409d-83ea-abf222058e11",
+      "last_modified": 1604503468313,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{cc8d4d26-b615-4880-863a-586af45dc7e7\\})|(\\{ebd1d9ad-d43b-4105-b1f7-c78a7772b431\\}))$/",
+      "prefs": [],
+      "schema": 1604324581859,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1674798",
+        "why": "These add-ons violates Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "Fake Coin Add-ons"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "ca05039e-fd10-4587-979b-d0415c727580",
+      "last_modified": 1604396203679,
+      "_status": "synced"
+    },
+    {
+      "guid": "sourcegraph-for-firefox@sourcegraph.com",
+      "prefs": [],
+      "schema": 1604163572646,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1541010",
+        "why": "This add-on violates Mozilla's add-on policies by executing remote code.",
+        "name": "Sourcegraph for Firefox"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 1,
+          "maxVersion": "20.5.20.1516",
+          "minVersion": "0"
+        }
+      ],
+      "id": "9fde5729-9be6-4955-9627-67742c5ed62a",
+      "last_modified": 1604324581391,
+      "_status": "synced"
+    },
+    {
+      "guid": "{446c7519-9e32-4f9a-b562-447f4421ec9a}",
+      "prefs": [],
+      "schema": 1604059105250,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1671618",
+        "why": "This add-on violates Mozilla's add-on policies by severely circumventing user consent or control.",
+        "name": "Search add-ons without consent"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "64adb8cf-42d2-4a72-9ad4-df09db0d0d7c",
+      "last_modified": 1604089130722,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{3d66c55b-ed06-47fe-a823-d49301568ad3\\})|(\\{527d060d-9eaa-4670-8dea-7c152f0b8dcd\\})|(\\{ab64584a-98db-4661-b14a-d6286aed36b2\\})|(\\{b0a0f872-a93b-439d-a783-44690ee6ba4a\\})|(\\{fd299ce1-1602-4490-b659-f45504f9324c\\})|(\\{0362578d-c9c2-4a85-8a37-eab60242c5bb\\})|(\\{2451ecb9-6260-4564-a546-8532f04b587a\\})|(\\{39790485-930b-40a5-8268-69222363ff80\\}))$/",
+      "prefs": [],
+      "schema": 1604011389667,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1671618",
+        "why": "This add-on, up to version 1.0.4, violates Mozilla's add-on policies by severely circumventing user consent or control.",
+        "name": "Search add-ons without consent"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "1.0.4",
+          "minVersion": "0"
+        }
+      ],
+      "id": "2109c966-8e2f-49df-9df0-3126e5a2bbb7",
+      "last_modified": 1604089130714,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{827fad0c-8f73-449b-8376-31f69d4e56cf\\})|(\\{a98d27c2-e251-11ea-b905-02429d9dd6dd\\}))$/",
+      "prefs": [],
+      "schema": 1603927364672,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1674014",
+        "why": "These add-ons violate Mozilla's add-on policies by making use of obfuscated code.",
+        "name": "Go HTTPS"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "acbea144-d931-46b5-9043-44e3ab71d9bf",
+      "last_modified": 1603931811186,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{328a3fee-69c3-45b8-9281-73b7ca637dd3\\})|(\\{59a08eca-2078-4b2b-b529-3515987bb7ae\\}))$/",
+      "prefs": [],
+      "schema": 1603284433270,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1672733",
+        "why": "These add-ons violates Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "Fake coin add-ons"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "415d9c2a-ed6f-4729-87b7-664127435a53",
+      "last_modified": 1603467453042,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{19b0820f-5a37-4f9e-a38e-842f88fe8a15\\})|(\\{30315127-a73b-4f9e-84a2-d04c85f40843\\})|(\\{346c7c17-98da-4351-aa66-989c0cbbe2f6\\})|(\\{3cfffe30-e5f2-4e59-a9ec-e4c74e9f0774\\})|(\\{4f93dedc-ce3b-4c2e-9f74-f75dd14707ca\\})|(\\{73ec9218-d475-4149-a855-228dba2daad3\\})|(\\{7f0b3e60-10c8-4450-a3b6-88d0073238f4\\})|(\\{823da1a3-c9c6-4d52-a569-bf5a0bfd31f0\\})|(\\{86b96feb-ac7b-44a4-b4c6-e506a84b6653\\})|(\\{91f7f1e6-62f8-46c6-834b-75bcdeffa944\\})|(\\{9815d7d2-a195-4efa-afa9-f662dc113bc5\\})|(\\{998c5862-e728-4c11-87e8-24215c8eb605\\})|(\\{9cf8c6c9-098e-44e6-b7f0-d4ef29f52706\\})|(\\{9f683ae4-ed81-4a1f-9564-89aac4fe1c4e\\})|(\\{b27881fc-1af3-4c7b-b803-53b2589ba169\\})|(\\{c90706d8-783c-427a-9c9e-cade21ef2e10\\})|(\\{cfd7c21b-31d7-4265-8981-210ba4f639ea\\})|(\\{d4a427f8-d0e5-42eb-bbe1-589f583d8d23\\})|(\\{e254b1aa-eea6-4323-b425-643b69c80f5b\\}))$/",
+      "prefs": [],
+      "schema": 1603395700564,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1672973",
+        "why": "These add-ons violate Mozilla’s add-on policies by executing remote code.",
+        "name": "Add-ons executing remote code"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "494eab50-b308-4fb1-8fa4-acd779328567",
+      "last_modified": 1603467453036,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((blog@link)|(ft@ext\\.xpi)|(hometab@ext)|(open@tab)|(tabpro@ext\\.xpi)|(zen@tab))$/",
+      "prefs": [],
+      "schema": 1603456450633,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1672981",
+        "why": "These add-ons violate Mozilla's ad-don policies by using obfuscated code.",
+        "name": "Addons using obfuscated code"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "0d63cebc-6b95-46f0-a998-2d8ada2dea47",
+      "last_modified": 1603467453031,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{3c22a946-d2ae-45cd-8c47-e3c5bd960fcf\\})|(\\{4495e9ca-17d2-4256-8051-b0a3a376d273\\})|(\\{e7b217ec-d7b0-4e68-a24e-498763c10a46\\}))$/",
+      "prefs": [],
+      "schema": 1603458435498,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1673005",
+        "why": "These add-ons violate Mozilla’s add-on policies by overriding search behavior without user consent or control.",
+        "name": "Search-hijacking add-ons"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "b216ddd0-009f-4ae1-ab41-d4fec96f2fcc",
+      "last_modified": 1603467453025,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{27320f04-1c21-4ff1-97da-4f70ba73c37c\\})|(\\{49cd942b-8184-43fd-ab21-b707e16fd954\\})|(\\{5052bd1c-67ec-42d2-bf25-1c0a82fcf144\\})|(\\{879b285f-8675-4039-bce1-bd9500d67983\\})|(\\{9f1e7e3d-f866-45f2-80e8-8e416b10fce2\\})|(\\{a7eb39ab-244d-4073-bd91-64967d433e35\\})|(\\{d23a2e71-cce2-4c1a-8333-25dd5603725a\\})|(\\{d6afd1d6-c0e6-46a6-a976-02aa376872f5\\})|(\\{e69e46e9-fed2-4398-83e6-506631c0eed5\\})|(\\{f99f5e77-53ff-4242-9cc4-cd17b5c75f38\\}))$/",
+      "prefs": [],
+      "schema": 1603115672935,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1672114",
+        "why": "These add-ons violates Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "Ledger Clones"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "7e2ac67b-1287-4786-a742-26b364887026",
+      "last_modified": 1603186371797,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{931a969d-88fa-4daf-a309-281d3f9e2604\\})|(\\{dcac30a2-6b81-48af-b02c-50cf66d80acd\\}))$/",
+      "prefs": [],
+      "schema": 1602704491067,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1671417",
+        "why": "These add-ons violates Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "Fake Coin Add-ons"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "2cdc427f-3627-45fe-aaf2-adb2d8bf941d",
+      "last_modified": 1602783995620,
+      "_status": "synced"
+    },
+    {
+      "guid": "{4c6939d7-8a28-419b-b300-fc3aaa713e00}",
+      "prefs": [],
+      "schema": 1602531694521,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1671127",
+        "why": "This add-on violates Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "Metamask Fake"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "b3f49864-78e1-4165-943d-903decebf0ec",
+      "last_modified": 1602697713590,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{02258e92-9873-4b42-9c94-4321194d4e1d\\})|(\\{0cb5f899-2778-4cc6-b35e-d0cdd6f66d21\\})|(\\{520cb697-d3d0-4ee4-ad77-8830ec5743c0\\})|(\\{53cdb998-5b38-4fb0-96ac-f27e315e4555\\})|(\\{c28e5913-ad85-4bee-8d42-55fc61d36157\\})|(\\{d5e0d76c-8c2f-4e61-b20c-3a20a4278d51\\}))$/",
+      "prefs": [],
+      "schema": 1602189331410,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1670237",
+        "why": "These add-ons violate Mozilla’s add-on policies by executing remote code.",
+        "name": "facebookBot"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "472284d1-e68c-4379-be93-f8ba2419742a",
+      "last_modified": 1602255261265,
+      "_status": "synced"
+    },
+    {
+      "guid": "{ff2867d1-4757-4bd2-820c-8332fa19e8b1}",
+      "prefs": [],
+      "schema": 1602249386322,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1670239",
+        "why": "This add-on violates Mozilla's Add-ons No Surprises policy by opening unrelated tabs on startup.",
+        "name": "allPhoneParnker"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "2d23761c-c258-41fd-9a12-4b3b19cb49af",
+      "last_modified": 1602255261259,
+      "_status": "synced"
+    },
+    {
+      "guid": "{5ed32cb9-2517-4657-95bc-4a2b8bd5b66c}",
+      "prefs": [],
+      "schema": 1602249714157,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1670249",
+        "why": "This add-on violates Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "MetaMask Wallet (Malware)"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "34839545-1520-4dda-b518-78f6ae2efad2",
+      "last_modified": 1602255261254,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{072bfa23-cfd6-495a-a496-aa80a7348680\\})|(\\{08bd8f24-c413-456a-a3e3-bb66c9003211\\})|(\\{08da5c03-3368-4bef-b5a6-cfe406c1f986\\})|(\\{0ab42cee-b0a0-472a-bc97-00f433e6f26b\\})|(\\{0dbd16ac-07d9-497b-af3e-c3be9acffa6e\\})|(\\{0ddbd50b-e700-4f32-94d4-9623ebf84bde\\})|(\\{0f31d364-724b-4f06-863c-7173bae99f1d\\})|(\\{12a4ae26-9afd-4ed2-aa82-e3b113c5af2b\\})|(\\{12c9a302-9089-49eb-84c9-04b4f518b9a3\\})|(\\{1414b2ab-288f-4b8d-9883-bae6690c5119\\})|(\\{162223de-faf1-4db9-b134-3f1030f470a3\\})|(\\{170b50e1-8905-49c5-8f4a-0fa383a0fad6\\})|(\\{17972267-d32b-4120-b5a5-5b5d5e0c0acc\\})|(\\{1af1881a-0898-45cc-84fb-87e446c369bb\\})|(\\{1b46ff0a-b620-487f-b302-f4a76c30cee7\\})|(\\{1ca1dc51-e2d0-4922-900d-21170716a502\\})|(\\{1d1b6b1c-a893-4f13-a1dd-16644bded07e\\})|(\\{2018eab4-7eaa-4c52-9bdd-bc6ec30af027\\})|(\\{24c0190e-dcd6-4074-836e-7dcc635a7a1a\\})|(\\{252306c3-ab62-494c-a3a5-4adc99983e44\\})|(\\{25b663b0-17b6-4c44-b72c-bbd545bd7f53\\})|(\\{268fd854-0d41-4f21-89ef-60705f936de2\\})|(\\{29a19e2d-cf27-465b-b47c-3020a930dc4a\\})|(\\{2a3af548-93ff-4537-abf9-5dae508cd38a\\})|(\\{2c541d57-f4b3-4dbd-ad96-6a3a305f88fc\\})|(\\{33e09c15-2c23-40ea-9a0f-80d4646ced60\\})|(\\{34bf0a97-bee0-42d4-bd97-d229505f44ee\\})|(\\{426d7bd1-9332-4d05-b44a-c3547fddb7d3\\})|(\\{476ba741-1dd1-498d-9a28-4d99f8348bfb\\})|(\\{4a7e74da-21a1-4306-a97e-5b37016f7c32\\})|(\\{4e86cc61-036f-45a8-991f-928d4c54999b\\})|(\\{52b9d108-872e-499a-8af1-e96a6d944bf0\\})|(\\{53eeba51-50b6-4348-b931-51460f7425cc\\})|(\\{545bf194-8006-4166-9732-375f517e35fb\\})|(\\{582ecf42-ef62-425d-a572-b8c21a08b22e\\})|(\\{5985e7a1-6449-4a8d-87e5-fab210574ad6\\})|(\\{5c015f49-99a1-4896-aaec-40c7f6094a91\\})|(\\{5c1529b9-ebc6-4b9b-aad4-299a676b5c6b\\})|(\\{6029d93b-183c-4874-b139-5fd392d7f60f\\})|(\\{64542449-566e-4fa6-a17f-4d6d288dba2b\\})|(\\{64c6a93c-20dc-4de7-86d5-aa02349f959c\\})|(\\{6da98135-d3c2-4c69-a828-c7172af6b59d\\})|(\\{6f41d41e-47db-472e-8dc9-6c1a2f660bfd\\})|(\\{70862264-783e-4ee7-910e-de2d0884e450\\})|(\\{72dae3b7-ebdc-4156-8ef3-e3b11ca6cfcd\\})|(\\{766718d2-1d1b-48ea-b932-dbb9ccf48498\\})|(\\{78595767-9185-4ae6-858c-f2e8539d733f\\})|(\\{785ce386-1eca-4822-9fc0-640cc4a508ba\\})|(\\{79f46e5c-9c5c-45a2-8d36-8c1cd17f5f79\\})|(\\{7a3113f6-b0cf-4a95-a1d6-58918413fc22\\})|(\\{7d13eed3-2c81-4b11-a70a-82287ce7a39f\\})|(\\{7dbd2526-6727-4b50-aa5d-d73ea86282cc\\})|(\\{8796a946-9814-4517-89c9-fc4c61874449\\})|(\\{88138f10-2e6c-4675-84c7-0f68f9725c42\\})|(\\{88d167c3-0a08-4386-ba52-4f3917da2c8f\\})|(\\{899c1fe8-ae17-4fb3-9c46-62006c0d5d62\\})|(\\{8b0f590f-f229-4625-be1b-81c0106eb273\\})|(\\{8b2f1e97-0df9-4954-860b-22e4f8bb17d9\\})|(\\{8e1bccf6-ac2b-4aaa-b8dc-4146efd97f13\\})|(\\{93fed05d-ea35-46d4-9cf7-72e95dbe28e7\\})|(\\{95c16470-d73a-487e-a1af-2a6aa5dd6e0c\\})|(\\{97ac99c5-a95f-4525-a69e-95c5dcdd2790\\})|(\\{9aea9e5b-a595-421b-a894-41ac52351ae1\\})|(\\{a0376dfe-bc1b-48fb-a875-edf30f7c4fcf\\})|(\\{a0802a5e-733b-4b4c-b8d4-d53d9fad856b\\})|(\\{a0ff6d88-e4ec-4ff4-b362-cbd62defe16e\\})|(\\{a664c3f7-0ae4-481d-8fa3-0a2d1e27d1a0\\})|(\\{a98ec8fa-3a5c-44c7-80e1-b8de2f4b873f\\})|(\\{aace152a-3f14-4535-b521-5a4360895531\\})|(\\{b27d23bb-1116-4797-a56c-99f2c5308850\\})|(\\{b3729dc0-5b58-408c-9d22-1c0eaadbaea3\\})|(\\{b4114612-0f65-470c-8574-0d28ad13df22\\})|(\\{b5113e76-b8ca-41e1-b347-2dc779e3aa80\\})|(\\{b566b404-c1a5-4ff1-84a2-85beb77d9449\\})|(\\{b82fcfb4-b315-41a3-a4b6-d3fb7512a31a\\})|(\\{b93d15a8-03b7-4cbb-9a26-d053246bb219\\})|(\\{b95ae003-d6b9-4d69-926d-268b379492e5\\})|(\\{be90a8c8-22b2-4e71-bd79-61d9c8ab1bec\\})|(\\{bf075676-a801-4014-98e2-a407024b4c9a\\})|(\\{c14a942d-c79d-4cce-bfc6-8d0631e93012\\})|(\\{c1dd47cb-1dfb-441c-91ed-a8dbb12f4339\\})|(\\{c2c0c68c-4543-41cb-be8a-615a809aed31\\})|(\\{c4003f83-334f-47b5-8cf1-46ac290fe6d5\\})|(\\{c4026f1a-92ce-4d71-96a3-6fc55992228a\\})|(\\{c45453cc-21c5-42db-957d-4dc9d404838a\\})|(\\{d255390c-8f21-4831-8dd9-7b1a3a9cf732\\})|(\\{d4773452-076e-4221-be65-e4316e82cc62\\})|(\\{d4ef967f-c59a-465e-950a-97c3dd49b19c\\})|(\\{d5330c50-d27f-46bf-a4be-b0b8635493d4\\})|(\\{d8aeafa1-1ae7-4167-9857-88bf92f912ca\\})|(\\{dc197378-0fdf-4b7c-825d-4fefc59e32a5\\})|(\\{e02e7533-d8ee-45b9-bbdd-b152e4198f9a\\})|(\\{e30f227a-7483-4dfe-a699-4bfaaaaf4cfc\\})|(\\{e4b15bb3-bafa-4008-9d67-81333ee1b25a\\})|(\\{e5840f1b-be29-4414-a9db-aef4880d20c5\\})|(\\{e65b6df1-d21f-410f-a817-6bf2da6fc759\\})|(\\{e9301ed6-99dc-49b3-a3b8-6e059fed0065\\})|(\\{ea4d1685-1ecd-45e0-857e-c1f5416bbd75\\}))$/",
+      "prefs": [],
+      "schema": 1602253151136,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1670250",
+        "why": "These add-ons determined likely to be malicious becuase they are related to confirmed malicious add-ons.",
+        "name": "Add-ons related to malicious add-ons"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "be966a82-a780-4ec5-9877-a5fbd9869068",
+      "last_modified": 1602255261248,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{efa1c1ab-d827-4041-a5d2-aa7bf99d4915\\})|(\\{f33c604f-9ef6-4d65-9c7b-55bbdc394c88\\})|(\\{f386f96c-8bf5-4b56-b6e0-b4986ef42628\\})|(\\{f598902c-da33-439f-be3d-bd6a2c8d7066\\})|(\\{fa0075c0-c068-4461-bbf2-7d4410afa074\\})|(\\{fac05277-33a8-4843-94f6-5df6979a2f20\\})|(\\{fba54691-cb5b-4902-97a3-088290ef4b7f\\})|(\\{fc79e85a-a9aa-473c-a384-6297a70efcc4\\})|(\\{ffad0d38-b7a2-4d84-942c-73972159df29\\}))$/",
+      "prefs": [],
+      "schema": 1602253400574,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1670250",
+        "why": "These add-ons determined likely to be malicious becuase they are related to confirmed malicious add-ons.",
+        "name": "Add-ons related to malicious add-ons"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "e7b803b9-5c91-4fe3-b151-331a30f00e87",
+      "last_modified": 1602255261242,
+      "_status": "synced"
+    },
+    {
+      "guid": "{e0e12577-ed05-484c-8e18-0f6f07ad5c32}",
+      "prefs": [],
+      "schema": 1602187122542,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1670101",
+        "why": "This add-on violates Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "Cookie Manager Spoc"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "b85f4cb4-5f09-4d98-89d4-8c90136ab83a",
+      "last_modified": 1602189330975,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((sp@FindingFormsPro)|(sp@WatchTVOnline)|(sp@QuickEmailAccess)|(sp@QuickNEasyRecipes)|(sp@MyFlightFinder)|(sp@BreakingNewsPlus)|(sp@WeatherDiscover)|(sp@MyRecipeFinder)|(sp@AppDiscoveryTools)|(sp@FileConversionNow)|(sp@TemplatesHere)|(sp@SpeedCheckerPlus)|(sp@MapsNDirectionHub)|(sp@FormsHere)|(sp@ConvertPDFHub)|(sp@ProPDFConverters)|(sp@DLOfficeTools)|(sp@MapNDirectionHub)|(sp@MyLoginHub)|(sp@LocalForecast)|(sp@GoGamesHub)|(sp@LiveRadioPro)|(sp@MyOnlineCoupons)|(sp@TrackYourPackages)|(sp@MapsProHub)|(sp@ShipmentTrackers)|(sp@ConvertPDFTo)|(sp@EmailProHub)|(sp@MySweeps)|(sp@MyHoroscope)|(sp@MyVideoConverter)|(sp@EasyClassifieds)|(sp@WatchSportsHere))$/",
+      "prefs": [],
+      "schema": 1602081787999,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1618984",
+        "why": "The add-ons violate our no surprises policy",
+        "name": "Various add-ons violating no surprises"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "2.*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "3fc5e417-c0bd-4bdd-9226-5047bf0db7d6",
+      "last_modified": 1602152338028,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((_l4Membersttab03_@www\\.quicktemplatefinder\\.com)|(_l6Membersttab03_@www\\.propdfconverter\\.com)|(_lbMembersttab03_@free\\.worldofnotes\\.com)|(_ozMembersttab03_@free\\.newnotecenter\\.com)|(_ptMembersttab03_@www\\.simplepackagefinder\\.com)|(_pvMembersttab03_@www\\.mapmywayfree\\.com)|(_q1Membersttab03_@free\\.everydaymemo\\.com)|(_q8Membersttab03_@www\\.getformsfree\\.com)|(_qfMembersttab03_@www\\.formfinderfree\\.com)|(_qwMembersttab03_@free\\.shoppingdealslive\\.com)|(_r7Membersttab03_@free\\.onlineformsdirect\\.com)|(_rsMembersttab03_@www\\.freeauctionfinder\\.com)|(_rwMembersttab03_@free\\.getlyricsonline\\.com)|(_s0Membersttab03_@free\\.funnyjokesnow\\.com)|(_s2Membersttab03_@free\\.mybabyboomerhub\\.com)|(_s6Membersttab03_@free\\.celebgossiponline\\.com))$/",
+      "prefs": [],
+      "schema": 1602083005272,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1669737",
+        "why": "The add-ons violate our no surprises and data consent policies. Please upgrade to their latest version (9.x or above) to continue.",
+        "name": "Misleading search add-ons"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "8.*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "a8f0fe57-e340-4171-a4e7-f79e32034878",
+      "last_modified": 1602152338022,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((_0dMembersttab03_@www\\.myaudiotab\\.com)|(_12Membersttab03_@free\\.myscrapnook\\.com)|(_29Membersttab03_@www\\.headlinealley\\.com)|(_2jMembersttab03_@www\\.recipekart\\.com)|(_2vMembersttab03_@www\\.dailybibleguide\\.com)|(_39Membersttab03_@www\\.mapsgalaxy\\.com)|(_4jMembersttab03_@www\\.radiorage\\.com)|(_57Membersttab03_@free\\.marineaquariumfree\\.com)|(_5eMembersttab03_@www\\.translationbuddy\\.com)|(_5pMembersttab03_@www\\.metrowhiz\\.com)|(_64Membersttab03_@www\\.televisionfanatic\\.com)|(_65Membersttab03_@download\\.fromdoctopdf\\.com)|(_69Membersttab03_@www\\.packagetracer\\.com)|(_8eMembersttab03_@download\\.howtosimplified\\.com)|(_8iMembersttab03_@download\\.audiotoaudio\\.com)|(_8jMembersttab03_@download\\.myimageconverter\\.com)|(_94Membersttab03_@www\\.motitags\\.com)|(_9pMembersttab03_@free\\.onlinemapfinder\\.com)|(_b7Membersttab03_@free\\.mytransitguide\\.com)|(_beMembersttab03_@free\\.dailylocalguide\\.com)|(_brMembersttab03_@free\\.yourtemplatefinder\\.com)|(_ceMembersttab03_@free\\.easypdfcombine\\.com)|(_d1Membersttab03_@free\\.mysocialshortcut\\.com)|(_dbMembersttab03_@free\\.getformsonline\\.com)|(_dgMembersttab03_@free\\.trackapackage\\.net)|(_diMembersttab03_@www\\.easymaillogin\\.com)|(_dnMembersttab03_@www\\.webmailworld\\.com)|(_dpMembersttab03_@free\\.findyourmaps\\.com)|(_dqMembersttab03_@www\\.downspeedtest\\.com)|(_drMembersttab03_@free\\.downloadinboxnow\\.com)|(_dsMembersttab03_@free\\.internetspeedutility\\.net)|(_dxMembersttab03_@www\\.download-freemaps\\.com)|(_dzMembersttab03_@www\\.pconverter\\.com)|(_e1Membersttab03_@free\\.actionclassicgames\\.com)|(_e5Membersttab03_@www\\.productivityboss\\.com)|(_eaMembersttab03_@www\\.mynewsguide\\.com)|(_ebMembersttab03_@download\\.metrohotspot\\.com)|(_ecMembersttab03_@www\\.instantradioplay\\.com)|(_edMembersttab03_@free\\.myradioaccess\\.com)|(_eeMembersttab03_@download\\.freeradiocast\\.com)|(_efMembersttab03_@free\\.funcustomcreations\\.com)|(_ehMembersttab03_@free\\.dailyrecipeguide\\.com)|(_eiMembersttab03_@www\\.100sofrecipes\\.com)|(_esMembersttab03_@free\\.downloadmanagernow\\.com)|(_euMembersttab03_@free\\.filesendsuite\\.com)|(_ewMembersttab03_@free\\.mergedocsonline\\.com)|(_exMembersttab03_@free\\.easydocmerge\\.com)|(_eyMembersttab03_@free\\.convertdocsnow\\.com)|(_f7Membersttab03_@download\\.smsfrombrowser\\.com)|(_fkMembersttab03_@free\\.getflightinfo\\.com)|(_foMembersttab03_@free\\.flightsearchapp\\.com)|(_frMembersttab03_@free\\.testforspeed\\.com)|(_fsMembersttab03_@free\\.pdfconverterhq\\.com)|(_fwMembersttab03_@free\\.howtosuite\\.com)|(_fxMembersttab03_@free\\.mytransitplanner\\.com)|(_gcMembersttab03_@www\\.weatherblink\\.com)|(_gtMembersttab03_@free\\.gamingwonderland\\.com)|(_hgMembersttab03_@free\\.atozmanuals\\.com)|(_hmMembersttab03_@free\\.easyweatheralert\\.com)|(_hnMembersttab03_@free\\.quickweatheralert\\.com)|(_hoMembersttab03_@free\\.directionsbuilder\\.com)|(_hpMembersttab03_@free\\.easyfileconvert\\.com)|(_hxMembersttab03_@free\\.mergedocsnow\\.com)|(_hyMembersttab03_@free\\.formfetcherpro\\.com)|(_hzMembersttab03_@free\\.televisionace\\.com)|(_i2Membersttab03_@free\\.streamlineddiy\\.com)|(_i4Membersttab03_@free\\.fileconvertonline\\.com)|(_i6Membersttab03_@free\\.dailyproductivitytools\\.com)|(_ijMembersttab03_@www\\.freedirectionsonline\\.com)|(_iuMembersttab03_@free\\.productmanualsfinder\\.com)|(_iwMembersttab03_@free\\.allinonedocs\\.com)|(_j5Membersttab03_@ext\\.ask\\.com)|(_j6Membersttab03_@www\\.freemanualsindex\\.com)|(_j7Membersttab03_@www\\.convertdocsonline\\.com)|(_jaMembersttab03_@www\\.testonlinespeed\\.com)|(_jbMembersttab03_@www\\.onlinemapsearch\\.com)|(_jiMembersttab03_@www\\.searchformsonline\\.com)|(_jjMembersttab03_@www\\.onlineroutefinder\\.com)|(_jnMembersttab03_@www\\.pdfconverttools\\.com)|(_joMembersttab03_@www\\.onlineformfinder\\.com)|(_jpMembersttab03_@www\\.directionswhiz\\.com)|(_jqMembersttab03_@www\\.convertpdfsnow\\.com)|(_k8Membersttab03_@www\\.mymapsexpress\\.com)|(_koMembersttab03_@www\\.quickpdfmerger\\.com)|(_krMembersttab03_@www\\.easyemailsuite\\.com)|(_kwMembersttab03_@www\\.productmanualspro\\.com)|(_kxMembersttab03_@www\\.smarteasymaps\\.com)|(_kyMembersttab03_@www\\.quickflighttracker\\.com)|(_kzMembersttab03_@www\\.productmanualsguide\\.com)|(_l1Membersttab03_@www\\.videoconverterhd\\.com)|(_l3Membersttab03_@www\\.watchmytvshows\\.com))$/",
+      "prefs": [],
+      "schema": 1602083056710,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1669737",
+        "why": "The add-ons violate our no surprises and data consent policies. Please upgrade to their latest version (9.x or above) to continue.",
+        "name": "Misleading search add-ons"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "8.*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "4262a74b-e514-45b3-a6f3-df869d369d6d",
+      "last_modified": 1602152338016,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((test@WhatsMySpeed)|(ext@630e3b49-decc-4d5e-8a9e-242df04e8ba1)|(ext@6bbf8f72-c54d-4731-b455-e164685c5914)|(sp@EmailAccessHere)|(sp@WatchTelevision)|(sp@GamerHubPro)|(sp@FreeConverterHub)|(sp@AccessFreeTemplates)|(sp@ViewOnlineRecipes)|(sp@SatelliteandEarthMaps)|(sp@SatelliteandEarthMap)|(sp@PackageTrackingOnline)|(sp@DirectionsandMapsNow)|(sp@ClassifiedsListApp)|(sp@meinemailzentrum)|(web@meinemailzentrum)|(web@meinemailzentrum.com))$/",
+      "prefs": [],
+      "schema": 1602081916747,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1618984",
+        "why": "The add-ons violate our no surprises policy",
+        "name": "Various add-ons violating no surprises"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "076d3556-68cb-4a5d-83cc-e4cca29d3f48",
+      "last_modified": 1602152338007,
+      "_status": "synced"
+    },
+    {
+      "guid": "{9f94439a-292e-4b2f-9144-3a84c35021ec}",
+      "prefs": [],
+      "schema": 1601840499677,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1669431",
+        "why": "This add-on violates Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "old-layout (Malware)"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "43df375b-832e-49db-934c-ada0e0ea8b64",
+      "last_modified": 1601975517286,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{05548773-8d3f-4dbc-908c-91c9801723ab\\})|(\\{09fa5118-58e7-4a2c-85aa-3d299aadca2d\\})|(\\{0d83297b-ee0f-4470-b047-ea1eb5161e0a\\})|(\\{19638976-64c1-4bb5-815b-64a3a6a0a767\\})|(\\{196ca185-6582-9e63-8a6f-5d2141598bdc\\})|(\\{2371fa74-b56a-5198-a162-ad1d7db6f8ae\\})|(\\{2a2dae8a-a18c-4e0f-ac31-f5609dab6b99\\})|(\\{3596f810-bf50-47e2-b54a-2128ebdc5179\\})|(\\{4cac7d9e-fa55-4ac8-9a6c-f5797e598584\\})|(\\{598ca189-9e63-43d2-8a2f-5d5141598bdc\\})|(\\{69db3d9a-5273-4147-aabe-299f40869fb4\\})|(\\{83a7ca08-c5a3-43bb-8110-903f7ba60e52\\})|(\\{8da42f72-5f9e-49e0-8821-9e152b472cbc\\})|(\\{8e6a181e-40ce-43ff-9436-c68e42e5aef7\\})|(\\{913af60c-3d60-4400-9cac-e4090de6787c\\})|(\\{9e6f886c-70ea-4d6d-9e10-0961f3dc5093\\})|(\\{a1eac861-2bf1-4cf2-82dd-63ae7cc674eb\\})|(\\{a596e1fb-12ac-bb96-67ea-f11aab7dea9a\\})|(\\{ba316506-0b16-4e72-9edc-145646ac9e2c\\})|(\\{bc684719-7ec8-40b5-ba7f-a971fe3ef269\\}))$/",
+      "prefs": [],
+      "schema": 1601645194883,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1668856",
+        "why": "These add-ons violate Mozilla’s add-on policies by executing remote code.",
+        "name": "Add-ons executing remote code"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "e0349a95-2bfa-4682-872f-e9a4e947e9ca",
+      "last_modified": 1601656026437,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{536f3cba-58ea-4855-a3a0-b636da88fa3e\\})|(\\{d16f4aff-dabf-42cb-a491-7fe87e957c43\\}))$/",
+      "prefs": [],
+      "schema": 1601494897591,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1668468",
+        "why": "These add-ons violate Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "OldLayout (Malware)"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "3e39aaa3-1567-4498-a736-64fb68d956cc",
+      "last_modified": 1601559385012,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((v-down@addons-firefox)|(\\{667ef836-c20c-4a01-bfa4-af9b3e17299b\\}))$/",
+      "prefs": [],
+      "schema": 1600704040590,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1666440",
+        "why": "These add-ons violate Mozilla's add-on policies by making use of obfuscated code.",
+        "name": "Video Download"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "efc66283-f419-43fa-b656-361bde591874",
+      "last_modified": 1600772875317,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified--117756830)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified--1216575438)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified--2088645733)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified--573512243)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-1260029560)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-1519886836)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-1557628910)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-1704698220)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-1939627508)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-1969522249)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-2169863222)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-2340954546)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-2944855766)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-2994830326)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-307914412)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-313645365)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-3184548427)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-3206263432)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-3817143579)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-4214504777)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-4238340145)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-464522215)|(mekpfngodchodemgmkhinohkfjefjeea@chrome-store-foxified-655613955)|(mekpfngodchodemgmkhinohkfjefjeea@chromeStoreFoxified-3562932078)|(\\{4a635075-14e6-4bdb-84ce-ff3954342266\\})|(\\{5f795d1b-9337-4ee6-b98e-04cbcb632223\\})|(\\{6d5d77b0-33e5-4b98-89ef-45a6f35eca8e\\})|(\\{80d07d4a-99a5-49f4-9a0e-8f9bc0f265de\\})|(\\{b154832e-410c-43d7-9d82-d606fa8e225c\\}))$/",
+      "prefs": [],
+      "schema": 1600630898542,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1666220",
+        "why": "These add-ons violate Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "Add-ons colecting ancillary user data"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "40322df1-6c76-43f5-add4-d5a083ac53b0",
+      "last_modified": 1600704040099,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{57c9b8b0-e41b-7c9b-4890-f6ce48908edb\\})|(\\{840ee0e6-ac43-4ace-a0b6-ba8e89ad6e6b\\})|(\\{945a90fa-404b-435e-ad48-537590c31f8c\\})|(\\{a8f161ef-4fcc-4a0c-b919-9eaa3441d45d\\})|(\\{ba97a455-d45e-4585-a59b-dad16ad81280\\})|(\\{bd7264fb-248a-476c-8746-2b51793c04ec\\}))$/",
+      "prefs": [],
+      "schema": 1600685522118,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1666225",
+        "why": "These add-ons violate Mozilla's ad-don policies by using obfuscated code.",
+        "name": "Add-ons using obfuscated code"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "7a40eef1-ed69-4053-b148-c87a24ceec69",
+      "last_modified": 1600704040091,
+      "_status": "synced"
+    },
+    {
+      "guid": "{b98a2aba-4044-443f-99c7-4d4137d0454e}",
+      "prefs": [],
+      "schema": 1600199325165,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1665345",
+        "why": "This add-on violates Mozilla’s add-on policies by collecting ancillary user data.",
+        "name": "Akap Internet security for all"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "7b4ca57b-c057-4aa0-bd7e-bd386e08dff3",
+      "last_modified": 1600284413867,
+      "_status": "synced"
+    },
+    {
+      "guid": "pro@page-pref",
+      "prefs": [],
+      "schema": 1599766900172,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1664295",
+        "why": "This add-on violates Mozilla's ad-don policies by using obfuscated code.",
+        "name": "Page Preferences"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "14ff0365-5b4e-4f8b-9c99-d9b6aea9f044",
+      "last_modified": 1599817087652,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((add-on@bookmark-this)|(extension@tab-modify))$/",
+      "prefs": [],
+      "schema": 1599421296553,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1663608",
+        "why": "These add-ons violate Mozilla's ad-don policies by using obfuscated code.",
+        "name": "Add-ons using obfuscated code"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "60737247-2edc-4c90-9938-eff22f1b06e4",
+      "last_modified": 1599557323077,
+      "_status": "synced"
+    },
+    {
+      "guid": "{aea0443d-e1eb-40c3-937f-7b0986b0f6f2}",
+      "prefs": [],
+      "schema": 1598902900782,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1662384",
+        "why": "This add-on violates Mozilla’s add-on policies by collecting user data without disclosure or consent.",
+        "name": "Tano Wallet"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "6307ddc1-3cb0-4797-882b-71a16615d4ae",
+      "last_modified": 1598995479473,
+      "_status": "synced"
+    },
+    {
+      "guid": "ext@new-custom-tab",
+      "prefs": [],
+      "schema": 1598968498912,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1662476",
+        "why": "This add-on violates Mozilla's ad-don policies by using obfuscated code.",
+        "name": "New Custom Tab"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "ebf000c5-59ae-4aad-a0df-131d79fc94c8",
+      "last_modified": 1598995479465,
+      "_status": "synced"
+    },
+    {
+      "guid": "{859fa04b-4d37-476e-a3b7-2e0306723e0c}",
+      "prefs": [],
+      "schema": 1597769413922,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1659777",
+        "why": "This add-on violates Mozilla’s add-on policies by executing remote code.",
+        "name": "FaWave"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "db4a6dbe-3669-4f6d-9642-2daaa03e2883",
+      "last_modified": 1597781922506,
+      "_status": "synced"
+    },
+    {
+      "guid": "{145d4851-34fb-4fcb-8b0d-9260fa911f54}",
+      "prefs": [],
+      "schema": 1597220003337,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1658731",
+        "why": "This add-on violates Mozilla's ad-don policies by using obfuscated code.",
+        "name": "Addons using obfuscated code"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "f456a9c8-338d-4ca1-9c41-f5c43ab1c6af",
+      "last_modified": 1597241887211,
+      "_status": "synced"
+    },
+    {
+      "guid": "{706b4435-fb0c-471e-be66-0c132e47640d}",
+      "prefs": [],
+      "schema": 1596656494784,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1657728",
+        "why": "This add-on violates Mozilla's add-on policies by tricking users into executing remote code.",
+        "name": "Netflix (Malware)"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "e21a5638-a89a-4103-b76c-5f0ea797b79e",
+      "last_modified": 1596746780409,
+      "_status": "synced"
+    },
+    {
+      "guid": "/^((\\{1f4742c1-0b89-4fa1-915c-1d732ab813c9\\})|(\\{612697f6-846a-4d55-a707-9f6c8da3f29e\\}))$/",
+      "prefs": [],
+      "schema": 1596138097245,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1656512",
+        "why": "These add-ons violate Mozilla’s add-on policies by executing remote code.",
+        "name": "Add-ons executing remote code"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "fa514474-9450-48fb-a6f4-25e0faa565ff",
+      "last_modified": 1596206660495,
+      "_status": "synced"
+    },
+    {
       "guid": "/^((\\{5e717dad-4d46-450a-9001-6d87fa2764a6\\})|(\\{a585b03f-b8cf-40ea-aef9-05049dfc1946\\}))$/",
       "prefs": [],
       "schema": 1595101293613,
@@ -1817,27 +2657,6 @@
       ],
       "id": "a1caad16-4ec4-43ca-a145-04fbd5fd81c9",
       "last_modified": 1583788354262,
-      "_status": "synced"
-    },
-    {
-      "guid": "/^((test@WhatsMySpeed)|(ext@630e3b49-decc-4d5e-8a9e-242df04e8ba1)|(ext@6bbf8f72-c54d-4731-b455-e164685c5914)|(sp@FindingFormsPro)|(sp@EmailAccessHere)|(sp@WatchTelevision)|(sp@WatchTVOnline)|(sp@QuickEmailAccess)|(sp@QuickNEasyRecipes)|(sp@MyFlightFinder)|(sp@BreakingNewsPlus)|(sp@WeatherDiscover)|(sp@MyRecipeFinder)|(sp@AppDiscoveryTools)|(sp@FileConversionNow)|(sp@TemplatesHere)|(sp@SpeedCheckerPlus)|(sp@MapsNDirectionHub)|(sp@FormsHere)|(sp@ConvertPDFHub)|(sp@ProPDFConverters)|(sp@DLOfficeTools)|(sp@MapNDirectionHub)|(sp@GamerHubPro)|(sp@MyLoginHub)|(sp@LocalForecast)|(sp@GoGamesHub)|(sp@LiveRadioPro)|(sp@MyOnlineCoupons)|(sp@TrackYourPackages)|(sp@MapsProHub)|(sp@ShipmentTrackers)|(sp@ConvertPDFTo)|(sp@EmailProHub)|(sp@FreeConverterHub)|(sp@AccessFreeTemplates)|(sp@ViewOnlineRecipes)|(sp@MySweeps)|(sp@SatelliteandEarthMaps)|(sp@SatelliteandEarthMap)|(sp@PackageTrackingOnline)|(sp@DirectionsandMapsNow)|(sp@ClassifiedsListApp)|(sp@MyHoroscope)|(sp@meinemailzentrum)|(web@meinemailzentrum)|(web@meinemailzentrum\\.com)|(sp@MyVideoConverter)|(sp@EasyClassifieds)|(sp@WatchSportsHere))$/",
-      "prefs": [],
-      "schema": 1583766889752,
-      "details": {
-        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1618984",
-        "why": "The add-ons violate our no surprises policy",
-        "name": "Various add-ons violating no surprises"
-      },
-      "enabled": true,
-      "versionRange": [
-        {
-          "severity": 3,
-          "maxVersion": "*",
-          "minVersion": "0"
-        }
-      ],
-      "id": "076d3556-68cb-4a5d-83cc-e4cca29d3f48",
-      "last_modified": 1583788354259,
       "_status": "synced"
     },
     {
@@ -6689,27 +7508,6 @@
       ],
       "id": "d38035ff-7945-49cc-88fb-6de9f8a13658",
       "last_modified": 1562673628501,
-      "_status": "synced"
-    },
-    {
-      "guid": "sourcegraph-for-firefox@sourcegraph.com",
-      "prefs": [],
-      "schema": 1562614890305,
-      "details": {
-        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1541010",
-        "why": "This add-on violates Mozilla's add-on policies by executing remote code.",
-        "name": "Sourcegraph for Firefox"
-      },
-      "enabled": true,
-      "versionRange": [
-        {
-          "severity": 1,
-          "maxVersion": "*",
-          "minVersion": "0"
-        }
-      ],
-      "id": "9fde5729-9be6-4955-9627-67742c5ed62a",
-      "last_modified": 1562667113062,
       "_status": "synced"
     },
     {

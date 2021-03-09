@@ -96,7 +96,7 @@ ECHO [%TIME:~0,8%] Remote Desktop Components (~4m45s)
 ECHO [%TIME:~0,8%] XFCE 4.16 (~2m00s)
 %GO% "DEBIAN_FRONTEND=noninteractive apt-fast -y install xfce4 xfce4-appfinder xfce4-notifyd xfce4-terminal xfce4-whiskermenu-plugin libxfce4ui-utils libwebrtc-audio-processing1 pulseaudio xfce4-pulseaudio-plugin pavucontrol xfwm4 xfce4-panel xfce4-session xfce4-settings thunar thunar-volman thunar-archive-plugin xfdesktop4 xfce4-screenshooter libsmbclient gigolo gvfs-fuse gvfs-backends gvfs-bin mousepad evince xarchiver lhasa lrzip lzip lzop ncompress zip unzip dmz-cursor-theme adapta-gtk-theme gconf-defaults-service xfce4-taskmanager hardinfo synaptic compton compton-conf libconfig9 qt5-gtk2-platformtheme libtumbler-1-0 tumbler tumbler-common tumbler-plugins-extra --no-install-recommends" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% XFCE416.log" 2>&1
 
-ECHO [%TIME:~0,8%] Install Mozilla Seamonkey and WebKit2GTK for WSL1 (~3m30s)
+ECHO [%TIME:~0,8%] Seamonkey and WebKit2GTK for WSL1 (~3m30s)
 %GO% "DEBIAN_FRONTEND=noninteractive apt-fast -y install seamonkey-mozilla-build epiphany-browser libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio /tmp/xWSL/webkit2gtk/*.deb ; update-alternatives --install /usr/bin/www-browser www-browser /usr/bin/seamonkey 100 ; update-alternatives --install /usr/bin/gnome-www-browser gnome-www-browser /usr/bin/seamonkey 100 ; update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/seamonkey 100 ; cd /tmp/xWSL/deb ; wget -q https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb ; dpkg -i /tmp/xWSL/deb/chrome-remote-desktop_current_amd64.deb" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Install Mozilla Seamonkey and WebKit2GTK for WSL1.log" 2>&1
 
 REM ## Additional items to install can go here...
@@ -104,7 +104,7 @@ REM ## %GO% "cd /tmp ; wget https://files.multimc.org/downloads/multimc_1.4-1.de
 REM ## %GO% "apt-get -y install supertuxkart /tmp/multimc_1.4-1.deb"
 
 ECHO [%TIME:~0,8%] Post-install clean-up (~0m45s)
-%GO% "apt-get -y purge mesa-vulkan-drivers libxslt1.1 gnustep-base-runtime libgnustep-base1.26 gnustep-base-common gnustep-common libgc1c2 libobjc4 powermgmt-base unar ; apt-get -y clean" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Post-install clean-up.log"
+%GO% "apt-get -y purge mesa-vulkan-drivers gnustep-base-runtime libgnustep-base1.26 gnustep-base-common gnustep-common libgc1c2 libobjc4 powermgmt-base unar ; apt-get -y clean" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Post-install clean-up.log"
 
 SET /A SESMAN = %RDPPRT% - 50
 %GO% "which schtasks.exe" > "%TEMP%\SCHT.tmp" & set /p SCHT=<"%TEMP%\SCHT.tmp"

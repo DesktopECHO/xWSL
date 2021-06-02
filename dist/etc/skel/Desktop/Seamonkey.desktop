@@ -1,0 +1,15 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Mozilla
+GenericName=Mozilla Internet Suite
+Comment=Seamonkey Browser, Email/News Client, HTML Editor based on Gecko
+Exec=seamonkey %u
+Icon=seamonkey-mozilla-build
+Terminal=false
+X-MultipleArgs=false
+StartupWMClass=SeaMonkey
+Type=Application
+Categories=Network;WebBrowser;Email;WebDevelopment;IRCClient;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;video/webm;application/x-xpinstall;x-scheme-handler/mailto;
+Path=
+StartupNotify=false

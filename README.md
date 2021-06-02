@@ -1,10 +1,12 @@
-# [xWSL.cmd (Version 1.3 / 20201214)](https://github.com/DesktopECHO/xWSL)
+# [xWSL.cmd (Version 1.4 / 20200601)](https://github.com/DesktopECHO/xWSL)
 
-One-line command to NetInstall Ubuntu 20.04, xRDP, and XFCE 4.16 on WSL.  If you prefer KDE, visit [kWSL](https://github.com/DesktopECHO/kWSL)
+Script to NetInstall **Ubuntu 20.04**, **xRDP**, and **XFCE 4.16** on WSL (Version 1 or 2).  
+Other distributions are available - See **KDE Neon** [**(kWSL)**](https://github.com/DesktopECHO/kWSL) and **Kali Linux** [**(Kali-xRDP)**](https://github.com/DesktopECHO/Kali-xRDP) for details.
 
 * Improved desktop experience, performance improvements in many areas
 * [Ubuntu Graphics](https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers) update with Mesa 21 on LLVM 11 
 * [XFCE 4.16](https://launchpad.net/~xubuntu-dev/+archive/ubuntu/staging)
+* [WebKitGTK](https://webkit.org/) 2.32
 * RDP Audio playback enabled (YouTube playback in browser works well with no audio/video desync)
 * Runs on Windows Server 2019 or Windows 10 Version 1809 (or newer, including Hyper-V Core)
 * Chrome Remote Desktop pre-installed, see [wiki](https://github.com/DesktopECHO/xWSL/wiki/Enable-Chrome-Remote-Desktop) for steps to enable
@@ -15,12 +17,11 @@ The xWSL instance is accessible from anywhere on your network, connect to it via
 
 You will see best performance connecting from the local machine or over gigabit ethernet.
 
-**IMPORTANT!  Requires August/Sept 2020 WSL update for Windows 10, included in 20H2:**
+**IMPORTANT!**  Requires August/Sept 2020 WSL update for Windows 10.  This update is already included in Windows 20H2 and newer:
 
-* 1809 - KB4571748
-* 1909 - KB4566116
-* 2004 - KB4571756
-* 20H2 - FIXED
+* 1809  · KB4571748
+* 1909  · KB4566116
+* 2004  · KB4571756
 
 **INSTRUCTIONS:  From an elevated prompt, change to your desired install directory and type/paste the following command:**
 
@@ -28,7 +29,7 @@ You will see best performance connecting from the local machine or over gigabit 
 
 You will be asked a few questions.  The installer script finds the current DPI scaling in Windows, you can set your own value if preferred:
 
-     [xWSL Installer 20201214]
+     [xWSL Installer 20210601]
 
      Enter a unique name for your xWSL distro or hit Enter to use default.
      Keep this name simple, no space or underscore characters [xWSL]: XFCE416
@@ -63,7 +64,7 @@ At the end of the script you will be prompted to create a non-root user which wi
      
            Start: Mon 12/14/2020 @ 11:14
              End: Mon 12/14/2020 @ 11:24
-        Packages: 968
+        Packages: 1100
 
        - xRDP Server listening on port 13399 and SSHd on port 13322.
 
@@ -115,7 +116,8 @@ From a security standpoint, it would be best to fork this project so you (and on
 
 **Quirks / Limitations / Additional Info:**
 
-* When you log out out of a desktop session the entire xWSL instance is restarted, the equivilent of a clean-boot at every login.  
+* RDP Sessions can be disconnected and will resume at your next login.
+* When you log out out of a desktop session the entire xWSL instance is restarted, the equivilent of an instant clean-boot at every login.
 * xWSL should work fine with an X Server instead of xRDP. The file **/etc/profile.d/xWSL.sh** contains WSL-centric environment variables that may need adjustment such as LIBGL_ALWAYS_INDIRECT.
 * WSL1 Doesn't work with PolicyKit. Enabled gksu for apps needing elevated rights (Synaptic, root console)
 * Rebuilt xrdp 0.9.13 thanks to Sergey Dryabzhinsky @ http://packages.rusoft.ru/ppa/rusoft/xrdp/

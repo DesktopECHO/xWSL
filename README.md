@@ -1,4 +1,4 @@
-# [xWSL.cmd (Version 1.4 / 20200601)](https://github.com/DesktopECHO/xWSL)
+# [xWSL.cmd (Version 1.4 / 20210601)](https://github.com/DesktopECHO/xWSL)
 
 Script to NetInstall **Ubuntu 20.04**, **xRDP**, and **XFCE 4.16** on WSL (Version 1 or 2).  
 Other distributions are available - See **KDE Neon** [**(kWSL)**](https://github.com/DesktopECHO/kWSL) and **Kali Linux** [**(Kali-xRDP)**](https://github.com/DesktopECHO/Kali-xRDP) for details.
@@ -62,8 +62,8 @@ At the end of the script you will be prompted to create a non-root user which wi
      Building Scheduled Task...
      SUCCESS: The scheduled task "XFCE416" has successfully been created.
      
-           Start: Mon 12/14/2020 @ 11:14
-             End: Mon 12/14/2020 @ 11:24
+           Start: Mon 06/01/2021 @ 11:14
+             End: Mon 06/01/2021 @ 11:24
         Packages: 1100
 
        - xRDP Server listening on port 13399 and SSHd on port 13322.

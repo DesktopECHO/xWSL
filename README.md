@@ -99,7 +99,7 @@ Example of conversion to WSL2 on machine name "COMPY":
     ````wsl --shutdown````
  - Convert the instance to WSL2:
     ````wsl --set-version xWSL 2````
- - Restart kWSL Instance:
+ - Restart xWSL Instance:
     ````schtasks /run /tn xWSL````
  - Edit the .RDP file to point at the WSL2 instance by adding ````-xWSL.local```` to the hostname, so for COMPY it would be:
     ````COMPY-xWSL.local:3399````

@@ -23,8 +23,8 @@
   <property name="Gtk" type="empty">
     <property name="CanChangeAccels" type="empty"/>
     <property name="ColorPalette" type="empty"/>
-    <property name="FontName" type="string" value="Segoe UI 11"/>
-    <property name="MonospaceFontName" type="string" value="Cascadia Code 11"/>
+    <property name="FontName" type="string" value="Segoe UI 10"/>
+    <property name="MonospaceFontName" type="string" value="Cascadia Code PL Semi-Light 10"/>
     <property name="IconSizes" type="empty"/>
     <property name="KeyThemeName" type="empty"/>
     <property name="ToolbarStyle" type="empty"/>

@@ -1,4 +1,0 @@
-[Desktop Entry]
-Exec=compton --vsync=opengl-mswc --glx-use-copysubbuffermesa
-X-XFCE-Autostart-Override=true
-Hidden=false

@@ -1,27 +1,17 @@
-# [xWSL.cmd (Version 1.4 / 20210601)](https://github.com/DesktopECHO/xWSL)
+# [xWSL.cmd (Version 1.5 / 20220718)](https://github.com/DesktopECHO/xWSL)
 
-Script to NetInstall **Ubuntu 20.04**, **xRDP**, and **XFCE 4.16** on WSL (Version 1 or 2).  
+Script to NetInstall **Ubuntu 22.04**, **Xfce 4.16** with updated **xRDP** packages on WSL1 or WSL2  
 Other distributions are available - See **KDE Neon** [**(kWSL)**](https://github.com/DesktopECHO/kWSL) and **Kali Linux** [**(Kali-xRDP)**](https://github.com/DesktopECHO/Kali-xRDP) for details.
 
 * Improved desktop experience, performance improvements in many areas
-* [Ubuntu Graphics](https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers) update with Mesa 21 on LLVM 11 
-* [XFCE 4.16](https://launchpad.net/~xubuntu-dev/+archive/ubuntu/staging)
-* [WebKitGTK](https://webkit.org/) 2.32
 * RDP Audio playback enabled (YouTube playback in browser works well with no audio/video desync)
 * Runs on Windows Server 2019 or Windows 10 Version 1809 (or newer, including Hyper-V Core)
-* Chrome Remote Desktop pre-installed, see [wiki](https://github.com/DesktopECHO/xWSL/wiki/Enable-Chrome-Remote-Desktop) for steps to enable
 
 ![xWSL Desktop](https://user-images.githubusercontent.com/33142753/94092529-687a1b80-fdf1-11ea-9e3b-bfbb6228e893.png)
 
-The xWSL instance is accessible from anywhere on your network, connect to it via the MS Remote Desktop Client (mstsc.exe) 
+The xWSL instance is accessible anywhere on your network via the MS Remote Desktop Client (mstsc.exe) or over the Internet using Chrome Remote Desktop [see wiki](https://github.com/DesktopECHO/xWSL/wiki/Enable-Chrome-Remote-Desktop) 
 
 You will see best performance connecting from the local machine or over gigabit ethernet.
-
-**IMPORTANT!**  Requires August/Sept 2020 WSL update for Windows 10.  This update is already included in Windows 20H2 and newer:
-
-* 1809  · KB4571748
-* 1909  · KB4566116
-* 2004  · KB4571756
 
 **INSTRUCTIONS:  From an elevated prompt, change to your desired install directory and type/paste the following command:**
 
@@ -120,11 +110,10 @@ From a security standpoint, it would be best to fork this project so you (and on
 * When you log out of a desktop session, the entire xWSL instance is restarted, the equivalent of an instant clean-boot at every login.
 * xWSL should work fine with an X Server instead of xRDP. The file **/etc/profile.d/xWSL.sh** contains WSL-centric environment variables that may need adjustment, such as LIBGL_ALWAYS_INDIRECT.
 * WSL1 Doesn't work with PolicyKit. Enabled gksu for apps needing elevated rights (Synaptic, root console)
-* Rebuilt xrdp 0.9.13 thanks to Sergey Dryabzhinsky @ http://packages.rusoft.ru/ppa/rusoft/xrdp/
 * [Apt-fast](https://github.com/ilikenwf/apt-fast) added to improve download speed and reliability.
-* Mozilla Seamonkey included as a stable browser that's kept up to date via apt.  Current versions of Chrome / Firefox do not work in WSL1.
+* Mozilla Seamonkey and Falkon (Chromium-based) browsers included.  Current versions of Chrome / Firefox do not work in WSL1.
 * Installed image consumes approximately 2.6 GB of disk space
-* XFCE uses the Plata (light or dark) theme and Windows fonts (Segoe UI / Cascadia Code)
+* XFCE uses the Plata theme, Papirus icon theme and Windows fonts (Segoe UI / Cascadia Code)
 * This is a basic installation of XFCE to save bandwidth.  If you want the complete XFCE Desktop environment run `sudo apt-get install xubuntu-desktop`
 * Uninstaller is located in the root of xWSL folder, **'Uninstall xWSL.cmd'** - Make sure you **'Run As Administrator'** to ensure removal of the scheduled task and firewall rules
 

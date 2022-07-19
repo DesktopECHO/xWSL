@@ -16,10 +16,10 @@ FOR /f "delims=" %%a in ('powershell -ExecutionPolicy bypass -command "%TEMP%\wi
 CLS && SET RUNSTART=%date% @ %time:~0,5%
 IF EXIST .\CMD.EXE CD ..\..
 
-ECHO [xWSL Installer 20220208]
+ECHO [xWSL Installer 20220713]
 ECHO:
 ECHO Enter a unique name for your xWSL distro or hit Enter to use default. 
-SET DISTRO=xWSL& SET /p DISTRO=Keep this name simple, no space or underscore characters [xWSL]: 
+SET DISTRO=UbuntuWSL& SET /p DISTRO=Keep this name simple, no space or underscore characters [UbuntuWSL]: 
 IF EXIST "%DISTRO%" (ECHO. & ECHO Folder exists with that name, choose a new folder name. & PAUSE & GOTO DI)
 WSL.EXE -d %DISTRO% -e . > "%TEMP%\InstCheck.tmp"
 FOR /f %%i in ("%TEMP%\InstCheck.tmp") do set CHKIN=%%~zi 
@@ -35,7 +35,7 @@ SET _rlt=%DISTROFULL:~2,2%
 IF "%_rlt%"=="\\" SET DISTROFULL=%CD%%DISTRO%
 SET GO="%DISTROFULL%\LxRunOffline.exe" r -n "%DISTRO%" -c
 REM ## Download Ubuntu and install packages
-IF NOT EXIST "%TEMP%\Ubuntu2004.tar.gz" POWERSHELL.EXE -Command "Start-BitsTransfer -source https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64-wsl.rootfs.tar.gz -destination '%TEMP%\Ubuntu2004.tar.gz'"
+IF NOT EXIST "%TEMP%\Ubuntu2204.tar.gz" POWERSHELL.EXE -Command "Start-BitsTransfer -source https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64-wsl.rootfs.tar.gz -destination '%TEMP%\Ubuntu2204.tar.gz'"
 %DISTROFULL:~0,1%: & MKDIR "%DISTROFULL%" & CD "%DISTROFULL%" & MKDIR logs > NUL
 (ECHO [xWSL Inputs] && ECHO. && ECHO.   Distro: %DISTRO% && ECHO.     Path: %DISTROFULL% && ECHO. RDP Port: %RDPPRT% && ECHO. SSH Port: %SSHPRT% && ECHO.DPI Scale: %WINDPI% && ECHO.) > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% xWSL Inputs.log"
 IF NOT EXIST "%TEMP%\LxRunOffline.exe" POWERSHELL.EXE -Command "wget %BASE%/LxRunOffline.exe -UseBasicParsing -OutFile '%TEMP%\LxRunOffline.exe'"
@@ -58,54 +58,47 @@ ECHO @NETSH AdvFirewall Firewall del rule name="%DISTRO% Avahi Multicast DNS"   
 ECHO @RD /S /Q "%DISTROFULL%"                                                                                 >> "%DISTROFULL%\Uninstall %DISTRO%.cmd"
 ECHO Installing xWSL Distro [%DISTRO%] to "%DISTROFULL%" & ECHO This will take a few minutes, please wait... 
 IF %DEFEXL%==X (POWERSHELL.EXE -Command "wget %BASE%/excludeWSL.ps1 -UseBasicParsing -OutFile '%DISTROFULL%\excludeWSL.ps1'" & START /WAIT /MIN "Add exclusions in Windows Defender" "POWERSHELL.EXE" "-ExecutionPolicy" "Bypass" "-Command" ".\excludeWSL.ps1" "%DISTROFULL%" &  DEL ".\excludeWSL.ps1")
-ECHO:& ECHO [%TIME:~0,8%] Installing Ubuntu 20.04 LTS (~1m00s)
-START /WAIT /MIN "Installing Distro Base..." "%TEMP%\LxRunOffline.exe" "i" "-n" "%DISTRO%" "-f" "%TEMP%\Ubuntu2004.tar.gz" "-d" "%DISTROFULL%"
+ECHO:& ECHO [%TIME:~0,8%] Installing Ubuntu 22.04   (~0m30s)
+START /WAIT /MIN "Installing Ubuntu userspace..." "%TEMP%\LxRunOffline.exe" "i" "-n" "%DISTRO%" "-f" "%TEMP%\Ubuntu2204.tar.gz" "-d" "%DISTROFULL%" 
 (FOR /F "usebackq delims=" %%v IN (`PowerShell -Command "whoami"`) DO set "WAI=%%v") & ICACLS "%DISTROFULL%" /grant "%WAI%":(CI)(OI)F > NUL
-(COPY /Y "%TEMP%\LxRunOffline.exe" "%DISTROFULL%" > NUL ) & "%DISTROFULL%\LxRunOffline.exe" sd -n "%DISTRO%"
-ECHO [%TIME:~0,8%] Git clone and update repositories (~1m15s)
-%GO% "echo 'deb http://archive.ubuntu.com/ubuntu/ focal main restricted universe' > /etc/apt/sources.list"
-%GO% "echo 'deb http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe' >> /etc/apt/sources.list"
-%GO% "echo 'deb http://security.ubuntu.com/ubuntu/ focal-security main restricted universe' >> /etc/apt/sources.list"
-%GO% "echo 'deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main' >> /etc/apt/sources.list.d/mozilla.list"
-%GO% "echo 'deb http://ppa.launchpad.net/xubuntu-dev/staging/ubuntu focal main' >>  /etc/apt/sources.list.d/xfce-4_16.list"
-%GO% "echo 'deb http://ppa.launchpad.net/oibaf/graphics-drivers/ubuntu focal main' >>  /etc/apt/sources.list.d/ubuntu-graphics.list"
-%GO% "rm -rf /etc/apt/apt.conf.d/20snapd.conf /etc/rc2.d/S01whoopsie /etc/init.d/console-setup.sh" 
+(COPY /Y "%TEMP%\LxRunOffline.exe" "%DISTROFULL%" > NUL ) & "%DISTROFULL%\LxRunOffline.exe" sd -n "%DISTRO%" 
+ECHO [%TIME:~0,8%] APT update and clone repo (~3m00s)
+%GO% "echo 'deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe' > /etc/apt/sources.list"
+%GO% "echo 'deb http://archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe' >> /etc/apt/sources.list"
+%GO% "echo 'deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe' >> /etc/apt/sources.list"
+%GO% "rm -rf /etc/apt/apt.conf.d/20snapd.conf /etc/systemd/system/snap* /var/cache/snapd /etc/rc2.d/S01whoopsie /etc/init.d/console-setup.sh ; echo 'echo 1' > /usr/sbin/runlevel"
+START /MIN "Move Icons..." %GO% "mv /usr/share/icons $PWD ; rm -rf /usr/share/icons ; ln -s $PWD/icons /usr/share/icons"
+
 :APTRELY
-START /MIN /WAIT "Git Clone xWSL" %GO% "cd /tmp ; git clone -b %BRANCH% --depth=1 https://github.com/%GITORG%/%GITPRJ%.git"
-START /MIN /WAIT "Acquire XFCE 4.16 Keys" %GO% "apt-key adv --recv-keys --keyserver keyserver.ubuntu.com EB563F93142986CE"
-START /MIN /WAIT "Acquire Mozilla Seamonkey Keys" %GO% "apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2667CA5C"
-START /MIN /WAIT "Acquire Ubuntu Graphics Keys" %GO% "apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 957D2708A03A4626"
-START /MIN /WAIT "apt-get update" %GO% "apt-get update 2> /tmp/apterr"
+START /MIN /WAIT "APT update..." %GO% "add-apt-repository --yes ppa:kisak/kisak-mesa ; apt-get update 2> /tmp/apterr"
 FOR /F %%A in ("%DISTROFULL%\rootfs\tmp\apterr") do If %%~zA NEQ 0 GOTO APTRELY 
 
-ECHO [%TIME:~0,8%] Remove un-needed packages (~1m00s)
-%GO% "DEBIAN_FRONTEND=noninteractive apt-get -y purge apparmor apport bolt cloud-init cloud-initramfs-copymods cloud-initramfs-dyn-netconf cryptsetup cryptsetup-initramfs dmeventd finalrd fwupd initramfs-tools initramfs-tools-core irqbalance isc-dhcp-client klibc-utils kpartx libaio1 libarchive13 libdevmapper-event1.02.1 libdns-export1109 libefiboot1 libefivar1 libestr0 libfastjson4 libfwupd2 libfwupdplugin1 libgcab-1.0-0 libgpgme11 libgudev-1.0-0 libgusb2 libisc-export1105 libisns0 libjson-glib-1.0-0 libjson-glib-1.0-common libklibc liblvm2cmd2.03 libmspack0 libnuma1 libsgutils2-2 libsmbios-c2 libtss2-esys0 liburcu6 libxmlb1 libxmlsec1 libxmlsec1-openssl libxslt1.1 linux-base lvm2 lz4 mdadm multipath-tools open-iscsi open-vm-tools overlayroot plymouth plymouth-theme-ubuntu-text popularity-contest sbsigntool secureboot-db sg3-utils sg3-utils-udev snapd squashfs-tools thin-provisioning-tools tpm-udev zerofree ; apt-get -y autoremove --purge"  > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Remove un-needed packages.log" 2>&1
-
-ECHO [%TIME:~0,8%] Configure apt-fast Downloader (~0m15s)
-%GO% "DEBIAN_FRONTEND=noninteractive apt-get -y install /tmp/xWSL/deb/aria2_1.35.0-1build1_amd64.deb /tmp/xWSL/deb/libaria2-0_1.35.0-1build1_amd64.deb /tmp/xWSL/deb/libssh2-1_1.8.0-2.1build1_amd64.deb /tmp/xWSL/deb/libc-ares2_1.15.0-1build1_amd64.deb --no-install-recommends" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Configure apt-fast Downloader.log" 2>&1
+START /MIN /WAIT "Remove un-needed packages..." %GO% "apt-mark hold sudo ; DEBIAN_FRONTEND=noninteractive apt-get -y purge needrestart apparmor* bc* bcache-tools* bolt* btrfs-progs* busybox-initramfs* cloud-guest-utils* cloud-init* cloud-initramfs-copymods* cloud-initramfs-dyn-netconf* cryptsetup* cryptsetup-initramfs* dmeventd* eject* ethtool* fdisk* finalrd* fonts-ubuntu-console* fwupd* fwupd-signed* gdisk* initramfs-tools* initramfs-tools-bin* initramfs-tools-core* iputils-ping* irqbalance* isc-dhcp-client* isc-dhcp-common* klibc-utils* kpartx* landscape-common* libaio1* libarchive13* libatasmart4* libblockdev-crypto2* libblockdev-fs2* libblockdev-loop2* libblockdev-part-err2* libblockdev-part2* libblockdev-swap2* libblockdev-utils2* libblockdev2* libdevmapper-event1.02.1* libdns-export1110* libdrm-common* libdrm2* libefiboot1* libefivar1* libfdisk1* libflashrom1* libfreetype6* libftdi1-2* libfwupd2* libfwupdplugin5* libgcab-1.0-0* libgpgme11* libgusb2* libinih1* libisc-export1105* libisns0* libjcat1* libjson-glib-1.0-0* libjson-glib-1.0-common* libklibc* liblvm2cmd2.03* liblzo2-2* libmbim-glib4* libmbim-proxy* libmm-glib0* libmspack0* libnetplan0* libnspr4* libnss3* libnuma1* libopeniscsiusr* libparted-fs-resize0* libplymouth5* libpng16-16* libqmi-glib5* libqmi-proxy* libsgutils2-2* libsmbios-c2* libtcl8.6* libtss2-esys-3.0.2-0* libtss2-mu0* libtss2-sys1* libtss2-tcti-cmd0* libtss2-tcti-device0* libtss2-tcti-mssim0* libtss2-tcti-swtpm0* libudisks2-0* liburcu8* libvolume-key1* libxmlsec1* libxmlsec1-openssl* libxslt1.1* linux-base* lvm2* lxd-agent-loader* mdadm* modemmanager* multipath-tools* netcat-openbsd* netplan.io* open-iscsi* open-vm-tools* overlayroot* plymouth* plymouth-theme-ubuntu-text* sbsigntool* secureboot-db* sg3-utils* snapd* sosreport* squashfs-tools* tcl* tcl8.6* thin-provisioning-tools* tpm-udev* ubuntu-minimal* ubuntu-server* udisks2* usb-modeswitch* usb-modeswitch-data* xfsprogs* zerofree* ; apt-mark unhold sudo ; apt-mark hold gzip"
+START /MIN /WAIT "Git clone..." %GO% "cd /tmp ; git clone -b %BRANCH% --depth=1 https://github.com/%GITORG%/%GITPRJ%.git ; mv /tmp/xWSL/dist/etc/dpkg/dpkg.cfg.d/01_nodoc /etc/dpkg/dpkg.cfg.d"
+START /MIN /WAIT "Find best mirror..." %GO% "dpkg -i /tmp/xWSL/deb/python*.deb ; pip3 install apt-select ; apt-select ; cp sources.list /etc/apt/ ; apt-get update"
+%GO% "dpkg -i /tmp/xWSL/deb/gzip_1.10-4ubuntu1_amd64.deb /tmp/xWSL/deb/aria2_1.36.0-1_amd64.deb /tmp/xWSL/deb/libaria2-0_1.36.0-1_amd64.deb /tmp/xWSL/deb/libc-ares2_1.18.1-1build1_amd64.deb /tmp/xWSL/deb/libssh2-1_1.10.0-3_amd64.deb" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Configure apt-fast Downloader.log" 2>&1
 %GO% "chmod +x /tmp/xWSL/dist/usr/local/bin/apt-fast ; cp -p /tmp/xWSL/dist/usr/local/bin/apt-fast /usr/local/bin" > NUL
 
-ECHO [%TIME:~0,8%] Remote Desktop Components (~4m45s)
-%GO% "DEBIAN_FRONTEND=noninteractive apt-fast -y install /tmp/xWSL/deb/gksu_2.1.0_amd64.deb /tmp/xWSL/deb/libgksu2-0_2.1.0_amd64.deb /tmp/xWSL/deb/libgnome-keyring0_3.12.0-1+b2_amd64.deb /tmp/xWSL/deb/libgnome-keyring-common_3.12.0-1_all.deb /tmp/xWSL/deb/multiarch-support_2.27-3ubuntu1_amd64.deb /tmp/xWSL/deb/xrdp_0.9.17-2ubuntu1_amd64.deb /tmp/xWSL/deb/xorgxrdp_0.2.17-1ubuntu1_amd64.deb /tmp/xWSL/deb/plata-theme_0.9.9-0ubuntu1~focal1_all.deb /tmp/xWSL/deb/papirus-icon-theme_20210201-1_all.deb /tmp/xWSL/deb/fonts-cascadia-code_2005.15-1_all.deb /tmp/xWSL/deb/libfdk-aac1_0.1.6-1_amd64.deb x11-apps x11-session-utils x11-xserver-utils dialog distro-info-data dumb-init inetutils-syslogd xdg-utils avahi-daemon libnss-mdns binutils putty unzip zip unar unzip dbus-x11 samba-common-bin base-files ubuntu-release-upgrader-core python3-distupgrade packagekit packagekit-tools lhasa arj unace liblhasa0 apt-config-icons apt-config-icons-hidpi apt-config-icons-large apt-config-icons-large-hidpi libgtkd-3-0 libphobos2-ldc-shared90 libvte-2.91-0 libvte-2.91-common libvted-3-0 tilix tilix-common libdbus-glib-1-2 xvfb xbase-clients python3-psutil --no-install-recommends" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Remote Desktop Components.log" 2>&1
+ECHO [%TIME:~0,8%] Remote Desktop Components (~1m45s)
+%GO% "DEBIAN_FRONTEND=noninteractive apt-fast -y install /tmp/xWSL/deb/xorgxrdp*.deb /tmp/xWSL/deb/xrdp*.deb /tmp/xWSL/deb/gksu_2.1.0_amd64.deb /tmp/xWSL/deb/libgksu2-0_2.1.0_amd64.deb /tmp/xWSL/deb/libgnome-keyring0_3.12.0-1+b2_amd64.deb /tmp/xWSL/deb/libgnome-keyring-common_3.12.0-1_all.deb /tmp/xWSL/deb/multiarch-support_2.27-3ubuntu1_amd64.deb /tmp/xWSL/deb/plata-theme_0.9.9-0ubuntu1~focal1_all.deb /tmp/xWSL/deb/libfdk-aac1_0.1.6-1_amd64.deb apt-config-icons apt-config-icons-hidpi apt-config-icons-large apt-config-icons-large-hidpi arj avahi-daemon base-files binutils cairo-5c cpp cpp-11 dbus-x11 dconf-gsettings-backend dconf-service dialog distro-info-data dumb-init fonts-cascadia-code gcc-11-base gstreamer1.0-tools inetutils-syslogd lhasa libatk-bridge2.0-0 libatspi2.0-0 libcairo-5c0 libdbus-glib-1-2 libdrm-intel1 libdw1 libegl1 libegl-mesa0 libfs6 libgbm1 libgl1 libglu1-mesa libglx0 libglx-mesa0 libgstreamer1.0-0 libgtk-3-0 libgtk-3-bin libgtk-3-common libgtkd-3-0 libice6 libisl23 liblhasa0 libllvm11 libmpc3 libnss-mdns libopengl0 libpackagekit-glib2-18 libphobos2-ldc-shared98 libpolkit-agent-1-0 libpolkit-gobject-1-0 libsecret-1-0 libsm6 libvte-2.91-0 libvte-2.91-common libvted-3-0 libwayland-server0 libx11-xcb1 libxatracker2 libxaw7 libxcb-randr0 libxcb-shape0 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxfont2 libxft2 libxi6 libxinerama1 libxkbfile1 libxmu6 libxmuu1 libxpm4 libxrandr2 libxss1 libxt6 libxtst6 libxv1 libxvmc1 libxxf86dga1 libxxf86vm1 mesa-vulkan-drivers moreutils nickle packagekit packagekit-tools putty putty-tools python3-distupgrade python3-psutil samba-common-bin tilix tilix-common ubuntu-release-upgrader-core unace unar unzip x11-apps x11-common x11-session-utils x11-utils x11-xfs-utils x11-xkb-utils x11-xserver-utils xauth xbase-clients xcvt xdg-utils xfonts-100dpi xfonts-base xfonts-encodings xfonts-scalable xfonts-utils xinit xinput xorg xserver-common xserver-xorg xserver-xorg-core xserver-xorg-legacy orphan-sysvinit-scripts xvfb zip humanity-icon-theme adwaita-icon-theme hicolor-icon-theme --no-install-recommends" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Remote Desktop Components.log" 2>&1
 
-ECHO [%TIME:~0,8%] XFCE 4.16 (~2m00s)
-%GO% "DEBIAN_FRONTEND=noninteractive apt-fast -y install xfce4 xfce4-appfinder xfce4-notifyd xfce4-terminal xfce4-whiskermenu-plugin libxfce4ui-utils libwebrtc-audio-processing1 pulseaudio xfce4-pulseaudio-plugin pavucontrol xfwm4 xfce4-panel xfce4-session xfce4-settings thunar thunar-volman thunar-archive-plugin xfdesktop4 xfce4-screenshooter libsmbclient gigolo gvfs-fuse gvfs-backends gvfs-bin mousepad evince xarchiver lhasa lrzip lzip lzop ncompress zip unzip dmz-cursor-theme adapta-gtk-theme gconf-defaults-service xfce4-taskmanager hardinfo synaptic compton compton-conf libconfig9 qt5-gtk2-platformtheme libtumbler-1-0 tumbler tumbler-common tumbler-plugins-extra --no-install-recommends" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% XFCE416.log" 2>&1
-
-ECHO [%TIME:~0,8%] Seamonkey and WebKit2GTK for WSL1 (~3m30s)
-%GO% "DEBIAN_FRONTEND=noninteractive apt-fast -y --allow-downgrades install seamonkey-mozilla-build epiphany-browser libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio /tmp/xWSL/webkit2gtk/*.deb ; apt-mark hold gir1.2-javascriptcoregtk-4.0 gir1.2-webkit2-4.0 libjavascriptcoregtk-4.0-18 libjavascriptcoregtk-4.0-bin libwebkit2gtk-4.0-37 webkit2gtk-driver ; update-alternatives --install /usr/bin/www-browser www-browser /usr/bin/seamonkey 100 ; update-alternatives --install /usr/bin/gnome-www-browser gnome-www-browser /usr/bin/seamonkey 100 ; update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/seamonkey 100 ; cd /tmp/xWSL/deb ; wget -q https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb ; dpkg -i /tmp/xWSL/deb/chrome-remote-desktop_current_amd64.deb" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Seamonkey and WebKit2GTK for WSL1.log" 2>&1
+ECHO [%TIME:~0,8%] Xfce4 Desktop Environment (~2m30s)
+START /MIN "Copying Icons..." %GO% "rm -rf /usr/share/icons/* ; mv /tmp/xWSL/dist/usr/local/share/icons.tgz ./temp ; cd ./temp ; tar xf icons.tgz ; mv ./icons/* /usr/share/icons/ ; mkdir /usr/share/icons/default ; touch /usr/share/icons/default/index.theme"
+START /MIN /WAIT "Mozilla Keys..." %GO% "echo 'deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main' >> /etc/apt/sources.list.d/mozilla.list ; apt-key adv --recv-keys --keyserver keyserver.ubuntu.com C1289A29"
+%GO% "DEBIAN_FRONTEND=noninteractive apt-fast -y install /tmp/xWSL/deb/seamonkey-mozilla-build_2.53.12-0ubuntu1_amd64.deb falkon libaacs0 libvdpau1 mesa-vdpau-drivers dmz-cursor-theme evince gconf-defaults-service gigolo gvfs-backends gvfs-fuse hardinfo lhasa libconfig9 libsmbclient libtumbler-1-0 libwebrtc-audio-processing1 libxfce4ui-utils lrzip lzip lzop mousepad ncompress libgdk-pixbuf-2.0-0 librsvg2-common pavucontrol pulseaudio qt5-gtk2-platformtheme synaptic thunar thunar-archive-plugin thunar-volman tumbler tumbler-common unzip xarchiver xfce4 xfce4-appfinder xfce4-notifyd xfce4-panel xfce4-pulseaudio-plugin xfce4-screenshooter xfce4-session xfce4-settings xfce4-taskmanager xfce4-terminal xfce4-whiskermenu-plugin xfdesktop4 xfwm4 zip wslu mesa-utils xfce4-datetime-plugin xfce4-clipman xfce4-clipman-plugin xfce4-cpugraph-plugin --no-install-recommends ; wget -q https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb ; dpkg -i ./chrome-remote-desktop_current_amd64.deb ; rm ./chrome-remote-desktop_current_amd64.deb" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Xfce Desktop Environment.log" 2>&1
 
 REM ## Additional items to install can go here...
-REM ## %GO% "cd /tmp ; wget https://files.multimc.org/downloads/multimc_1.4-1.deb"
-REM ## %GO% "apt-get -y install supertuxkart /tmp/multimc_1.4-1.deb"
+REM ## %GO% "cd /tmp ; wget https://dl2.tlauncher.org/f.php?f=files%2FTLauncher-2.86.zip -O tl.zip ; unzip tl.zip"
+REM ## %GO% "apt-get -y install openjdk-17-jdk"
 
-ECHO [%TIME:~0,8%] Post-install clean-up (~0m45s)
-%GO% "apt-get -y purge mesa-vulkan-drivers gnustep-base-runtime libgnustep-base1.26 gnustep-base-common gnustep-common libgc1c2 libobjc4 powermgmt-base unar ; apt-get -y clean" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Post-install clean-up.log"
+REM ECHO [%TIME:~0,8%] Post-install clean-up     (~0m45s)
+REM #%GO% "apt-get -y purge --autoremove apparmor needrestart gnustep-base-runtime gnustep-base-common gnustep-common libobjc4 powermgmt-base unar ; apt-get -y clean" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Post-install clean-up.log"
 
 SET /A SESMAN = %RDPPRT% - 50
 %GO% "which schtasks.exe" > "%TEMP%\SCHT.tmp" & set /p SCHT=<"%TEMP%\SCHT.tmp"
 %GO% "sed -i 's#SCHT#%SCHT%#g' /tmp/xWSL/dist/usr/local/bin/restartwsl ; sed -i 's#DISTRO#%DISTRO%#g' /tmp/xWSL/dist/usr/local/bin/restartwsl"
-IF %LINDPI% GEQ 288 ( %GO% "sed -i 's/HISCALE/3/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml" )
 IF %LINDPI% GEQ 192 ( %GO% "sed -i 's/HISCALE/2/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml" )
+IF %LINDPI% GEQ 288 ( %GO% "sed -i 's/HISCALE/3/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml" )
 IF %LINDPI% GEQ 192 ( %GO% "sed -i 's/Default-hdpi/Default-xhdpi/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" )
 IF %LINDPI% GEQ 192 ( %GO% "sed -i 's/16/32/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" )
 IF %LINDPI% GEQ 192 ( %GO% "sed -i 's/QQQ/96/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml" )
@@ -114,6 +107,7 @@ IF %LINDPI% LSS 192 ( %GO% "sed -i 's/HISCALE/1/g' /tmp/xWSL/dist/etc/skel/.conf
 IF %LINDPI% LSS 120 ( %GO% "sed -i 's/Default-hdpi/Default/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" )
 
 %GO% "mkdir -p /dev/dri ; mknod -m 666 /dev/dri/card0 c 226 0 ; mknod -m 666 /dev/dri/renderD128 c 226 128 ; mknod -m 666 /dev/fb0 c 29 0"
+%GO% "sed -i 's/ xWSL/ %DISTRO%/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/panel/whiskermenu-1.rc"
 %GO% "sed -i 's/ListenPort=3350/ListenPort=%SESMAN%/g' /etc/xrdp/sesman.ini"
 %GO% "sed -i 's/thinclient_drives/.xWSL/g' /etc/xrdp/sesman.ini"
 %GO% "sed -i 's/port=3389/port=%RDPPRT%/g' /tmp/xWSL/dist/etc/xrdp/xrdp.ini ; sed -i 's/\\h/%DISTRO%/g' /tmp/xWSL/dist/etc/skel/.bashrc"
@@ -123,7 +117,7 @@ IF %LINDPI% LSS 120 ( %GO% "sed -i 's/Default-hdpi/Default/g' /tmp/xWSL/dist/etc
 %GO% "sed -i 's/#enable-dbus=yes/enable-dbus=no/g' /etc/avahi/avahi-daemon.conf ; sed -i 's/#host-name=foo/host-name=%COMPUTERNAME%-%DISTRO%/g' /etc/avahi/avahi-daemon.conf ; sed -i 's/use-ipv4=yes/use-ipv4=no/g' /etc/avahi/avahi-daemon.conf"
 %GO% "cp /mnt/c/Windows/Fonts/*.ttf /usr/share/fonts/truetype ; ssh-keygen -A ; adduser xrdp ssl-cert" > NUL
 %GO% "chmod 644 /tmp/xWSL/dist/etc/wsl.conf ; chmod 644 /tmp/xWSL/dist/var/lib/xrdp-pulseaudio-installer/*.so"
-%GO% "chmod 755 /tmp/xWSL/dist/etc/profile.d/xWSL.sh ; chmod 755 /tmp/xWSL/dist/usr/local/bin/restartwsl ; chmod 755 /tmp/xWSL/dist/usr/local/bin/initwsl ; chmod -R 700 /tmp/xWSL/dist/etc/skel/.config ; chmod -R 7700 /tmp/xWSL/dist/etc/skel/.local ; chmod 700 /tmp/xWSL/dist/etc/skel/.mozilla ; chmod +x /tmp/xWSL/dist/etc/skel/Desktop/Epiphany.desktop ; chmod +x /tmp/xWSL/dist/etc/skel/Desktop/Seamonkey.desktop"
+%GO% "chmod 755 /tmp/xWSL/dist/etc/profile.d/xWSL.sh ; chmod 755 /tmp/xWSL/dist/usr/local/bin/restartwsl ; chmod 755 /tmp/xWSL/dist/usr/local/bin/initwsl ; chmod -R 700 /tmp/xWSL/dist/etc/skel/.config ; chmod -R 7700 /tmp/xWSL/dist/etc/skel/.local ; chmod 700 /tmp/xWSL/dist/etc/skel/.mozilla ; chmod +x /tmp/xWSL/dist/etc/skel/Desktop/Falkon.desktop ; chmod +x /tmp/xWSL/dist/etc/skel/Desktop/Seamonkey.desktop"
 %GO% "rm /usr/lib/systemd/system/dbus-org.freedesktop.login1.service /usr/share/dbus-1/system-services/org.freedesktop.login1.service /usr/share/polkit-1/actions/org.freedesktop.login1.policy"
 %GO% "rm /usr/share/dbus-1/services/org.freedesktop.systemd1.service /usr/share/dbus-1/system-services/org.freedesktop.systemd1.service /usr/share/dbus-1/system.d/org.freedesktop.systemd1.conf /usr/share/polkit-1/actions/org.freedesktop.systemd1.policy /usr/share/applications/gksu.desktop"
 %GO% "cp -Rp /tmp/xWSL/dist/* / ; cp -Rp /tmp/xWSL/dist/etc/skel/.config /root ; cp -Rp /tmp/xWSL/dist/etc/skel/.local /root ; chown -R xrdp:root /etc/xrdp"
@@ -141,11 +135,11 @@ POWERSHELL -Command $prd = read-host "Enter password for %XU%" -AsSecureString ;
 %GO% "sed -i 's/RDPPRT/%RDPPRT%/g' /tmp/xWSL/xWSL.rdp"
 %GO% "cp /tmp/xWSL/xWSL.rdp ./xWSL._"
 ECHO $prd = Get-Content .tmp > .tmp.ps1
-ECHO ($prd ^| ConvertTo-SecureString -AsPlainText -Force) ^| ConvertFrom-SecureString ^| Out-File .tmp  >> .tmp.ps1
+ECHO ($prd ^| ConvertTo-SecureString -AsPlainText -Force) ^| ConvertFrom-SecureString ^| Out-File .tmp >> .tmp.ps1
 POWERSHELL -ExecutionPolicy Bypass -Command ./.tmp.ps1
 TYPE .tmp>.tmpsec.txt
 COPY /y /b xWSL._+.tmpsec.txt "%DISTROFULL%\%DISTRO% (%XU%) Desktop.rdp" > NUL
-DEL /Q  xWSL._ .tmp*.* > NUL
+DEL /Q xWSL._ .tmp*.* > NUL
 ECHO:
 ECHO Open Windows Firewall Ports for xRDP, SSH, mDNS...
 NETSH AdvFirewall Firewall add rule name="%DISTRO% xRDP" dir=in action=allow protocol=TCP localport=%RDPPRT% > NUL
@@ -182,3 +176,4 @@ START "Remote Desktop Connection" "MSTSC.EXE" "/V" "%DISTROFULL%\%DISTRO% (%XU%)
 CD ..
 ECHO: 
 :ENDSCRIPT
+

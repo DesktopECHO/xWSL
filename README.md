@@ -5,6 +5,7 @@ Other distributions are available - See **KDE Neon** [**(kWSL)**](https://github
 
 * Improved desktop experience, performance improvements in many areas
 * RDP Audio playback enabled (YouTube playback in browser works well with no audio/video desync)
+* [Ubuntu Graphics](https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers) PPA with Mesa 22 / LLVM 14 
 * Runs on Windows Server 2019 or Windows 10 Version 1809 (or newer, including Hyper-V Core)
 
 ![xWSL Desktop](https://user-images.githubusercontent.com/33142753/94092529-687a1b80-fdf1-11ea-9e3b-bfbb6228e893.png)
@@ -114,7 +115,6 @@ From a security standpoint, it would be best to fork this project so you (and on
 * Mozilla Seamonkey and Falkon (Chromium-based) browsers included.  Current versions of Chrome / Firefox do not work in WSL1.
 * Installed image consumes approximately 2.6 GB of disk space
 * XFCE uses the Plata theme, Papirus icon theme and Windows fonts (Segoe UI / Cascadia Code)
-* This is a basic installation of XFCE to save bandwidth.  If you want the complete XFCE Desktop environment run `sudo apt-get install xubuntu-desktop`
 * Uninstaller is located in the root of xWSL folder, **'Uninstall xWSL.cmd'** - Make sure you **'Run As Administrator'** to ensure removal of the scheduled task and firewall rules
 
 **Screenshots:**

@@ -5,7 +5,6 @@ Other distributions are available - See **KDE Neon** [**(kWSL)**](https://github
 
 * Improved desktop experience, performance improvements in many areas
 * RDP Audio playback enabled (YouTube playback in browser works well with no audio/video desync)
-* [Ubuntu Graphics](https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers) PPA with Mesa 22 / LLVM 14 
 * Runs on Windows Server 2019 or Windows 10 Version 1809 (or newer, including Hyper-V Core)
 
 ![xWSL Desktop](https://user-images.githubusercontent.com/33142753/94092529-687a1b80-fdf1-11ea-9e3b-bfbb6228e893.png)

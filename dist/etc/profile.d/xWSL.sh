@@ -16,7 +16,6 @@ if [ -z "$XDG_DATA_DIRS" ]; then
     export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 fi
 
-unset LIBGL_ALWAYS_INDIRECT
 export RUNLEVEL=2
 export NO_AT_BRIDGE=1
 export GTK2_RC_FILES=$HOME/.config/gtkrc-2.0
@@ -34,5 +33,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 export MOZ_FORCE_DISABLE_E10S=1
 export MOZ_LAYERS_ALLOW_SOFTWARE_GL=1
 export WEBKIT_DISABLE_COMPOSITING_MODE=1
-export WEBKIT_FORCE_SANDBOX=0
+export WEBKIT_DISABLE_SANDBOX_THIS_IS_DANGEROUS=1
+export LIBGL_DRI2_DISABLE=true
+export LIBGL_DRI3_DISABLE=true
 export QTWEBENGINE_CHROMIUM_FLAGS="--single-process"

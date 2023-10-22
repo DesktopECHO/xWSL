@@ -1,10 +1,10 @@
-# [xWSL.cmd (Version 1.5 / 20220718)](https://github.com/DesktopECHO/xWSL)
+# [xWSL.cmd (Version 1.6 / 20231021)](https://github.com/DesktopECHO/xWSL)
 
-Script to NetInstall **Ubuntu 22.04**, **Xfce 4.16** with updated **xRDP** packages on WSL1 or WSL2  
+Script to NetInstall **Ubuntu 22.04**, **Xfce 4.18** and enable **xRDP** packages on WSL1 or WSL2   
 Other distributions are available - See **KDE Neon** [**(kWSL)**](https://github.com/DesktopECHO/kWSL) and **Kali Linux** [**(Kali-xRDP)**](https://github.com/DesktopECHO/Kali-xRDP) for details.
 
-* Improved desktop experience, performance improvements in many areas
-* RDP Audio playback enabled (YouTube playback in browser works well with no audio/video desync)
+* Enabled H.264 RDP codec.    
+* Audio playback enabled (YouTube playback in browser works well with no audio/video desync)
 * Runs on Windows Server 2019 or Windows 10 Version 1809 (or newer, including Hyper-V Core)
 
 ![xWSL Desktop](https://user-images.githubusercontent.com/33142753/94092529-687a1b80-fdf1-11ea-9e3b-bfbb6228e893.png)
@@ -15,7 +15,7 @@ You will see best performance connecting from the local machine or over gigabit 
 
 **INSTRUCTIONS:  From an elevated prompt, change to your desired install directory and type/paste the following command:**
 
-    PowerShell -executionpolicy bypass -command "wget https://github.com/DesktopECHO/xWSL/raw/master/xWSL.cmd -UseBasicParsing -OutFile xWSL.cmd ; .\xWSL.cmd"
+    PowerShell -executionpolicy bypass -command "Invoke-WebRequest https://github.com/DesktopECHO/xWSL/raw/master/xWSL.cmd -UseBasicParsing -OutFile xWSL.cmd ; .\xWSL.cmd"
 
 You will be asked a few questions.  The installer script finds the current DPI scaling in Windows, you can set your own value if preferred:
 

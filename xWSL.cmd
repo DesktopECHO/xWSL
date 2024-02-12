@@ -137,7 +137,7 @@ NETSH AdvFirewall Firewall add rule name="%DISTRO% Secure Shell" dir=in action=a
 NETSH AdvFirewall Firewall add rule name="%DISTRO% Avahi Multicast DNS" dir=in action=allow program="%DISTROFULL%\rootfs\usr\sbin\avahi-daemon" enable=yes > NUL
 START /MIN "%DISTRO% Init" WSL ~ -u root -d %DISTRO% -e initwsl 2
 ECHO Building RDP Connection file, Console link, Init system...
-ECHO START /MIN "%DISTRO%" CMD.EXE "/C WSLCONFIG /t %DISTRO% & START /MIN /WAIT PING LOCALHOST & START /WAIT /MIN WSL.EXE ~ -u root -d %DISTRO% -e initwsl 2 & exit" > "%DISTROFULL%\Init.cmd"
+ECHO START /MIN "%DISTRO%" CMD.EXE "/C WSLCONFIG /t %DISTRO% & START /WAIT /MIN "%DISTRO%" "PING" LOCALHOST & START /MIN WSL.EXE ~ -u root -d %DISTRO% -e initwsl 2 & exit" > "%DISTROFULL%\Init.cmd"
 ECHO @WSL ~ -u %XU% -d %DISTRO% > "%DISTROFULL%\%DISTRO% (%XU%) Console.cmd"
 "%DISTROFULL%\LxRunOffline.exe" su -n %DISTRO% -v 1000
 POWERSHELL -Command "Copy-Item '%DISTROFULL%\%DISTRO% (%XU%) Console.cmd' ([Environment]::GetFolderPath('Desktop'))"

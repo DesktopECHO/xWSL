@@ -57,7 +57,7 @@ ECHO @SCHTASKS /Delete /TN:%DISTRO% /F                                          
 ECHO @CLS                                                                                                     >> "%DISTROFULL%\Uninstall %DISTRO%.cmd"
 ECHO @ECHO Uninstalling %DISTRO%, please wait...                                                              >> "%DISTROFULL%\Uninstall %DISTRO%.cmd"
 ECHO @CD ..                                                                                                   >> "%DISTROFULL%\Uninstall %DISTRO%.cmd"
-ECHO @WSLCONFIG /T %DISTRO%                                                                                   >> "%DISTROFULL%\Uninstall %DISTRO%.cmd"
+ECHO @WSLCONFIG.EXE /t %DISTRO% ^&^& WSL.EXE --unregister %DISTRO%                                            >> "%DISTROFULL%\Uninstall %DISTRO%.cmd"
 ECHO @"%APPDATA%\LxRunOffline.exe" ur -n %DISTRO%                                                             >> "%DISTROFULL%\Uninstall %DISTRO%.cmd"
 ECHO @NETSH AdvFirewall Firewall del rule name="%DISTRO% xRDP"                                                >> "%DISTROFULL%\Uninstall %DISTRO%.cmd"   
 ECHO @NETSH AdvFirewall Firewall del rule name="%DISTRO% Secure Shell"                                        >> "%DISTROFULL%\Uninstall %DISTRO%.cmd"
@@ -106,7 +106,7 @@ IF %LINDPI% LSS 192 ( %GO% "sed -i 's/Default-hdpi/Default-xhdpi/g' /tmp/xWSL/di
 %GO% "sed -i 's/#Port 22/Port %SSHPRT%/g' /etc/ssh/sshd_config"
 %GO% "sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config"
 %GO% "sed -i 's/WSLINSTANCENAME/%DISTRO%/g' /tmp/xWSL/dist/usr/local/bin/initwsl"
-%GO% "sed -i 's/#enable-dbus=yes/enable-dbus=no/g' /etc/avahi/avahi-daemon.conf ; sed -i 's/#host-name=foo/host-name=%COMPUTERNAME%-%DISTRO%/g' /etc/avahi/avahi-daemon.conf ; sed -i 's/use-ipv4=yes/use-ipv4=no/g' /etc/avahi/avahi-daemon.conf"
+%GO% "sed -i 's/#enable-dbus=yes/enable-dbus=no/g' /etc/avahi/avahi-daemon.conf ; sed -i 's/#host-name=foo/host-name=%DISTRO%/g' /etc/avahi/avahi-daemon.conf ; sed -i 's/use-ipv4=yes/use-ipv4=no/g' /etc/avahi/avahi-daemon.conf"
 %GO% "cp /mnt/c/Windows/Fonts/*.ttf /usr/share/fonts/truetype ; ssh-keygen -A ; adduser xrdp ssl-cert" > NUL
 %GO% "chmod 644 /tmp/xWSL/dist/etc/wsl.conf"
 %GO% "chmod 755 /tmp/xWSL/dist/etc/profile.d/xWSL.sh /tmp/xWSL/dist/usr/local/bin/restartwsl /tmp/xWSL/dist/usr/local/bin/initwsl /tmp/xWSL/dist/etc/init.d/xrdp ; chmod -R 700 /tmp/xWSL/dist/etc/skel/.config ; chmod -R 7700 /tmp/xWSL/dist/etc/skel/.local ; chmod 700 /tmp/xWSL/dist/etc/skel/.mozilla"
@@ -121,7 +121,7 @@ POWERSHELL -Command $prd = read-host "Enter password for %XU%" -AsSecureString ;
 %GO% "(echo '%XU%:%PWO%') | chpasswd"
 %GO% "echo '%XU% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 %GO% "sed -i 's/PLACEHOLDER/%XU%/g' /tmp/xWSL/xWSL.rdp"
-%GO% "sed -i 's/COMPY/127.0.0.1/g' /tmp/xWSL/xWSL.rdp"
+%GO% "sed -i 's/COMPY/localhost/g' /tmp/xWSL/xWSL.rdp"
 %GO% "sed -i 's/RDPPRT/%RDPPRT%/g' /tmp/xWSL/xWSL.rdp"
 %GO% "cp /tmp/xWSL/xWSL.rdp ./xWSL._"
 ECHO $prd = Get-Content .tmp > .tmp.ps1
@@ -137,7 +137,7 @@ NETSH AdvFirewall Firewall add rule name="%DISTRO% Secure Shell" dir=in action=a
 NETSH AdvFirewall Firewall add rule name="%DISTRO% Avahi Multicast DNS" dir=in action=allow program="%DISTROFULL%\rootfs\usr\sbin\avahi-daemon" enable=yes > NUL
 START /MIN "%DISTRO% Init" WSL ~ -u root -d %DISTRO% -e initwsl 2
 ECHO Building RDP Connection file, Console link, Init system...
-ECHO START /MIN "%DISTRO%" CMD.EXE "/C WSLCONFIG /t %DISTRO% & START /WAIT /MIN "%DISTRO%" "PING" LOCALHOST & START /MIN WSL.EXE ~ -u root -d %DISTRO% -e initwsl 2 & exit" > "%DISTROFULL%\Init.cmd"
+ECHO IF EXIST "%PROGRAMFILES%\WSL\WSL.EXE" (START /MIN CMD.EXE /C "WSLCONFIG.EXE /t %DISTRO% && START /MIN /WAIT PING 127.0.0.1 && START /MIN "%DISTRO%" "%PROGRAMFILES%\WSL\WSL.EXE" ~ -u root -d %DISTRO% -e initwsl 2") ELSE (START /MIN CMD.EXE /C "WSLCONFIG.EXE /t %DISTRO% && START /MIN /WAIT PING 127.0.0.1 && START /MIN "%DISTRO%" "WSL.EXE" ~ -u root -d %DISTRO% -e initwsl 2") > "%DISTROFULL%\Init.cmd"
 ECHO @WSL ~ -u %XU% -d %DISTRO% > "%DISTROFULL%\%DISTRO% (%XU%) Console.cmd"
 "%DISTROFULL%\LxRunOffline.exe" su -n %DISTRO% -v 1000
 POWERSHELL -Command "Copy-Item '%DISTROFULL%\%DISTRO% (%XU%) Console.cmd' ([Environment]::GetFolderPath('Desktop'))"

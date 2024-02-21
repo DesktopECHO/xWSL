@@ -96,11 +96,10 @@ IF %LINDPI% GEQ 192 ( %GO% "sed -i 's/QQQ/96/g' /tmp/xWSL/dist/etc/skel/.config/
 IF %LINDPI% LSS 192 ( %GO% "sed -i 's/QQQ/%LINDPI%/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml" )
 IF %LINDPI% GEQ 192 ( %GO% "sed -i 's/PANEL/32/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml" )
 IF %LINDPI% LSS 192 ( %GO% "sed -i 's/PANEL/%PANEL%/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml" )
-IF %LINDPI% LEQ 120 ( %GO% "sed -i 's/Default-hdpi/Default/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" )
-IF %LINDPI% LSS 192 ( %GO% "sed -i 's/Default-hdpi/Default-xhdpi/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" )
+IF %LINDPI% LSS 144 ( %GO% "sed -i 's/Default-hdpi/Default/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" )
 %GO% "sed -i 's/ xWSL/ %DISTRO%/g' /tmp/xWSL/dist/etc/skel/.config/xfce4/panel/whiskermenu-1.rc"
 %GO% "sed -i 's/port=3389/port=%RDPPRT%/g' /tmp/xWSL/dist/etc/xrdp/xrdp.ini
-%GO% "sed -i 's/\\h/\$WSL_DISTRO_NAME/g' /tmp/xWSL/dist/etc/skel/.bashrc"
+%GO% "sed -i 's/\\h/%DISTRO%/g' /tmp/xWSL/dist/etc/skel/.bashrc ; sed -i 's/\\h/%DISTRO%/g' /root/.bashrc"
 %GO% "sed -i 's/#Port 22/Port %SSHPRT%/g' /etc/ssh/sshd_config"
 %GO% "sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config"
 %GO% "sed -i 's/WSLINSTANCENAME/%DISTRO%/g' /tmp/xWSL/dist/usr/local/bin/initwsl"
@@ -119,7 +118,7 @@ POWERSHELL -Command $prd = read-host "Enter password for %XU%" -AsSecureString ;
 %GO% "(echo '%XU%:%PWO%') | chpasswd"
 %GO% "echo '%XU% ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 %GO% "sed -i 's/PLACEHOLDER/%XU%/g' /tmp/xWSL/xWSL.rdp"
-%GO% "sed -i 's/COMPY/%COMPUTERNAME%/g' /tmp/xWSL/xWSL.rdp"
+%GO% "sed -i 's/COMPY/127.0.0.1/g' /tmp/xWSL/xWSL.rdp"
 %GO% "sed -i 's/RDPPRT/%RDPPRT%/g' /tmp/xWSL/xWSL.rdp"
 %GO% "cp /tmp/xWSL/xWSL.rdp ./xWSL._"
 ECHO $prd = Get-Content .tmp > .tmp.ps1

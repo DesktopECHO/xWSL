@@ -1,0 +1,13 @@
+<channel name="xfce4-terminal" version="1.0">
+  <property name="font-use-system" type="bool" value="false"/>
+  <property name="color-use-theme" type="bool" value="false"/>
+  <property name="color-background-vary" type="bool" value="false"/>
+  <property name="background-mode" type="string" value="TERMINAL_BACKGROUND_TRANSPARENT"/>
+  <property name="background-darkness" type="double" value="0.80"/>
+  <property name="font-name" type="string" value="Cascadia Code Semi-Light 12"/>
+  <property name="font-allow-bold" type="bool" value="true"/>
+  <property name="cell-height-scale" type="double" value="1.00"/>
+  <property name="cell-width-scale" type="double" value="1.00"/>
+  <property name="misc-show-unsafe-paste-dialog" type="bool" value="false"/>
+  <property name="misc-slim-tabs" type="bool" value="false"/>
+</channel>

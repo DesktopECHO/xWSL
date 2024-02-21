@@ -1,21 +1,22 @@
 #!/bin/bash
 run_level=$1
 export RUNLEVEL=$run_level
+
+rm -rf /tmp/.*
+mkdir /tmp/.ICE-unix ; chmod 1777 /tmp/.ICE-unix
+
+rm -rf /usr/bin/systemctl /usr/sbin/systemctl ; cp /etc/systemctl3.py /usr/bin/systemctl ; chmod +x /usr/bin/systemctl
+rm -rf /usr/sbin/runlevel ; echo "echo 'N 2'" > /usr/sbin/runlevel ; chmod +x /usr/sbin/runlevel
+rm -rf /usr/sbin/policy-rc.d ; echo "exit 0" > /usr/sbin/policy-rc.d ; chmod +x /usr/sbin/policy-rc.d
+
 touch /run/initctl >/dev/null 2>&1
 chmod 644 /var/run/syslog.pid >/dev/null 2>&1
 strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5 >/dev/null 2>&1
 chmod a-x /usr/lib/x86_64-linux-gnu/libexec/kscreenlocker_greet >/dev/null 2>&1
-echo "echo 2" > /usr/sbin/runlevel
 
-tee /usr/sbin/policy-rc.d > /dev/null <<EOF
-#!/bin/sh
-exit 101
-EOF
-chmod +x /usr/sbin/policy-rc.d
 dpkg-divert --local --rename --add /sbin/initctl
 ln -fs /bin/true /sbin/initctl
 clear
-rm /usr/bin/systemctl ; cd / ; tar xf /etc/systemctl-service-shim.tar
 
 # Remove services not needed in WSL1
 update-rc.d -f consolesetup.sh remove >/dev/null 2>&1

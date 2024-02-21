@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-16"?>
 <Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
   <RegistrationInfo>
-    <Date>2020-09-10T15:23:22</Date>
+    <Date>2020-01-01T00:00:00</Date>
     <Author>AAAA</Author>
     <URI>\xWSL</URI>
   </RegistrationInfo>
   <Triggers>
-    <BootTrigger>
-      <StartBoundary>2020-09-10T15:23:00</StartBoundary>
+    <LogonTrigger>
       <Enabled>true</Enabled>
-    </BootTrigger>
+      <UserId>AAAA</UserId>
+    </LogonTrigger>
   </Triggers>
   <Principals>
     <Principal id="Author">
       <UserId>AAAA</UserId>
       <LogonType>InteractiveToken</LogonType>
-      <RunLevel>HighestAvailable</RunLevel>
+      <RunLevel>LeastPrivilege</RunLevel>
     </Principal>
   </Principals>
   <Settings>
@@ -31,7 +31,7 @@
     </IdleSettings>
     <AllowStartOnDemand>true</AllowStartOnDemand>
     <Enabled>true</Enabled>
-    <Hidden>true</Hidden>
+    <Hidden>false</Hidden>
     <RunOnlyIfIdle>false</RunOnlyIfIdle>
     <DisallowStartOnRemoteAppSession>false</DisallowStartOnRemoteAppSession>
     <UseUnifiedSchedulingEngine>true</UseUnifiedSchedulingEngine>
@@ -41,8 +41,8 @@
   </Settings>
   <Actions Context="Author">
     <Exec>
-      <Command>QQQQ\Init.cmd</Command>
+      <Command>%WINDIR%\System32\CMD.EXE</Command>
+      <Arguments>/C START /MIN "xWSL" "QQQQ\Init.cmd"</Arguments>
     </Exec>
   </Actions>
 </Task>
-

@@ -23,18 +23,18 @@ IF EXIST .\CMD.EXE CD ..\..
 ECHO [xWSL Installer %WSLREV%]
 ECHO:
 SET UBUVER=4& SET /p UBUVER=Enter '2' for Ubuntu 22.04 (Jammy) or '4' for Ubuntu 24.04 (Noble) [4]: 
-ECHO: & ECHO Enter a unique name for your xWSL distro or hit Enter to use default. 
+ECHO: & ECHO Enter a unique name for your distro or hit Enter for default. 
 SET /p DISTRO=Keep this name simple, no space or underscore characters [xWSL]: 
 IF EXIST "%DISTRO%" (ECHO. & ECHO Folder exists with that name, choose a new folder name. & PAUSE & GOTO DI)
 WSL.EXE -d %DISTRO% -e . > "%TEMP%\InstCheck.tmp"
 FOR /f %%i in ("%TEMP%\InstCheck.tmp") do set CHKIN=%%~zi 
 IF %CHKIN% == 0 (ECHO. & ECHO There is a WSL distribution registered with that name; uninstall it or choose a new name. & PAUSE & GOTO DI)
 ECHO: & SET RDPPRT=3399& SET /p RDPPRT=    Port number for xRDP traffic or hit Enter to use default [3399]: 
-SET SSHPRT=3322& SET /p SSHPRT=    Port number for SSHd traffic or hit Enter to use default [3322]: 
-                 SET /p WINDPI=Set a custom DPI scale, or hit Enter for Windows default [%WINDPI%]: 
+SET SSHPRT=3322& SET /p SSHPRT=Port number for SSHd traffic or hit Enter to use default [3322]: 
+                 SET /p WINDPI=Set a custom DPI scale, or hit Enter for Windows default    [%WINDPI%]: 
 FOR /f "delims=" %%a in ('PowerShell -Command 96 * "%WINDPI%" ') do set "LINDPI=%%a"
 FOR /f "delims=" %%a in ('PowerShell -Command 32 * "%WINDPI%" ') do set "PANEL=%%a"
-SET DEFEXL=NONO& SET /p DEFEXL=[Not recommended!] Type X to eXclude from Windows Defender: 
+SET DEFEXL=NONO& SET /p DEFEXL=[Not recommended!]     Type X to eXclude from Windows Defender: 
 SET DISTROFULL=%CD%\%DISTRO%
 SET _rlt=%DISTROFULL:~2,2%
 IF "%_rlt%"=="\\" SET DISTROFULL=%CD%%DISTRO%

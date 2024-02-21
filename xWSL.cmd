@@ -34,7 +34,7 @@ SET SSHPRT=3322& SET /p SSHPRT=Port number for SSHd traffic or hit Enter to use 
                  SET /p WINDPI=Set a custom DPI scale, or hit Enter for Windows default    [%WINDPI%]: 
 FOR /f "delims=" %%a in ('PowerShell -Command 96 * "%WINDPI%" ') do set "LINDPI=%%a"
 FOR /f "delims=" %%a in ('PowerShell -Command 32 * "%WINDPI%" ') do set "PANEL=%%a"
-SET DEFEXL=NONO& SET /p DEFEXL=[Not recommended!]     Type X to eXclude from Windows Defender: 
+SET DEFEXL=NONO& SET /p DEFEXL=[ Not recommended! ]    Type X to eXclude from Windows Defender: 
 SET DISTROFULL=%CD%\%DISTRO%
 SET _rlt=%DISTROFULL:~2,2%
 IF "%_rlt%"=="\\" SET DISTROFULL=%CD%%DISTRO%

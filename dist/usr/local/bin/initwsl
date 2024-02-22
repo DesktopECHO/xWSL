@@ -38,7 +38,11 @@ update-rc.d -f udev remove >/dev/null 2>&1
 update-rc.d -f pulseaudio-enable-autospawn remove >/dev/null 2>&1
 
 printf "Runlevel $1 on WSLINSTANCENAME @ "
-INTFCE=$(/sbin/ip route | awk '/default/ { print $5 }') ; (/sbin/ip -o -4 addr list $INTFCE | awk '{print $6}' | cut -d/ -f1)
+if [ $(uname -r | awk -F '.' '{print $1}') -ge 5 ] ; then
+ INTFCE=$(/sbin/ip route | awk '/default/ { print $5 }') ; (/sbin/ip -o -4 addr list $INTFCE | awk '{print $6}' | cut -d/ -f1)
+   else
+ INTFCE=$(/sbin/ip route | awk '/default/ { print $6 }') ; (/sbin/ip -o -4 addr list $INTFCE | awk '{print $4}' | cut -d/ -f1)
+fi
 
 echo " "
 

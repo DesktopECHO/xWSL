@@ -41,7 +41,8 @@
   </Settings>
   <Actions Context="Author">
     <Exec>
-      <Command>QQQQ\Init.cmd</Command>
+      <Command>%WINDIR%\System32\CMD.EXE</Command>
+      <Arguments>/C START /MIN "xWSL" "QQQQ\Init.cmd"</Arguments>
     </Exec>
   </Actions>
 </Task>

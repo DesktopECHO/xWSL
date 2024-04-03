@@ -1,8 +1,6 @@
-**A [mass-rebuild](https://discourse.ubuntu.com/t/whats-happening-in-noble-repositories/43729) of Ubuntu 24.04 is underway due to a [backdoor in the xz package](https://gist.github.com/thesamesam/223949d5a074ebc3dce9ee78baad9e27), causing the script to break on Ubuntu Noble.**  Once the rebuilds complete it will work normally.  Ubuntu 22.04 is not affected.
+# [xWSL.cmd (Version 20240403)](https://github.com/DesktopECHO/xWSL)
 
-# [xWSL.cmd (Version 1.6 / 20231021)](https://github.com/DesktopECHO/xWSL)
-
-Script to NetInstall **Ubuntu 22.04**, **Xfce 4.18** and enable **xRDP** packages on WSL1 or WSL2   
+Script to internet-deploy **Ubuntu 22.04** or **24.04**, **Xfce 4.18** and enable **xRDP** packages on WSL1 or WSL2   
 Other distributions are available - See **KDE Neon** [**(kWSL)**](https://github.com/DesktopECHO/kWSL) and **Kali Linux** [**(Kali-xRDP)**](https://github.com/DesktopECHO/Kali-xRDP) for details.
 
 * Enabled H.264 RDP codec.    

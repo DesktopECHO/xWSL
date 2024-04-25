@@ -2,7 +2,7 @@
 IF %ERRORLEVEL% == 0 (ECHO Administrator check passed...) ELSE (ECHO You need to run this command with administrative rights.  Is User Account Control enabled? && pause && goto ENDSCRIPT)
 
 COLOR 1F
-SET WSLREV=20240404
+SET WSLREV=20240425
 SET DISTRO=xWSL
 SET GITORG=DesktopECHO
 SET GITPRJ=xWSL
@@ -70,7 +70,7 @@ START /WAIT /MIN "Creating WSL userspace..." "%TEMP%\LxRunOffline.exe" "i" "-n" 
 (FOR /F "usebackq delims=" %%v IN (`PowerShell -Command "whoami"`) DO set "WAI=%%v") & ICACLS "%DISTROFULL%" /grant "%WAI%":(CI)(OI)F > NUL
 (COPY /Y "%TEMP%\LxRunOffline.exe" "%DISTROFULL%" > NUL ) & "%DISTROFULL%\LxRunOffline.exe" sd -n "%DISTRO%" 
 
-START /MIN /WAIT "Remove un-needed packages..." %GO% "echo 'exit 0' > /etc/init.d/udev ; SUDO_FORCE_REMOVE=yes DEBIAN_FRONTEND=noninteractive apt-get -qqy purge --autoremove needrestart apparmor* bc* bcache-tools* bolt* btrfs-progs* busybox-initramfs* cloud-guest-utils* cloud-init* cloud-initramfs-copymods* cloud-initramfs-dyn-netconf* lvm2* lxd-agent-loader* mdadm* modemmanager* multipath-tools* netplan.io* open-iscsi* open-vm-tools* overlayroot* plymouth* plymouth-theme-ubuntu-text* sbsigntool* secureboot-db* sg3-utils* snapd* sosreport* squashfs-tools* thin-provisioning-tools* tpm-udev* ubuntu-minimal* ubuntu-server* udisks2* usb-modeswitch* usb-modeswitch-data* zerofree*"
+START /MIN /WAIT "Remove un-needed packages..." %GO% "echo 'exit 0' > /etc/init.d/udev ; SUDO_FORCE_REMOVE=yes DEBIAN_FRONTEND=noninteractive apt-get -qqy purge --autoremove needrestart apparmor* bc* bcache-tools* bolt* btrfs-progs* busybox-initramfs* cloud-guest-utils* cloud-init* cloud-initramfs-copymods* cloud-initramfs-dyn-netconf* lvm2* lxd-agent-loader* mdadm* modemmanager* multipath-tools* netplan.io* open-iscsi* open-vm-tools* overlayroot* plymouth* plymouth-theme-ubuntu-text* sbsigntool* secureboot-db* sg3-utils* snapd* sosreport* squashfs-tools* thin-provisioning-tools* tpm-udev* ubuntu-minimal* ubuntu-server* usb-modeswitch* usb-modeswitch-data* zerofree*"
 
 ECHO [%TIME:~0,8%] Setup apt-fast and clone repo (~1m00s)
 %GO% "rm -rf /etc/apt/apt.conf.d/20snapd.conf /etc/systemd/system/snap* /var/cache/snapd /etc/rc2.d/S01whoopsie /etc/init.d/console-setup.sh ; echo 'echo 1' > /usr/sbin/runlevel ; cd /tmp ; git clone -b %BRANCH% --depth=1 https://github.com/%GITORG%/%GITPRJ%.git ; dpkg -i /tmp/xWSL/deb/aria2_*.deb /tmp/xWSL/deb/libaria2-0_*.deb /tmp/xWSL/deb/libc-ares2_*.deb /tmp/xWSL/deb/libssh2-1_*.deb ; chmod +x /tmp/xWSL/dist/usr/local/bin/apt-fast ; cp -p /tmp/xWSL/dist/usr/local/bin/apt-fast /usr/local/bin ; mv /tmp/xWSL/dist/etc/dpkg/dpkg.cfg.d/01_nodoc /etc/dpkg/dpkg.cfg.d ; apt-get update ; apt-get -qqy install systemd > /dev/null 2>&1 ; cd /bin && mv -f systemd-sysusers{,.org} && ln -s echo systemd-sysusers ; apt-get -fy install > /dev/null 2>&1 ; # DEBIAN_FRONTEND=noninteractive apt-fast -qqy dist-upgrade" > ".\logs\%TIME:~0,2%%TIME:~3,2%%TIME:~6,2% Setup apt-fast and clone repo.log" 2>&1

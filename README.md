@@ -1,4 +1,4 @@
-# [xWSL.cmd (Version 20240403)](https://github.com/DesktopECHO/xWSL)
+# [xWSL.cmd (Version 20240425)](https://github.com/DesktopECHO/xWSL)
 
 Script to internet-deploy **Ubuntu 22.04** or **24.04**, **Xfce 4.18** and enable **xRDP** packages on WSL1 or WSL2   
 Other distributions are available - See **KDE Neon** [**(kWSL)**](https://github.com/DesktopECHO/kWSL) and **Kali Linux** [**(Kali-xRDP)**](https://github.com/DesktopECHO/Kali-xRDP) for details.

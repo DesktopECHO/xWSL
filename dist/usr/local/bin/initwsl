@@ -1,69 +1,101 @@
 #!/bin/bash
-run_level=$1
+
+# --- 1. Validation & Variables ---
+# Use the first argument as runlevel; default to 2 if empty
+run_level=${1:-2}
 export RUNLEVEL=$run_level
+INSTANCE="WSLINSTANCENAME"
 
-rm -rf /tmp/.*
-mkdir /tmp/.ICE-unix ; chmod 1777 /tmp/.ICE-unix
+# --- 2. The /etc/wsl.conf Fix (Ensures DNS is handled by WSL) ---
+if [ -f /etc/wsl.conf ]; then
+    # Check if the line exists; if so, ensure generateResolvConf is False
+    sed -i 's/^generateResolvConf.*/generateResolvConf = False/' /etc/wsl.conf
+fi
 
-rm -rf /usr/bin/systemctl /usr/sbin/systemctl ; cp /etc/systemctl3.py /usr/bin/systemctl ; chmod +x /usr/bin/systemctl
-rm -rf /usr/sbin/runlevel ; echo "echo 'N 2'" > /usr/sbin/runlevel ; chmod +x /usr/sbin/runlevel
-rm -rf /usr/sbin/policy-rc.d ; echo "exit 0" > /usr/sbin/policy-rc.d ; chmod +x /usr/sbin/policy-rc.d
+# --- 3. System Cleanup & Fixes ---
+# Clean /tmp safely (idempotent)
+find /tmp -mindepth 1 -delete 2>/dev/null
+mkdir -p /tmp/.ICE-unix
+chmod 1777 /tmp/.ICE-unix
 
-touch /run/initctl >/dev/null 2>&1
-chmod 644 /var/run/syslog.pid >/dev/null 2>&1
-strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5 >/dev/null 2>&1
-chmod a-x /usr/lib/x86_64-linux-gnu/libexec/kscreenlocker_greet >/dev/null 2>&1
+# Setup dummy scripts to satisfy legacy installers
+rm -rf /usr/sbin/runlevel /usr/bin/systemctl /usr/sbin/systemctl /usr/sbin/policy-rc.d
+echo 'echo "N 2"' > /usr/sbin/runlevel
+echo 'exit 0' > /usr/sbin/policy-rc.d
+ln -sf /etc/systemctl3.py /usr/bin/systemctl
+chmod +x /usr/sbin/runlevel /usr/sbin/policy-rc.d /usr/bin/systemctl
 
-dpkg-divert --local --rename --add /sbin/initctl
-ln -fs /bin/true /sbin/initctl
+# WSL Patches
+touch /run/initctl
+strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5 2>/dev/null
+
+# Divert initctl to prevent service errors during apt upgrades
+if ! dpkg-divert --list | grep -q "/sbin/initctl"; then
+    dpkg-divert --local --rename --add /sbin/initctl
+    ln -fs /bin/true /sbin/initctl
+fi
+
+# --- 4. Disable Unnecessary Background Services ---
+SERVICES=(
+    consolesetup.sh nftables irqbalance whoopsie acpid plymouth
+    plymouth-log gdm3 lightdm ufw bluetooth open-iscsi
+    hwclock.sh open-vm-tools apport udev pulseaudio-enable-autospawn
+)
+
+for service in "${SERVICES[@]}"; do
+    update-rc.d -f "$service" remove >/dev/null 2>&1
+done
+
+# --- 5. Shutdown Logic (Runlevel 0) ---
+if [ "$run_level" -eq "0" ]; then
+    clear
+    echo "Stopping all services for shutdown..."
+
+    # Run Kill scripts for runlevel 0 specifically
+    for rc_service in /etc/rc0.d/K*; do
+        if [ -e "$rc_service" ]; then
+            echo "Stopping: $(basename "$rc_service")"
+            "$rc_service" stop
+        fi
+    done
+
+    echo "------------------------------------------------"
+    echo "Services stopped. Terminating..."
+    # Background the Windows termination command
+    (sleep 5 ; wslconfig.exe /t "$INSTANCE") &
+    exit 0
+fi
+
+# --- 6. Banner & Network Info ---
 clear
+IP_ADDR=$(hostname -I | awk '{print $1}')
+echo "Runlevel $run_level | $INSTANCE @ $IP_ADDR"
+echo "------------------------------------------------"
 
-# Remove services not needed in WSL1
-update-rc.d -f consolesetup.sh remove >/dev/null 2>&1
-update-rc.d -f nftables remove >/dev/null 2>&1
-update-rc.d -f irqbalance remove >/dev/null 2>&1
-update-rc.d -f whoopsie remove >/dev/null 2>&1
-update-rc.d -f acpid remove >/dev/null 2>&1
-update-rc.d -f plymouth remove >/dev/null 2>&1
-update-rc.d -f plymouth-log remove >/dev/null 2>&1
-update-rc.d -f gdm3 remove >/dev/null 2>&1
-update-rc.d -f lightdm remove >/dev/null 2>&1
-update-rc.d -f ufw remove >/dev/null 2>&1
-update-rc.d -f bluetooth remove >/dev/null 2>&1
-update-rc.d -f open-iscsi remove >/dev/null 2>&1
-update-rc.d -f hwclock.sh remove >/dev/null 2>&1
-update-rc.d -f open-vm-tools remove >/dev/null 2>&1
-update-rc.d -f apport remove >/dev/null 2>&1
-update-rc.d -f udev remove >/dev/null 2>&1
-update-rc.d -f pulseaudio-enable-autospawn remove >/dev/null 2>&1
-
-printf "Runlevel $1 on WSLINSTANCENAME @ "
-if [ $(uname -r | awk -F '.' '{print $1}') -ge 5 ] ; then
- INTFCE=$(/sbin/ip route | awk '/default/ { print $5 }') ; (/sbin/ip -o -4 addr list $INTFCE | awk '{print $6}' | cut -d/ -f1)
-   else
- INTFCE=$(/sbin/ip route | awk '/default/ { print $6 }') ; (/sbin/ip -o -4 addr list $INTFCE | awk '{print $4}' | cut -d/ -f1)
-fi
-
-echo " "
-
-if [ $1 -eq "0" ]; then
-bash -c "sleep 5 && wslconfig.exe /t WSLINSTANCENAME" &
-fi
-
-[[ -z $1 ]] && { echo "Need to specify a run level"; exit 127; }
-[[ -d /etc/rc${run_level}.d/ ]] ||  { echo "Need to specify a run level"; exit 127; }
+# --- 7. Service Execution (Start/Stop for RL 1, 2, etc.) ---
+# First, Kill services assigned to this runlevel
 for rc_service in /etc/rc${run_level}.d/K*; do
-        [[ -e "$rc_service" ]] && $rc_service stop
+    [ -e "$rc_service" ] && "$rc_service" stop
 done
-for rc_service in /etc/rc${run_level}.d/S*; do
-        [[ -e "$rc_service" ]] && $rc_service start
-done
-echo ""
-echo "2 = Multi-User System"
-echo "1 = Single-User System"
-echo "0 = Stop services and terminate instance."
-echo ""
-echo -n "Select Runlevel and hit Enter: "
-read runlevel
 
-initwsl $runlevel
+# Second, Start services assigned to this runlevel
+for rc_service in /etc/rc${run_level}.d/S*; do
+    [ -e "$rc_service" ] && "$rc_service" start
+done
+
+# --- 8. Interactive Menu ---
+echo ""
+echo "Current Status: Runlevel $run_level active."
+echo "------------------------------------------------"
+echo " [2] Multi-User Mode (Standard)"
+echo " [1] Single-User Mode"
+echo " [0] Stop services and terminate instance"
+echo "------------------------------------------------"
+echo " "
+echo -n "Select Runlevel: "
+read -r next_runlevel
+# Default to 2 if user just hits enter
+next_runlevel=${next_runlevel:-2}
+
+# Re-execute script with the new level
+exec initwsl "$next_runlevel"
